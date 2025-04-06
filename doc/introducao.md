@@ -17,3 +17,5 @@ Python é uma linguagem de programação de alto nível, criada por **Guido van 
 - **Orientada a Objetos:** Python é uma linguagem orientada a objetos, mas também suporta programação imperativa, funcional e procedural.
 
 - **Portabilidade:** Python é multiplataforma, ou seja, pode ser executada em diferentes sistemas operacionais, como Windows, Linux e macOS, sem modificações significativas no código.
+
+TESTE
