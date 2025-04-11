@@ -12,6 +12,12 @@
 6. [Entrada de Dados(`(input()`)](#entrada-de-dados-input)
 7. [Métodos de Strings](#métodos-de-strings)
 8. [Formatação de Strings com `f-strings`](#formatação-de-strings-com-f-strings)
+    - 8.1. [Formatação Básica](#formatação-básica)
+    - 8.2. [Especificadores de Formato](#especificadores-de-formato)
+    - 8.3. [Alinhamento e Preenchimento](#alinhamento-e-preenchimento)
+    - 8.4. [Formatação de Números](#formatação-de-números)
+    - 8.5. [Conversion Flags](#conversion-flags)
+    - 8.6. [Outros Exemplos Completos](#outros-exemplos-completos)
 9. [Formatação de Strings com o Método `.format()`](#formatação-de-strings-com-o-método-format)
     - 9.1. [Parâmetros Nomeados](#parâmetros-nomeados)
     - 9.2. [Índices no `.format()`](#índices-no-format)
@@ -21,6 +27,13 @@
     - 11.1. [Estrutura Básica](#estrutura-básica)
     - 11.2. [Múltiplas Condições com `if`, `elif` e `else`](#múltiplas-condições-com-if-elif-e-else)
 12. [Operadores de Comparação (Relacionais)](#operadores-de-comparação-relacionais)
+13. [Operadores Logicos](#operadores-lógicos)
+    - 13.1. [Operador `and` (E)](#operador-and-e)
+    - 13.2. [Operador `or` (Ou)](#operador-or-ou)
+    - 13.3. [Operador `not` (Não)](#operador-not-não)
+14. [Operadores de Associação `in` e `not in`](#operadores-de-associação-in-e-not-in)
+    - 14.1. [Valores "False" em Python](#valores-false-em-python)
+15. [Interpolação de Strings com `%`](#interpolação-de-strings-com-)
 
 ---
 
@@ -386,37 +399,138 @@ print(texto2.isdigit())  # Resultado: False
 
 ---
 
-### Formatação de Strings com `f-strings`:
+### Formatação de Strings com `f-strings`
 
-As **f-strings** (format strings) é uma forma prática e legível de inserir variáveis e expressões dentro de strings, utilizando o prefixo `f` antes das aspas.
+As **f-strings** (format strings) são uma forma prática, moderna e legível de inserir variáveis e expressões dentro de strings, utilizando o prefixo `f` antes das aspas. Elas foram introduzidas no Python 3.6 e são amplamente utilizadas devido à sua simplicidade e flexibilidade.
 
-**Exemplo 01:**
-```py
-f"Texto {variavel1} mais texto {variavel2}"
-```
+#### Formatação Básica
 
-*Obs: Você pode usar variáveis, expressões e até métodos diretamente dentro da string.*
+Você pode inserir variáveis diretamente dentro de uma string utilizando `{}`.
 
-**Exemplo 02:**
+**Exemplo:**
 ```py
 nome = 'Camaleão'
-
-print(f'Olá, {nome}') # Retorna: Olá, Camaleão
+print(f'Olá, {nome}')  # Retorna: Olá, Camaleão
 ```
 
-**Formatando com casas decimais:** Você pode controlar o número de casas decimais usando `:.2f` ou mais.
+Além de variáveis, você pode usar expressões e até métodos diretamente dentro das chaves `{}`.
 
-**Exemplo 03:**
+**Exemplo:**
 ```py
-numero = 3.141592653
-print(f'O número formatado é {numero:.2f}')  # Retorna: O número formatado é 3.14
+a = 10
+b = 20
+print(f'A soma de {a} + {b} é {a + b}')  # Retorna: A soma de 10 + 20 é 30
 ```
 
----
+#### Especificadores de Formato
 
-- Tudo em python é um objeto, objetos geralmente tme métodos dentro deles
+Os **especificadores de formato** permitem controlar como os valores são exibidos. Aqui estão os principais:
 
-- Um dos vários métodos que existem é o `.format()`
+| Especificador | Descrição                          | Exemplo (`f-string`)         |
+|---------------|------------------------------------|------------------------------|
+| `s`           | String                            | `f'{variavel:s}'`            |
+| `d`           | Inteiro (decimal)                 | `f'{variavel:d}'`            |
+| `f`           | Float (número decimal)            | `f'{variavel:.2f}'`          |
+| `x` ou `X`    | Hexadecimal (minúsculo/maiúsculo) | `f'{variavel:x}'` ou `f'{variavel:X}'` |
+
+#### Alinhamento e Preenchimento
+
+Você pode alinhar e preencher valores formatados usando os seguintes caracteres:
+
+| Símbolo | Descrição                              |
+|---------|----------------------------------------|
+| `>`     | Alinha à direita                       |
+| `<`     | Alinha à esquerda                      |
+| `^`     | Centraliza                             |
+| `=`     | Força o número a aparecer antes dos zeros |
+| `0`     | Preenche com zeros                     |
+
+**Exemplos:**
+```py
+variavel = 'ABC'
+
+print(f'{variavel: >10}')  # Alinha à direita com 10 caracteres: '       ABC'
+print(f'{variavel: <10}.')  # Alinha à esquerda com 10 caracteres: 'ABC       .'
+print(f'{variavel: ^10}.')  # Centraliza com 10 caracteres: '   ABC    .'
+```
+
+#### Formatação de Números
+
+Você pode formatar números com separadores de milhares, casas decimais e sinais.
+
+**Exemplos:**
+```py
+# Número com separador de milhares, 1 casa decimal, preenchido com zeros e sinal positivo
+print(f'{1000.4873648123746:0=+10,.1f}')  # Retorna: +001,000.5
+
+# Exibindo um número em hexadecimal com 8 caracteres, preenchido com zeros
+print(f'O hexadecimal de 1500 é {1500:08X}')  # Retorna: O hexadecimal de 1500 é 000005DC
+```
+
+#### Conversion Flags
+
+As **conversion flags** permitem exibir representações específicas de valores:
+
+| Flag | Descrição                          | Exemplo (`f-string`)         |
+|------|------------------------------------|------------------------------|
+| `!r` | Representação oficial (usando `repr()`) | `f'{variavel!r}'`            |
+| `!s` | Representação como string (usando `str()`) | `f'{variavel!s}'`            |
+| `!a` | Representação ASCII                | `f'{variavel!a}'`            |
+
+**Exemplo:**
+```py
+variavel = 'ABC'
+print(f'{variavel!r}')  # Retorna: 'ABC'
+```
+
+#### Outros Exemplos Completos
+
+**Exemplo 1: Formatação de Strings**
+```py
+nome = 'Luiz'
+idade = 30
+print(f'{nome} tem {idade} anos.')  # Retorna: Luiz tem 30 anos.
+```
+
+**Exemplo 2: Formatação de Números**
+```py
+preco = 1234.56789
+print(f'Preço formatado: R${preco:.2f}')  # Retorna: Preço formatado: R$1234.57
+```
+
+**Exemplo 3: Alinhamento e Preenchimento**
+```py
+variavel = 'Python'
+print(f'{variavel:*>10}')  # Retorna: ****Python
+print(f'{variavel:*<10}')  # Retorna: Python****
+print(f'{variavel:*^10}')  # Retorna: **Python**
+```
+
+**Exemplo 4: Hexadecimal**
+```py
+numero = 255
+print(f'Hexadecimal: {numero:08X}')  # Retorna: Hexadecimal: 000000FF
+```
+
+*Observações:*
+
+- As **f-strings** são recomendadas para formatação de strings em Python devido à sua legibilidade e eficiência.
+- Para versões de Python anteriores ao 3.6, você pode usar o método `.format()` ou a interpolação com `%`.
+
+```py
+# Comparação com .format() e %
+nome = 'Luiz'
+preco = 1000.95
+
+# Usando f-strings
+print(f'{nome}, o preço é R${preco:.2f}')  # Luiz, o preço é R$1000.95
+
+# Usando .format()
+print('{}, o preço é R${:.2f}'.format(nome, preco))  # Luiz, o preço é R$1000.95
+
+# Usando %
+print('%s, o preço é R$%.2f' % (nome, preco))  # Luiz, o preço é R$1000.95
+```
 
 ---
 
@@ -604,3 +718,215 @@ print('Diferente:', diferente)  # True
 
 ---
 
+### Operadores Lógicos
+
+Os **operadores lógicos** são usados para combinar expressões condicionais e tomar decisões com base em múltiplas condições. Em Python, os principais operadores lógicos são:
+
+| Operador | Significado | Descrição                                                                 |
+|----------|-------------|---------------------------------------------------------------------------|
+| `and`    | E           | Todas as condições precisam ser verdadeiras para o resultado ser `True`. |
+| `or`     | Ou          | Pelo menos uma condição precisa ser verdadeira para o resultado ser `True`. |
+| `not`    | Não         | Inverte o valor lógico de uma expressão (`True` vira `False` e vice-versa). |
+
+#### Operador `and` (E)
+
+O operador `and` avalia como `True` apenas se **todas as condições** forem verdadeiras. Se qualquer valor for considerado falso, a expressão inteira será avaliada como `False`.
+
+**Exemplo:**
+```py
+entrada = input('[E]ntrar [S]air: ')
+senha_digitada = input('Senha: ')
+
+senha_permitida = '123456'
+
+if entrada == 'E' and senha_digitada == senha_permitida:
+    print('Entrar')
+else:
+    print('Sair')
+```
+
+**Avaliação de Curto-Circuito com `and`:**
+Se uma condição for avaliada como `False`, o Python não verifica as condições seguintes, pois o resultado já será `False`.
+
+**Exemplo:**
+```py
+print(True and False and True)  # False
+print(True and 0 and True)      # 0 (0 é considerado "false")
+```
+
+#### Operador `or` (Ou)
+
+O operador `or` avalia como `True` se **pelo menos uma condição** for verdadeira. Se todas as condições forem falsas, o resultado será `False`.
+
+**Exemplo:**
+```py
+entrada = input('[E]ntrar [S]air: ')
+senha_digitada = input('Senha: ')
+
+senha_permitida = '123456'
+
+if (entrada == 'E' or entrada == 'e') and senha_digitada == senha_permitida:
+    print('Entrar')
+else:
+    print('Sair')
+```
+
+**Avaliação de Curto-Circuito com `or`:**
+Se uma condição for avaliada como `True`, o Python não verifica as condições seguintes, pois o resultado já será `True`.
+
+**Exemplo:**
+```py
+senha = input('Senha: ') or 'Sem senha'
+print(senha)  # Se o usuário não digitar nada, será exibido "Sem senha".
+```
+
+#### Operador `not` (Não)
+
+O operador `not` é usado para inverter o valor lógico de uma expressão. Se a expressão for `True`, o resultado será `False`, e vice-versa.
+
+**Exemplo:**
+```py
+print(not True)   # False
+print(not False)  # True
+```
+
+**Resumo dos Operadores Lógicos:**
+
+1. **`and`**: Todas as condições precisam ser verdadeiras.
+2. **`or`**: Pelo menos uma condição precisa ser verdadeira.
+3. **`not`**: Inverte o valor lógico de uma expressão.
+
+---
+
+### Operadores de Associação `in` e `not in`
+
+Os operadores `in` e `not in` são usados para verificar se um valor está (ou não está) presente em uma sequência, como strings, listas ou tuplas.
+
+| Operador   | Significado                  | Exemplo (`True`)         |
+|------------|------------------------------|--------------------------|
+| `in`       | Está presente na sequência   | `'a' in 'Python'`        |
+| `not in`   | Não está presente na sequência | `'z' not in 'Python'`    |
+
+**Exemplo com Strings:**
+```py
+nome = input('Digite seu nome: ')
+encontrar = input('Digite o que deseja encontrar: ')
+
+if encontrar in nome:
+    print(f'{encontrar} está em {nome}')
+else:
+    print(f'{encontrar} não está em {nome}')
+```
+
+**Exemplo com Índices:**
+```py
+nome = 'Otávio'
+print(nome[2])       # Resultado: á
+print(nome[-4])      # Resultado: á
+print('vio' in nome) # Resultado: True
+print('zero' in nome) # Resultado: False
+```
+
+#### Valores "False" em Python
+
+Os seguintes valores são considerados **falsos** em Python (false):
+- `0`
+- `0.0`
+- `''` (string vazia)
+- `False`
+- `None` (representa a ausência de valor)
+
+**Exemplo:**
+```py
+if not 0:
+    print('0 é considerado falso')  # Será exibido
+```
+
+**Resumo dos Operadores de Associação:**
+
+1. **`in` / `not in`**: Verifica se um valor está (ou não está) presente em uma sequência.
+
+```py
+# Exemplo completo:
+nome = 'Python'
+print('P' in nome)       # True
+print('z' not in nome)   # True
+print(not ('P' in nome)) # False
+```
+
+---
+
+### Interpolação de Strings com `%`
+
+A interpolação de strings com `%` é uma forma antiga, mas ainda funcional, de formatar strings em Python. Ela utiliza especificadores de formato para inserir valores em uma string.
+
+**Especificadores de Formato**
+
+| Especificador | Descrição                          | Exemplo (`%`)       |
+|---------------|------------------------------------|---------------------|
+| `%s`          | String                            | `'Olá %s' % 'Mundo'` |
+| `%d` ou `%i`  | Inteiro (decimal)                 | `'Número: %d' % 10` |
+| `%f`          | Float (número decimal)            | `'Preço: %.2f' % 10.5` |
+| `%x` ou `%X`  | Hexadecimal (minúsculo/maiúsculo) | `'%x' % 255` ou `'%X' % 255` |
+
+**Exemplos**
+
+**Interpolação Básica:**
+```py
+nome = 'Luiz'
+preco = 1000.95897643
+variavel = '%s, o preço é R$%.2f' % (nome, preco)
+
+print(variavel)  # Saída: Luiz, o preço é R$1000.96
+```
+
+**Hexadecimal:**
+```py
+numero = 1500
+print('O hexadecimal de %d é %08X' % (numero, numero))
+# Saída: O hexadecimal de 1500 é 000005DC
+```
+
+**Detalhes Importantes**
+
+1. **Especificadores de Precisão:**
+   - Para números decimais (`%f`), você pode controlar o número de casas decimais usando `%.nf`, onde `n` é o número de casas desejadas.
+   - Exemplo:
+     ```py
+     preco = 123.456789
+     print('Preço: %.2f' % preco)  # Saída: Preço: 123.46
+     ```
+
+2. **Preenchimento com Zeros:**
+   - Para inteiros, você pode preencher com zeros à esquerda usando `%0nd`, onde `n` é o número total de dígitos.
+   - Exemplo:
+     ```py
+     numero = 42
+     print('%05d' % numero)  # Saída: 00042
+     ```
+
+3. **Hexadecimal com Letras Maiúsculas ou Minúsculas:**
+   - `%x` exibe o hexadecimal em letras minúsculas.
+   - `%X` exibe o hexadecimal em letras maiúsculas.
+   - Exemplo:
+     ```py
+     numero = 255
+     print('%x' % numero)  # Saída: ff
+     print('%X' % numero)  # Saída: FF
+     ```
+
+*Observações*
+
+- A interpolação com `%` é considerada **legada** e foi substituída por métodos mais modernos, como `.format()` e **f-strings** (a partir do Python 3.6).
+- No entanto, ela ainda é amplamente usada em códigos antigos e em situações específicas.
+
+**Exemplo Comparativo com f-strings:**
+```py
+# Usando %
+nome = 'Luiz'
+preco = 1000.95
+print('%s, o preço é R$%.2f' % (nome, preco))  # Luiz, o preço é R$1000.95
+
+# Usando f-strings
+print(f'{nome}, o preço é R${preco:.2f}')  # Luiz, o preço é R$1000.95
+```
