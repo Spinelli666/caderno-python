@@ -11,6 +11,10 @@
 5. [Operações com Strings](#operações-com-strings)
 6. [Entrada de Dados(`(input()`)](#entrada-de-dados-input)
 7. [Métodos de Strings](#métodos-de-strings)
+8. [Formatação de Strings com `f-strings`](#formatação-de-strings-com-f-strings)
+9. [Formatação de Strings com o Método `.format()`](#formatação-de-strings-com-o-método-format)
+    - 9.1. [Parâmetros Nomeados](#parâmetros-nomeados)
+    - 9.2. [Índices no `.format()`](#índices-no-format)
 
 ### Função `print()`
 
@@ -25,6 +29,36 @@ print("Olá, Mundo!")
 
 **Importante:**
 - Função precisa de parênteses: A função `print()` sempre exige parênteses para funcionar.
+
+**Parâmetro Separador `sep`:** Serve para fazer a separação dos argumentos.
+
+**Exemplo:**
+```py
+print(12, 34, sep="-") # Retorna: 12-34
+``` 
+
+**Parâmetro Qebra Linha `end`:** Serve para fazer a quebra de linha.
+
+**Exemplo 01:**
+``` py
+print(12, 34, end=" ")
+print(12, 34)
+
+# Retorna:
+# 12 34 12 34
+```
+
+**Exemplo 02:**
+```py
+print(12, 34, end="\n")
+print(12, 34)
+
+# Retorna:
+"""
+12 34 
+12 34
+"""
+```
 
 ---
 
@@ -209,7 +243,7 @@ texto = "Python"
 print(texto.upper())  # Resultado: PYTHON
 ```
 
-**3.** `.captalize()`
+**3.** `.capitalize()`
 
 Converte a primeira letra da string para maiúscula e todas as outras para minúsculas.
 
@@ -341,3 +375,85 @@ print(texto.isdigit())  # Resultado: True
 texto2 = "12a45"
 print(texto2.isdigit())  # Resultado: False
 ```
+
+---
+
+### Formatação de Strings com `f-strings`:
+
+As **f-strings** (format strings) é uma forma prática e legível de inserir variáveis e expressões dentro de strings, utilizando o prefixo `f` antes das aspas.
+
+**Exemplo 01:**
+```py
+f"Texto {variavel1} mais texto {variavel2}"
+```
+
+*Obs: Você pode usar variáveis, expressões e até métodos diretamente dentro da string.*
+
+**Exemplo 02:**
+```py
+nome = 'Camaleão'
+
+print(f'Olá, {nome}') # Retorna: Olá, Camaleão
+```
+
+**Formatando com casas decimais:** Você pode controlar o número de casas decimais usando `:.2f` ou mais.
+
+**Exemplo 03:**
+```py
+numero = 3.141592653
+print(f'O número formatado é {numero:.2f}')  # Retorna: O número formatado é 3.14
+```
+
+---
+
+- Tudo em python é um objeto, objetos geralmente tme métodos dentro deles
+
+- Um dos vários métodos que existem é o `.format()`
+
+---
+
+### Formatação de Strings com o Método `.format()`
+
+O método `.format()` é usado para substituir os `{}` em uma string pelos valores passados como argumentos. Ele é uma alternativa às **f-strings** e permite maior flexibilidade, como o uso de **parâmetros nomeados**.
+
+**Exemplo:**
+```py
+a = 'AAAAA'
+b = 'B'
+c = 1.1
+string = 'a={nome1} b={nome2} c={nome3:.2f}'  # Formato da string
+formato = string.format(
+    nome1=a, nome2=b, nome3=c
+)  # Substitui os {} pelos valores passados
+print(formato)  # Saída: a=AAAAA b=B c=1.10
+```
+
+#### Parâmetros Nomeados
+
+Os **parâmetros nomeados** são argumentos passados com um nome dentro das chamadas das funções. Isso torna o código mais legível e organizado, pois você pode identificar facilmente o que cada valor representa.
+
+**Exemplo:**
+```py
+string = 'Olá, {nome}! Você tem {idade} anos.'
+resultado = string.format(nome='João', idade=25)
+print(resultado)  # Saída: Olá, João! Você tem 25 anos.
+```
+
+
+#### Índices no `.format()`
+
+Se você não usar nomes nos `{}`, pode passar os valores por **índices**. Lembre-se de que os índices começam em `0`.
+
+**Exemplo:**
+```py
+string = 'a={0} b={1} c={2:.2f}'
+formato = string.format('AAAAA', 'B', 1.1)
+print(formato)  # Saída: a=AAAAA b=B c=1.10
+```
+
+*Observações:*
+
+- O método `.format()` é útil para versões de Python anteriores ao 3.6, onde as **f-strings** não estão disponíveis.
+- Para formatação mais moderna e legível, prefira **f-strings** quando possível.
+
+---
