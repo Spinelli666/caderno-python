@@ -15,6 +15,14 @@
 9. [Formatação de Strings com o Método `.format()`](#formatação-de-strings-com-o-método-format)
     - 9.1. [Parâmetros Nomeados](#parâmetros-nomeados)
     - 9.2. [Índices no `.format()`](#índices-no-format)
+10. [Função `input()`](#função-input)
+    - 10.1. [Convertendo a Entrada de Dados](#convertendo-a-entrada-de-dados)
+11. [Blocos de Código e Condicionais (`if`, `elif`, `else`)](#blocos-de-código-e-condicionais-if-elif-else)
+    - 11.1. [Estrutura Básica](#estrutura-básica)
+    - 11.2. [Múltiplas Condições com `if`, `elif` e `else`](#múltiplas-condições-com-if-elif-e-else)
+12. [Operadores de Comparação (Relacionais)](#operadores-de-comparação-relacionais)
+
+---
 
 ### Função `print()`
 
@@ -457,3 +465,142 @@ print(formato)  # Saída: a=AAAAA b=B c=1.10
 - Para formatação mais moderna e legível, prefira **f-strings** quando possível.
 
 ---
+
+### Função `input()`
+
+A função `input()` é usada para capturar a entrada de dados do usuário. O valor retornado por `input()` é sempre uma string, mesmo que o usuário digite números.
+
+**Exemplo:**
+```py
+nome = input("Qual é o seu nome? ")
+print(f"Olá, {nome}! Seja bem-vindo.")
+```
+
+#### Convertendo a Entrada de Dados
+
+Se você precisar trabalhar com números, é necessário converter a entrada de dados de string para `int` ou `float`.
+
+**Exemplo de Conversão:**
+```py
+numero = int(input("Digite um número: "))
+print(f"Você digitou o número: {numero}")
+```
+
+*Dica:* A partir do Python 3.8, você pode usar a sintaxe `f'{variavel=}'` para exibir o nome da variável junto com seu valor:
+
+```py
+nome = input("Qual é o seu nome? ")
+print(f"{nome=}")  # Saída: nome='João'
+```
+
+---
+
+### Blocos de Código e Condicionais (`if`, `elif`, `else`)
+
+Em Python, os **blocos de código** são definidos pela **indentação** (espaços ou tabulação no início da linha). Eles são usados para agrupar instruções que devem ser executadas juntas, como em estruturas condicionais.
+
+As estruturas condicionais permitem que o programa tome decisões com base em condições específicas. Em Python, usamos as palavras-chave `if`, `elif` e `else` para criar essas condições.
+
+#### Estrutura Básica
+
+- **`if`**: Executa um bloco de código se a condição for verdadeira.
+- **`elif`**: (abreviação de "else if") Verifica outra condição se a anterior for falsa.
+- **`else`**: Executa um bloco de código se nenhuma das condições anteriores for verdadeira.
+
+**Exemplo 1:**
+```py
+entrada = input('Você quer "entrar" ou "sair"? ')
+
+if entrada == 'entrar':
+    print('Você entrou no sistema')
+    print(12341234)
+elif entrada == 'sair':
+    print('Você saiu do sistema')
+else:
+    print('Você não digitou nem entrar e nem sair.')
+
+print('FORA DOS BLOCOS')
+```
+
+**Explicação:**
+1. O programa verifica a entrada do usuário.
+2. Se o usuário digitar `"entrar"`, o bloco do `if` será executado.
+3. Se o usuário digitar `"sair"`, o bloco do `elif` será executado.
+4. Caso contrário, o bloco do `else` será executado.
+5. O código fora dos blocos será executado independentemente das condições.
+
+#### Múltiplas Condições com `if`, `elif` e `else`
+
+Você pode usar várias condições para controlar o fluxo do programa.
+
+**Exemplo 2:**
+```py
+condicao1 = True
+condicao2 = True
+condicao3 = True
+condicao4 = True
+
+if condicao1:
+    print('Código para condição 1')
+    print('Código para condição 1')
+elif condicao2:
+    print('Código para condição 2')
+elif condicao3:
+    print('Código para condição 3')
+elif condicao4:
+    print('Código para condição 4')
+else:
+    print('Nenhuma condição foi satisfeita.')
+```
+
+**Explicação:**
+1. O programa verifica as condições na ordem em que aparecem.
+2. Assim que uma condição for verdadeira, o bloco correspondente será executado e as demais condições serão ignoradas.
+
+
+*Observações:*
+
+- **Indentação**: A indentação é obrigatória em Python para definir blocos de código. Certifique-se de usar a mesma quantidade de espaços em um bloco.
+- **Fluxo do Interpretador**: O interpretador avalia as condições na ordem em que aparecem. Assim que uma condição for verdadeira, ele executa o bloco correspondente e ignora os demais.
+- **Condições Independentes**: Você pode usar múltiplos `if` independentes, mas isso significa que todas as condições serão avaliadas, mesmo que uma delas já tenha sido verdadeira.
+
+---
+
+### Operadores de Comparação (Relacionais)
+
+Os **operadores de comparação** são usados para comparar dois valores. O resultado de uma comparação é sempre um valor booleano (`True` ou `False`).
+
+| Operador | Significado         | Exemplo (`True`) |
+|----------|---------------------|------------------|
+| `>`      | Maior               | `2 > 1`          |
+| `>=`     | Maior ou igual      | `2 >= 2`         |
+| `<`      | Menor               | `1 < 2`          |
+| `<=`     | Menor ou igual      | `2 <= 2`         |
+| `==`     | Igual               | `'a' == 'a'`     |
+| `!=`     | Diferente           | `'a' != 'b'`     |
+
+**Exemplo:**
+```py
+# Comparações básicas
+maior = 2 > 1
+maior_ou_igual = 2 >= 2
+menor = 1 < 2
+menor_ou_igual = 2 <= 2
+igual = 'a' == 'a'
+diferente = 'a' != 'b'
+
+# Exibindo os resultados
+print('Maior:', maior)  # True
+print('Maior ou igual:', maior_ou_igual)  # True
+print('Menor:', menor)  # True
+print('Menor ou igual:', menor_ou_igual)  # True
+print('Igual:', igual)  # True
+print('Diferente:', diferente)  # True
+```
+
+*Observações:*
+- Os operadores de comparação são frequentemente usados em estruturas condicionais, como `if`, para tomar decisões com base em condições.
+- Comparações podem ser feitas entre números, strings e outros tipos de dados, desde que sejam compatíveis.
+
+---
+
