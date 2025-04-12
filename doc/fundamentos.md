@@ -34,7 +34,10 @@
 14. [Operadores de Associação `in` e `not in`](#operadores-de-associação-in-e-not-in)
     - 14.1. [Valores "False" em Python](#valores-false-em-python)
 15. [Interpolação de Strings com `%`](#interpolação-de-strings-com-)
-
+16. [Fatiamento de Strings](#fatiamento-de-strings)
+    - 16.1. [Índices em Strings](#índices-em-strings)
+    - 16.2. [Sintaxe do Fatiamento](#sintaxe-do-fatiamento)
+17. [Função `len`](#função-len)
 ---
 
 ### Função `print()`
