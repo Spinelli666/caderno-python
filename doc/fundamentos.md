@@ -930,3 +930,72 @@ print('%s, o preço é R$%.2f' % (nome, preco))  # Luiz, o preço é R$1000.95
 # Usando f-strings
 print(f'{nome}, o preço é R${preco:.2f}')  # Luiz, o preço é R$1000.95
 ```
+
+---
+
+### Fatiamento de Strings
+
+O **fatiamento de strings** permite acessar partes específicas de uma string, utilizando a notação `[início:fim:passo]`. Essa técnica é muito útil para manipular textos em Python.
+
+#### Índices em Strings
+
+Cada caractere de uma string possui um índice, que pode ser positivo (da esquerda para a direita) ou negativo (da direita para a esquerda).
+
+**Exemplo de Índices:**
+```
+  012345678   (índices positivos)
+  Olá mundo
+ -987654321   (índices negativos)
+```
+
+#### Sintaxe do Fatiamento
+
+A notação para fatiamento é `[início:fim:passo]`:
+- **`início`**: Índice onde o fatiamento começa (inclusivo).
+- **`fim`**: Índice onde o fatiamento termina (exclusivo).
+- **`passo`**: Define o intervalo entre os caracteres (padrão é `1`).
+
+**Exemplo:**
+```py
+variavel = 'Olá mundo'
+print(variavel[4:])      # Saída: mundo (do índice 4 até o final)
+print(variavel[0:9:1])   # Saída: Olá mundo (do índice 0 ao 8, com passo 1)
+print(variavel[::-1])    # Saída: odnum álO (string invertida)
+```
+
+*Observações*
+
+1. **Omissão de Parâmetros:**
+   - Se você omitir o `início`, o fatiamento começará do início da string.
+   - Se você omitir o `fim`, o fatiamento irá até o final da string.
+   - Se você omitir o `passo`, o padrão será `1`.
+
+   **Exemplo:**
+   ```py
+   variavel = 'Olá mundo'
+   print(variavel[:5])   # Saída: Olá m (do início até o índice 4)
+   print(variavel[::2])  # Saída: Oámno (caracteres com passo 2)
+   ```
+
+2. **Passo Negativo:**
+   - Um passo negativo inverte a string ou o intervalo especificado.
+
+   **Exemplo:**
+   ```py
+   variavel = 'Olá mundo'
+   print(variavel[::-1])  # Saída: odnum álO (string invertida)
+   ```
+
+---
+
+### Função `len`
+
+A função **`len`** retorna a quantidade de caracteres de uma string (incluindo espaços).
+
+**Exemplo:**
+```py
+variavel = 'Olá mundo'
+print(len(variavel))  # Saída: 9 (conta todos os caracteres, incluindo o espaço)
+```
+
+---
