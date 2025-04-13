@@ -29,7 +29,6 @@
         - 8.2.2. [Índices no `.format()`](#índices-no-format)
     - 8.3. [Com `%`](#com)
         - 8.3.1. [Especificadores de Formato](#especificadores-de-formato)
-        - 8.3.2. [Exemplo Completo](#exemplo-completo)
     - 8.4. [Observações Finais](#observações-finais)
 
 ---
@@ -231,69 +230,68 @@ As strings possuem métodos integrados que permitem realizar operações e modif
 
 #### Principais Métodos de Strings
 
-**1. `.lower()`**
-
-Converte todos os caracteres da string para minúsculas.
+<details>
+<summary>1. <code>.lower()</code> - Converte todos os caracteres da string para minúsculas</summary>
 
 **Exemplo:**
 ```py
 texto = "Python"
 print(texto.lower())  # Resultado: python
 ```
+</details>
 
-**2. `.upper()`**
-
-Converte todos os caracteres da string para maiúsculas.
+<details>
+<summary>2. <code>.upper()</code> - Converte todos os caracteres da string para maiúsculas</summary>
 
 **Exemplo:**
 ```py
 texto = "Python"
 print(texto.upper())  # Resultado: PYTHON
 ```
+</details>
 
-**3. `.capitalize()`**
-
-Converte a primeira letra da string para maiúscula e todas as outras para minúsculas.
+<details>
+<summary>3. <code>.capitalize()</code> - Converte a primeira letra da string para maiúscula e todas as outras para minúsculas</summary>
 
 **Exemplo:**
 ```py
 texto = "python"
 print(texto.capitalize())  # Resultado: Python
 ```
+</details>
 
-**4. `.title()`**
-
-Converte a primeira letra de cada palavra da string para maiúscula. É útil para formatar títulos ou nomes próprios.
+<details>
+<summary>4. <code>.title()</code> - Converte a primeira letra de cada palavra da string para maiúscula</summary>
 
 **Exemplo:**
 ```py
 texto = "python programming language"
 print(texto.title())  # Resultado: Python Programming Language
 ```
+</details>
 
-**5. `.strip()`**
-
-Remove os espaços em branco do início e do final da string.
+<details>
+<summary>5. <code>.strip()</code> - Remove os espaços em branco do início e do final da string</summary>
 
 **Exemplo:**
 ```py
 texto = "   Python   "
 print(texto.strip())  # Resultado: Python
 ```
+</details>
 
-**6. `.replace(old, new)`**
-
-Substitui todas as ocorrências da substring `old` pela substring `new`.
+<details>
+<summary>6. <code>.replace(old, new)</code> - Substitui todas as ocorrências da substring <code>old</code> pela substring <code>new</code></summary>
 
 **Exemplo:**
 ```py
 texto = "Python é incrível"
 print(texto.replace("Python", "Java"))  # Resultado: Java é incrível
 ```
+</details>
 
-**7. `.split(sep)`**
-
-Divide a string em uma lista de substrings, usando o caractere ou sequência especificada como delimitador (padrão é o espaço).
+<details>
+<summary>7. <code>.split(sep)</code> - Divide a string em uma lista de substrings</summary>
 
 **Exemplo:**
 ```py
@@ -306,20 +304,20 @@ print(texto.split())  # Resultado: ['Python', 'é', 'divertido']
 texto = "Python,Java,C++"
 print(texto.split(','))  # Resultado: ['Python', 'Java', 'C++']
 ```
+</details>
 
-**8. `.join(iterable)`**
-
-Junta uma lista ou outra sequência de strings em uma única string, com um delimitador entre os elementos.
+<details>
+<summary>8. <code>.join(iterable)</code> - Junta uma lista ou sequência de strings em uma única string</summary>
 
 **Exemplo:**
 ```py
 lista = ['Python', 'Java', 'C++']
 print(", ".join(lista))  # Resultado: Python, Java, C++
 ```
+</details>
 
-**9. `.find(substring)`**
-
-Retorna o índice da primeira ocorrência de `substring` dentro da string. Se não encontrar, retorna `-1`.
+<details>
+<summary>9. <code>.find(substring)</code> - Retorna o índice da primeira ocorrência de <code>substring</code></summary>
 
 **Exemplo:**
 ```py
@@ -327,10 +325,10 @@ texto = "Python é divertido"
 print(texto.find("divertido"))  # Resultado: 9
 print(texto.find("Java"))  # Resultado: -1
 ```
+</details>
 
-**10. `.startswith(prefix)`**
-
-Verifica se a string começa com o prefixo especificado. Retorna `True` ou `False`.
+<details>
+<summary>10. <code>.startswith(prefix)</code> - Verifica se a string começa com o prefixo especificado</summary>
 
 **Exemplo:**
 ```py
@@ -338,10 +336,10 @@ texto = "Python é divertido"
 print(texto.startswith("Python"))  # Resultado: True
 print(texto.startswith("Java"))  # Resultado: False
 ```
+</details>
 
-**11. `.endswith(suffix)`**
-
-Verifica se a string termina com o sufixo especificado. Retorna `True` ou `False`.
+<details>
+<summary>11. <code>.endswith(suffix)</code> - Verifica se a string termina com o sufixo especificado</summary>
 
 **Exemplo:**
 ```py
@@ -349,20 +347,20 @@ texto = "Python é divertido"
 print(texto.endswith("divertido"))  # Resultado: True
 print(texto.endswith("Java"))  # Resultado: False
 ```
+</details>
 
-**12. `.count(substring)`**
-
-Conta quantas vezes a substring aparece na string.
+<details>
+<summary>12. <code>.count(substring)</code> - Conta quantas vezes a substring aparece na string</summary>
 
 **Exemplo:**
 ```py
 texto = "Python é uma linguagem de programação, e eu amo Python"
 print(texto.count("Python"))  # Resultado: 2
 ```
+</details>
 
-**13. `.isalpha()`**
-
-Verifica se todos os caracteres da string são alfabéticos (letras). Retorna `True` se a string contiver apenas letras, e `False` caso contrário.
+<details>
+<summary>13. <code>.isalpha()</code> - Verifica se todos os caracteres da string são alfabéticos</summary>
 
 **Exemplo:**
 ```py
@@ -371,10 +369,10 @@ print(texto.isalpha())  # Resultado: True
 texto2 = "Python3"
 print(texto2.isalpha())  # Resultado: False
 ```
+</details>
 
-**14. `.isdigit()`**
-
-Verifica se todos os caracteres da string são dígitos. Retorna `True` se a string contiver apenas números, e `False` caso contrário.
+<details>
+<summary>14. <code>.isdigit()</code> - Verifica se todos os caracteres da string são dígitos</summary>
 
 **Exemplo:**
 ```py
@@ -383,6 +381,7 @@ print(texto.isdigit())  # Resultado: True
 texto2 = "12a45"
 print(texto2.isdigit())  # Resultado: False
 ```
+</details>
 
 ---
 
@@ -563,7 +562,7 @@ print("Meu nome é %s e tenho %d anos." % (nome, idade))
 | `%f`          | Float (número decimal)            | `"Preço: %.2f" % 10.5` |
 | `%x` ou `%X`  | Hexadecimal (minúsculo/maiúsculo) | `"%x" % 255` ou `"%X" % 255` |
 
-##### Exemplo Completo
+**Exemplo Completo:**
 
 ```py
 nome = "Luiz"
