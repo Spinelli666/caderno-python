@@ -1,4 +1,4 @@
-# Fundamentos 2
+# Fundamentos 3
 
 ## Sumário
 
@@ -208,22 +208,187 @@ print(contador)  # Saída: 1
 
 ---
 
-## Boas Práticas
+# Estruturas de Repetição: `for` e `range`
 
-1. **Use operadores de atribuição para simplificar o código**:
-   - Em vez de escrever `x = x + 5`, use `x += 5`.
-   - Isso torna o código mais limpo e fácil de entender.
+## Introdução ao `for` e Iteração em Python
 
-2. **Cuidado com o tipo de dado**:
-   - Operações como `/=` podem alterar o tipo da variável para `float`, mesmo que ela seja `int` inicialmente.
-   - Exemplo:
-     ```py
-     x = 10
-     x /= 2
-     print(type(x))  # Saída: <class 'float'>
-     ```
+O comando **`for`** é usado para iterar sobre elementos de um **iterável** (como strings, listas, tuplas, dicionários, ou objetos do tipo `range`). Ele é ideal para situações em que sabemos previamente o número de iterações ou queremos percorrer elementos de uma sequência finita.
 
-3. **Evite usar operadores de atribuição em expressões muito complexas**:
-   - Mantenha o código legível e fácil de entender.
+### Estrutura Básica do `for`
+
+```py
+for elemento in iterável:
+    # Código a ser executado para cada elemento
+```
+
+- **`elemento`**: Representa o item atual da sequência que está sendo iterado.
+- **`iterável`**: É o objeto que contém os elementos a serem percorridos (como uma string, lista, ou `range`).
+
+---
+
+## Exemplo 1: Iteração Simples com Strings
+
+```py
+texto = 'Python'
+
+novo_texto = ''
+for letra in texto:
+    novo_texto += f'*{letra}'
+    print(letra)
+
+print(novo_texto + '*')
+```
+
+**Explicação:**
+1. O `for` percorre cada caractere da string `texto`.
+2. A cada iteração, a variável `letra` recebe o caractere atual.
+3. O código dentro do `for` é executado para cada caractere.
+4. O resultado final é uma string com cada letra precedida por `*`.
+
+---
+
+## `for` com `range`
+
+A função **`range`** é usada para gerar uma sequência de números. Ela é frequentemente combinada com o `for` para criar laços de repetição baseados em intervalos numéricos.
+
+### Estrutura do `range`
+
+```py
+range(start, stop, step)
+```
+
+- **`start`**: (Opcional) O número inicial da sequência (padrão é `0`).
+- **`stop`**: O número final da sequência (não incluído).
+- **`step`**: (Opcional) O intervalo entre os números (padrão é `1`).
+
+### Exemplo 2: Iteração com `range`
+
+```py
+numeros = range(0, 100, 8)
+
+for numero in numeros:
+    print(numero)
+```
+
+**Explicação:**
+1. O `range(0, 100, 8)` gera números de `0` a `99`, com um passo de `8`.
+2. O `for` percorre cada número gerado pelo `range` e executa o código dentro do bloco.
+
+---
+
+## Como o `for` Funciona por Baixo dos Panos?
+
+Em Python, o `for` funciona com base no conceito de **iteráveis** e **iteradores**.
+
+### Conceitos Importantes
+
+1. **Iterável**:
+   - Um objeto que pode ser percorrido (como strings, listas, tuplas, dicionários, ou `range`).
+   - Possui o método especial `__iter__()` que retorna um **iterador**.
+
+2. **Iterador**:
+   - Um objeto que sabe como entregar um elemento por vez.
+   - Possui o método especial `__next__()` que retorna o próximo elemento da sequência.
+   - Quando não há mais elementos, ele levanta a exceção `StopIteration`.
+
+3. **Função `iter`**:
+   - Retorna o iterador de um iterável.
+
+4. **Função `next`**:
+   - Retorna o próximo elemento do iterador.
+
+---
+
+### Exemplo 3: Iteração Manual com `iter` e `next`
+
+```py
+texto = 'Python'  # Iterável
+
+iterador = iter(texto)  # Obtém o iterador do iterável
+
+while True:
+    try:
+        letra = next(iterador)  # Obtém o próximo elemento
+        print(letra)
+    except StopIteration:
+        break  # Interrompe o loop quando não há mais elementos
+```
+
+**Explicação:**
+1. A função `iter(texto)` retorna um iterador para a string `texto`.
+2. A função `next(iterador)` retorna o próximo caractere da string.
+3. Quando todos os caracteres são consumidos, a exceção `StopIteration` é levantada, e o loop é interrompido.
+
+---
+
+### Exemplo 4: Comparação entre `for` e Iteração Manual
+
+O código abaixo demonstra como o `for` é equivalente a usar `iter` e `next` manualmente:
+
+```py
+# Usando for
+for letra in 'Python':
+    print(letra)
+
+# Equivalente a:
+iterador = iter('Python')
+while True:
+    try:
+        letra = next(iterador)
+        print(letra)
+    except StopIteration:
+        break
+```
+
+---
+
+## Boas Práticas com `for`
+
+1. **Use `for` para Iterações Finitas**:
+   - O `for` é ideal para percorrer sequências finitas, como listas, strings ou intervalos gerados por `range`.
+
+2. **Evite Modificar o Iterável Durante a Iteração**:
+   - Alterar o iterável enquanto ele está sendo percorrido pode causar comportamentos inesperados.
+
+3. **Combine `for` com Funções como `enumerate` e `zip`**:
+   - Use `enumerate` para obter o índice e o valor de cada elemento.
+   - Use `zip` para iterar sobre múltiplas sequências simultaneamente.
+
+---
+
+## Exemplo 5: Uso de `enumerate`
+
+```py
+frutas = ['maçã', 'banana', 'cereja']
+
+for indice, fruta in enumerate(frutas):
+    print(f'{indice}: {fruta}')
+```
+
+**Saída:**
+```
+0: maçã
+1: banana
+2: cereja
+```
+
+---
+
+## Exemplo 6: Uso de `zip`
+
+```py
+nomes = ['Ana', 'João', 'Maria']
+idades = [25, 30, 22]
+
+for nome, idade in zip(nomes, idades):
+    print(f'{nome} tem {idade} anos.')
+```
+
+**Saída:**
+```
+Ana tem 25 anos.
+João tem 30 anos.
+Maria tem 22 anos.
+```
 
 ---

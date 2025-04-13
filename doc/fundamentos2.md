@@ -440,8 +440,6 @@ else:
 - Não aceita números com ponto decimal (`3.14`) ou negativos (`-5`).
 - Para esses casos, o uso de `try` e `except` é mais robusto.
 
----
-
 #### 8.3. Boas Práticas com `try` e `except`
 
 1. **Especifique o tipo de erro no `except`:**
@@ -476,8 +474,6 @@ Em Python, **constantes** são valores que não devem ser alterados durante a ex
 CONSTANTE = "Este valor não deve mudar"
 ```
 
----
-
 #### 9.2. Complexidade de Código
 
 Evitar **muitas condições no mesmo `if`** é uma boa prática, pois isso pode tornar o código difícil de entender e manter. Um código com muitas condições em um único bloco é considerado de **alta complexidade**.
@@ -491,8 +487,6 @@ if condicao1 and condicao2 and condicao3 and condicao4:
 **Dica:**
 - Divida as condições em partes menores e mais legíveis.
 - Use variáveis intermediárias para descrever cada condição.
-
----
 
 **Exemplo Prático: Controle de Velocidade com Radar**
 
