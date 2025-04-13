@@ -2,21 +2,33 @@
 
 ## Sumário
 
-1. [Blocos de Código e Condicionais (`if`, `elif`, `else`)](#blocos-de-código-e-condicionais-if-elif-else)
-    - 1.1. [Estrutura Básica](#estrutura-básica)
-    - 1.2. [Múltiplas Condições com `if`, `elif` e `else`](#múltiplas-condições-com-if-elif-e-else)
-2. [Operadores de Comparação (Relacionais)](#operadores-de-comparação-relacionais)
-3. [Operadores Lógicos](#operadores-lógicos)
-    - 3.1. [Operador `and` (E)](#operador-and-e)
-    - 3.2. [Operador `or` (Ou)](#operador-or-ou)
-    - 3.3. [Operador `not` (Não)](#operador-not-não)
-4. [Operadores de Associação (`in` e `not in`)](#operadores-de-associação-in-e-not-in)
-    - 4.1. [Valores "False" em Python](#valores-false-em-python)
-5. [Interpolação de Strings com `%`](#interpolação-de-strings-com)
-6. [Fatiamento de Strings](#fatiamento-de-strings)
-    - 6.1. [Índices em Strings](#índices-em-strings)
-    - 6.2. [Sintaxe do Fatiamento](#sintaxe-do-fatiamento)
-7. [Função `len`](#função-len)
+1. [Blocos de Código e Condicionais (`if`, `elif`, `else`)](#1-blocos-de-código-e-condicionais-if-elif-else)
+    - 1.1. [Estrutura Básica](#11-estrutura-básica)
+    - 1.2. [Múltiplas Condições com `if`, `elif` e `else`](#12-múltiplas-condições-com-if-elif-e-else)
+2. [Operadores de Comparação (Relacionais)](#2-operadores-de-comparação-relacionais)
+3. [Operadores Lógicos](#3-operadores-lógicos)
+    - 3.1. [Operador `and` (E)](#31-operador-and-e)
+    - 3.2. [Operador `or` (Ou)](#32-operador-or-ou)
+    - 3.3. [Operador `not` (Não)](#33-operador-not-não)
+4. [Operadores de Associação (`in` e `not in`)](#4-operadores-de-associação-in-e-not-in)
+    - 4.1. [Valores "False" em Python](#41-valores-false-em-python)
+5. [Interpolação de Strings com `%`](#5-interpolação-de-strings-com-)
+6. [Fatiamento de Strings](#6-fatiamento-de-strings)
+    - 6.1. [Índices em Strings](#61-índices-em-strings)
+    - 6.2. [Sintaxe do Fatiamento](#62-sintaxe-do-fatiamento)
+7. [Função `len`](#7-função-len)
+8. [Bloco `try` e `except`](#8-bloco-try-e-except)
+    - 8.1. [Estrutura Básica](#81-estrutura-básica)
+    - 8.2. [Comparação com `isdigit()`](#82-comparação-com-isdigit)
+    - 8.3. [Boas Práticas com `try` e `except`](#83-boas-práticas-com-try-e-except)
+9. [Variáveis, Constantes e Complexidade de Código](#9-variáveis-constantes-e-complexidade-de-código)
+    - 9.1. [Constantes](#91-constantes)
+    - 9.2. [Complexidade de Código](#92-complexidade-de-código)
+10. [Flag, `is`, `is not` e `None`](#10-flag-is-is-not-e-none)
+    - 10.1. [Flag (Bandeira)](#101-flag-bandeira)
+    - 10.2. [`None`](#102-none)
+    - 10.3. [`is` e `is not`](#103-is-e-is-not)
+11. [`id` (Identidade do Objeto)](#11-estrutura-básica)
 
 ---
 
@@ -332,10 +344,6 @@ print(variavel[-1]) # n
 
 #### 6.2. Sintaxe do Fatiamento
 
-A notação para fatiamento é `[início:fim:passo]`.
-
-##### Sintaxe do Fatiamento
-
 A notação para fatiamento é `[início:fim:passo]`:
 - **`início`**: Índice onde o fatiamento começa (inclusivo).
 - **`fim`**: Índice onde o fatiamento termina (exclusivo).
@@ -374,7 +382,7 @@ print(variavel[::-1])    # Saída: odnum álO (string invertida)
 
 ---
 
-### Função `len`
+### 7. Função `len`
 
 A função **`len`** retorna a quantidade de caracteres de uma string (incluindo espaços).
 
@@ -386,16 +394,16 @@ print(len(variavel))  # Saída: 9 (conta todos os caracteres, incluindo o espaç
 
 ---
 
-# Introdução ao `try` e `except`
+### 8. Bloco `try` e `except`
 
 O bloco `try` e `except` é usado em Python para capturar e tratar **erros (exceptions)** que podem ocorrer durante a execução do código. Ele permite que o programa continue rodando mesmo que um erro seja encontrado.
 
-## Estrutura Básica
+#### 8.1. Estrutura Básica
 
 - **`try`**: Tenta executar o código dentro do bloco.
 - **`except`**: Captura e trata o erro caso ele ocorra.
 
-### Exemplo Simples
+**Exemplo**
 
 ```py
 numero_str = input('Vou dobrar o número que você digitar: ')
@@ -412,13 +420,11 @@ except:
 2. Se a conversão falhar (por exemplo, se o usuário digitar letras), o bloco `except` será executado.
 3. Caso contrário, o programa calcula e exibe o dobro do número.
 
----
-
-## Comparação com `isdigit()`
+#### 8.2. Comparação com `isdigit()`
 
 Outra forma de verificar se a entrada é um número é usando o método `.isdigit()`. No entanto, ele só funciona para números inteiros e não considera números com ponto decimal ou negativos.
 
-### Exemplo com `isdigit()`
+**Exemplo com `isdigit()`**
 
 ```py
 numero_str = input('Vou dobrar o número que você digitar: ')
@@ -436,7 +442,7 @@ else:
 
 ---
 
-## Boas Práticas com `try` e `except`
+#### 8.3. Boas Práticas com `try` e `except`
 
 1. **Especifique o tipo de erro no `except`:**
    - É uma boa prática capturar apenas os erros esperados, como `ValueError` para conversões inválidas.
@@ -457,19 +463,11 @@ else:
 3. **Use mensagens claras para o usuário:**
    - Informe o motivo do erro de forma compreensível.
 
-## Quando Usar `try` e `except`
-
-- Use `try` e `except` quando o código pode gerar erros que você deseja tratar de forma controlada.
-- Exemplos comuns:
-  - Conversão de tipos (como `int` ou `float`).
-  - Abertura de arquivos que podem não existir.
-  - Operações que dependem de entrada do usuário.
-
 ---
 
-# Variáveis, Constantes e Complexidade de Código
+### 9. Variáveis, Constantes e Complexidade de Código
 
-## Constantes
+#### 9.1. Constantes
 
 Em Python, **constantes** são valores que não devem ser alterados durante a execução do programa. Embora Python não tenha suporte nativo para constantes, por convenção, utilizamos **nomes em letras maiúsculas** para indicar que uma variável deve ser tratada como constante.
 
@@ -480,7 +478,7 @@ CONSTANTE = "Este valor não deve mudar"
 
 ---
 
-## Complexidade de Código
+#### 9.2. Complexidade de Código
 
 Evitar **muitas condições no mesmo `if`** é uma boa prática, pois isso pode tornar o código difícil de entender e manter. Um código com muitas condições em um único bloco é considerado de **alta complexidade**.
 
@@ -496,11 +494,10 @@ if condicao1 and condicao2 and condicao3 and condicao4:
 
 ---
 
-## Exemplo Prático: Controle de Velocidade com Radar
+**Exemplo Prático: Controle de Velocidade com Radar**
 
 O exemplo abaixo demonstra o uso de variáveis, constantes e boas práticas para reduzir a complexidade do código.
 
-### Código:
 ```py
 # Constantes
 RADAR_1 = 60  # Velocidade máxima do radar 1
@@ -527,7 +524,7 @@ if carro_multado_radar_1:
     print('Carro multado no radar 1')
 ```
 
-### Explicação:
+**Explicação:**
 1. **Constantes**:
    - `RADAR_1`, `LOCAL_1` e `RADAR_RANGE` são definidos como constantes para facilitar a leitura e manutenção do código.
 2. **Variáveis intermediárias**:
@@ -539,9 +536,9 @@ if carro_multado_radar_1:
 
 ---
 
-# Flag, `is`, `is not` e `None`
+### 10. Flag, `is`, `is not` e `None`
 
-## Flag (Bandeira)
+#### 10.1. Flag (Bandeira)
 
 Uma **flag** é uma variável usada para marcar ou indicar um estado ou condição no programa. Geralmente, é usada para controlar o fluxo do código ou sinalizar se algo aconteceu.
 
@@ -562,9 +559,7 @@ else:
     print('Passou no if')
 ```
 
----
-
-## `None`
+#### 10.2. `None`
 
 O valor **`None`** em Python representa a ausência de valor ou um valor nulo. Ele é frequentemente usado para inicializar variáveis que ainda não possuem um valor definido.
 
@@ -579,13 +574,11 @@ if variavel is None:
 - `None` é um objeto especial em Python e não é equivalente a `False`, `0` ou uma string vazia (`''`).
 - Ele é frequentemente usado como valor padrão em funções ou para sinalizar que algo ainda não foi definido.
 
----
-
-## `is` e `is not`
+#### 10.3. `is` e `is not`
 
 Os operadores **`is`** e **`is not`** são usados para comparar **identidade de objetos** (se dois objetos são exatamente o mesmo na memória).
 
-### Diferença entre `is` e `==`:
+**Diferença entre `is` e `==`:**
 - **`is`**: Verifica se dois objetos têm a mesma identidade (ocupam o mesmo espaço na memória).
 - **`==`**: Verifica se dois objetos têm o mesmo valor.
 
@@ -600,23 +593,9 @@ print(a == b)  # True (os valores de a e b são iguais)
 print(a is c)  # True (a e c são o mesmo objeto na memória)
 ```
 
-### Uso de `is` e `is not` com `None`:
-É uma prática comum usar `is` ou `is not` para verificar se uma variável é `None`.
-
-**Exemplo:**
-```py
-variavel = None
-
-if variavel is None:
-    print('A variável é None')
-
-if variavel is not None:
-    print('A variável não é None')
-```
-
 ---
 
-## `id` (Identidade do Objeto)
+### 11. `id` (Identidade do Objeto)
 
 A função **`id`** retorna o identificador único de um objeto na memória. Esse identificador é usado internamente pelo Python para distinguir objetos.
 

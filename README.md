@@ -40,3 +40,24 @@ O arquivo **Fundamentos 1** apresenta os conceitos básicos da linguagem Python,
 [Clique aqui para acessar o conteúdo completo.](./doc/fundamentos1.md)
 
 </details>
+
+<details>
+<summary>3. <a href="./doc/fundamentos2.md">Fundamentos 2</a></summary>
+
+### Resumo:
+O arquivo **Fundamentos 2** aprofunda os conceitos da linguagem Python, abordando:
+1. **Blocos de Código e Condicionais:** Uso de `if`, `elif` e `else` para controle de fluxo.
+2. **Operadores de Comparação:** Comparações entre valores, como `>`, `<`, `==`, etc.
+3. **Operadores Lógicos:** Combinação de condições com `and`, `or` e `not`.
+4. **Operadores de Associação:** Verificação de pertencimento com `in` e `not in`.
+5. **Interpolação de Strings:** Formatação de strings com `%`.
+6. **Fatiamento de Strings:** Acesso a partes específicas de strings com `[início:fim:passo]`.
+7. **Função `len`:** Contagem de caracteres em strings.
+8. **Bloco `try` e `except`:** Tratamento de exceções e boas práticas.
+9. **Variáveis e Constantes:** Convenções e boas práticas para reduzir a complexidade do código.
+10. **Flag, `is`, `is not` e `None`:** Controle de estados e comparação de identidade de objetos.
+11. **Função `id`:** Identificação única de objetos na memória.
+
+[Clique aqui para acessar o conteúdo completo.](./doc/fundamentos2.md)
+
+</details>
