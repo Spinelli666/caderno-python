@@ -4,36 +4,36 @@
 
 1. [Função `print()`](#1-função-print)
 2. [Tipos de Dados](#2-tipos-de-dados)
-    - 2.1. [Tipos Primitivos](#tipos-primitivos)
-    - 2.2. [Conversões de Tipos](#conversões-de-tipos)
+    - 2.1. [Tipos Primitivos](#21-tipos-primitivos)
+    - 2.2. [Conversões de Tipos](#22-conversões-de-tipos)
 3. [Operadores Aritméticos](#3-operadores-aritméticos)
 4. [Variáveis](#4-variáveis)
 5. [Operações com Strings](#5-operações-com-strings)
-    - 5.1. [Concatenar Strings](#concatenar-strings)
-    - 5.2. [Repetir Strings](#repetir-strings)
-    - 5.3. [Fatiamento (Slicing)](#fatiamento-slicing)
+    - 5.1. [Concatenar Strings](#51-concatenar-strings)
+    - 5.2. [Repetir Strings](#52-repetir-strings)
+    - 5.3. [Fatiamento (Slicing)](#53-fatiamento-slicing)
 6. [Função `input()`](#6-função-input)
-    - 6.1. [Convertendo a Entrada de Dados](#convertendo-a-entrada-de-dados)
+    - 6.1. [Convertendo a Entrada de Dados](#61-convertendo-a-entrada-de-dados)
 7. [Métodos de Strings](#7-métodos-de-strings)
-    - 7.1. [Principais Métodos de Strings](#principais-métodos-de-strings)
+    - 7.1. [Principais Métodos de Strings](#71-principais-métodos-de-strings)
 8. [Formatação de Strings](#8-formatação-de-strings)
     - 8.1. [Com `f-strings`](#81-com-f-strings)
-        - 8.1.1. [Formatação Básica](#formatação-básica)
-        - 8.1.2. [Especificadores de Formato](#especificadores-de-formato)
-        - 8.1.3. [Alinhamento e Preenchimento](#alinhamento-e-preenchimento)
-        - 8.1.4. [Formatação de Números](#formatação-de-números)
-        - 8.1.5. [Conversion Flags](#conversion-flags)
-        - 8.1.6. [Outros Exemplos Completos](#outros-exemplos-completos)
+        - 8.1.1. [Formatação Básica](#811-formatação-básica)
+        - 8.1.2. [Especificadores de Formato](#812-especificadores-de-formato)
+        - 8.1.3. [Alinhamento e Preenchimento](#813-alinhamento-e-preenchimento)
+        - 8.1.4. [Formatação de Números](#814-formatação-de-números)
+        - 8.1.5. [Conversion Flags](#815-conversion-flags)
+        - 8.1.6. [Outros Exemplos Completos](#816-outros-exemplos-completos)
     - 8.2. [Com `.format()`](#82-com-format)
-        - 8.2.1. [Parâmetros Nomeados](#parâmetros-nomeados)
-        - 8.2.2. [Índices no `.format()`](#índices-no-format)
+        - 8.2.1. [Parâmetros Nomeados](#821-parâmetros-nomeados)
+        - 8.2.2. [Índices no `.format()`](#822-índices-no-format)
     - 8.3. [Com `%`](#83-com-)
-        - 8.3.1. [Especificadores de Formato](#especificadores-de-formato)
-    - 8.4. [Observações Finais](#observações-finais)
+        - 8.3.1. [Especificadores de Formato](#831-especificadores-de-formato)
+    - 8.4. [Observações Finais](#84-observações-finais)
 
 ---
 
-### 1. Função `print()`
+## 1. Função `print()`
 
 A função `print()` é usada para exibir informações na tela. Ela pode ser usada para mostrar texto, números ou valores de variáveis.
 
@@ -79,9 +79,9 @@ print(12, 34)
 
 ---
 
-### 2. Tipos de Dados
+## 2. Tipos de Dados
 
-#### Tipos Primitivos
+### 2.1. Tipos Primitivos
 
 Python possui diferentes tipos de dados, que são usados para armazenar valores.
 
@@ -99,7 +99,7 @@ texto = "Olá, Python!"  # Tipo: str
 verdadeiro = True  # Tipo: bool
 ```
 
-#### Conversões de Tipos
+### 2.2. Conversões de Tipos
 
 Você pode converter entre tipos de dados em Python usando funções como `int()`, `float()` e `str()`.
 
@@ -112,7 +112,7 @@ print(numero_inteiro)  # Resultado: 10
 
 ---
 
-### 3. Operadores Aritméticos
+## 3. Operadores Aritméticos
 
 Os operadores aritméticos são usados para realizar operações matemáticas em Python. Aqui estão os principais operadores aritméticos:
 
@@ -150,7 +150,7 @@ potencia = 2 ** 3  # Resultado: 8
 
 ---
 
-### 4. Variáveis
+## 4. Variáveis
 
 As variáveis são usadas para armazenar valores. Em Python, elas devem ser sempre escritas em letras minúsculas por convenção.
 
@@ -164,11 +164,11 @@ print(nome, idade, peso)  # Resultado: João 22 61
 
 ---
 
-### 5. Operações com Strings
+## 5. Operações com Strings
 
 As strings são tratadas como sequências de caracteres. Python permite realizar várias operações com elas, como concatenar, repetir ou fatiar.
 
-#### Concatenar Strings
+### 5.1. Concatenar Strings
 
 Você pode juntar (concatenar) strings usando o operador `+`.
 
@@ -180,7 +180,7 @@ nome_completo = nome + " " + sobrenome
 print(nome_completo)  # Resultado: Maria Silva
 ```
 
-#### Repetir Strings
+### 5.2. Repetir Strings
 
 Você pode repetir uma string usando o operador `*`.
 
@@ -190,7 +190,7 @@ texto = "Python! "
 print(texto * 3)  # Resultado: Python! Python! Python!
 ```
 
-#### Fatiamento (Slicing)
+### 5.3. Fatiamento (Slicing)
 
 Você pode pegar partes de uma string usando fatiamento. A sintaxe é `str[inicio:fim:passo]`.
 
@@ -202,7 +202,7 @@ print(nome[0:3])  # Resultado: Pyt
 
 ---
 
-### 6. Função `input()`
+## 6. Função `input()`
 
 A função `input()` é usada para capturar a entrada de dados do usuário. O valor retornado por `input()` é sempre uma string, mesmo que o usuário digite números.
 
@@ -212,7 +212,7 @@ nome = input("Qual é o seu nome? ")
 print("Olá, " + nome + "! Seja bem-vindo.")
 ```
 
-#### Convertendo a Entrada de Dados
+### 6.1. Convertendo a Entrada de Dados
 
 Se você precisar trabalhar com números, é necessário converter a entrada de dados de string para `int` ou `float`.
 
@@ -224,11 +224,11 @@ print("Você digitou o número:", numero)
 
 ---
 
-### 7. Métodos de Strings
+## 7. Métodos de Strings
 
 As strings possuem métodos integrados que permitem realizar operações e modificações nelas, como converter para maiúsculas, remover espaços, substituir substrings, entre outros.
 
-#### Principais Métodos de Strings
+### 7.1. Principais Métodos de Strings
 
 <details>
 <summary>1. <code>.lower()</code> - Converte todos os caracteres da string para minúsculas</summary>
@@ -385,17 +385,15 @@ print(texto2.isdigit())  # Resultado: False
 
 ---
 
-### 8. Formatação de Strings
+## 8. Formatação de Strings
 
 A formatação de strings em Python permite inserir variáveis, expressões e valores formatados diretamente em strings. Existem três formas principais de realizar a formatação:
 
----
-
-#### 8.1. Com `f-strings`
+### 8.1. Com `f-strings`
 
 As **f-strings** (format strings) são uma forma prática, moderna e legível de inserir variáveis e expressões dentro de strings, utilizando o prefixo `f` antes das aspas. Elas foram introduzidas no Python 3.6 e são amplamente utilizadas devido à sua simplicidade e flexibilidade.
 
-##### Formatação Básica
+#### 8.1.1. Formatação Básica
 
 Você pode inserir variáveis diretamente dentro de uma string utilizando `{}`.
 
@@ -415,7 +413,7 @@ b = 20
 print(f"A soma de {a} + {b} é {a + b}")  # Resultado: A soma de 10 + 20 é 30
 ```
 
-##### Especificadores de Formato
+#### 8.1.2. Especificadores de Formato
 
 Os **especificadores de formato** permitem controlar como os valores são exibidos. Aqui estão os principais:
 
@@ -426,7 +424,7 @@ Os **especificadores de formato** permitem controlar como os valores são exibid
 | `f`           | Float (número decimal)            | `f'{variavel:.2f}'`          |
 | `x` ou `X`    | Hexadecimal (minúsculo/maiúsculo) | `f'{variavel:x}'` ou `f'{variavel:X}'` |
 
-##### Alinhamento e Preenchimento
+#### 8.1.3. Alinhamento e Preenchimento
 
 Você pode alinhar e preencher valores formatados usando os seguintes caracteres:
 
@@ -438,7 +436,7 @@ Você pode alinhar e preencher valores formatados usando os seguintes caracteres
 | `=`     | Força o número a aparecer antes dos zeros |
 | `0`     | Preenche com zeros                     |
 
-**Exemplos:**
+**Exemplo:**
 ```py
 variavel = "ABC"
 
@@ -447,7 +445,7 @@ print(f"{variavel: <10}.")  # Alinha à esquerda com 10 caracteres: 'ABC       .
 print(f"{variavel: ^10}.")  # Centraliza com 10 caracteres: '   ABC    .'
 ```
 
-##### Formatação de Números
+#### 8.1.4. Formatação de Números
 
 Você pode formatar números com separadores de milhares, casas decimais e sinais.
 
@@ -460,7 +458,7 @@ print(f"{1000.4873648123746:0=+10,.1f}")  # Resultado: +001,000.5
 print(f"O hexadecimal de 1500 é {1500:08X}")  # Resultado: O hexadecimal de 1500 é 000005DC
 ```
 
-##### Conversion Flags
+#### 8.1.5. Conversion Flags
 
 As **conversion flags** permitem exibir representações específicas de valores:
 
@@ -476,22 +474,35 @@ variavel = "ABC"
 print(f"{variavel!r}")  # Resultado: 'ABC'
 ```
 
-##### Outros Exemplos Completos
+#### 8.1.6. Outros Exemplos Completos
 
-**Exemplo 1: Formatação de Strings**
+<details>
+
+<summary><strong>Exemplo 1: Formatação de Strings</strong></summary>
+
 ```py
 nome = "Luiz"
 idade = 30
 print(f"{nome} tem {idade} anos.")  # Resultado: Luiz tem 30 anos.
 ```
 
-**Exemplo 2: Formatação de Números**
+</details>
+
+<details>
+
+<summary><strong>Exemplo 2: Formatação de Números</strong></summary>
+
 ```py
 preco = 1234.56789
 print(f"Preço formatado: R${preco:.2f}")  # Resultado: Preço formatado: R$1234.57
 ```
 
-**Exemplo 3: Alinhamento e Preenchimento**
+</details>
+
+<details>
+
+<summary><strong>Exemplo 3: Alinhamento e Preenchimento</strong></summary>
+
 ```py
 variavel = "Python"
 print(f"{variavel:*>10}")  # Resultado: ****Python
@@ -499,15 +510,20 @@ print(f"{variavel:*<10}")  # Resultado: Python****
 print(f"{variavel:*^10}")  # Resultado: **Python**
 ```
 
-**Exemplo 4: Hexadecimal**
+</details>
+
+<details>
+
+<summary><strong>Exemplo 4: Hexadecimal</strong></summary>
+
 ```py
 numero = 255
 print(f"Hexadecimal: {numero:08X}")  # Resultado: Hexadecimal: 000000FF
 ```
 
----
+</details>
 
-#### 8.2. Com `.format()`
+### 8.2. Com `.format()`
 
 O método `.format()` substitui os `{}` em uma string pelos valores passados como argumentos. Ele é uma alternativa às **f-strings** e permite maior flexibilidade, como o uso de **parâmetros nomeados**.
 
@@ -518,7 +534,7 @@ idade = 30
 print("Meu nome é {} e tenho {} anos.".format(nome, idade))
 ```
 
-##### Parâmetros Nomeados
+#### 8.2.1. Parâmetros Nomeados
 
 Os **parâmetros nomeados** são argumentos passados com um nome dentro das chamadas das funções. Isso torna o código mais legível e organizado, pois você pode identificar facilmente o que cada valor representa.
 
@@ -529,7 +545,7 @@ resultado = string.format(nome="João", idade=25)
 print(resultado)  # Resultado: Olá, João! Você tem 25 anos.
 ```
 
-##### Índices no `.format()`
+#### 8.2.2. Índices no `.format()`
 
 Se você não usar nomes nos `{}`, pode passar os valores por **índices**. Lembre-se de que os índices começam em `0`.
 
@@ -540,9 +556,7 @@ formato = string.format("AAAAA", "B", 1.1)
 print(formato)  # Resultado: a=AAAAA b=B c=1.10
 ```
 
----
-
-#### 8.3. Com `%`
+### 8.3. Com `%`
 
 A interpolação com `%` é uma forma antiga de formatar strings. Apesar de ser menos utilizada atualmente, ainda é funcional e pode ser encontrada em códigos legados.
 
@@ -553,7 +567,7 @@ idade = 30
 print("Meu nome é %s e tenho %d anos." % (nome, idade))
 ```
 
-##### Especificadores de Formato
+#### 8.3.1. Especificadores de Formato
 
 | Especificador | Descrição                          | Exemplo (`%`)       |
 |---------------|------------------------------------|---------------------|
@@ -570,9 +584,7 @@ preco = 1000.95
 print("%s, o preço é R$%.2f" % (nome, preco))  # Resultado: Luiz, o preço é R$1000.95
 ```
 
----
-
-#### Observações Finais
+### 8.4. Observações Finais
 
 - **f-strings** são recomendadas para formatação de strings em Python devido à sua legibilidade e eficiência.
 - Para versões de Python anteriores ao 3.6, use `.format()` ou `%`.

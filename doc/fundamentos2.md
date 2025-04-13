@@ -32,13 +32,13 @@
 
 ---
 
-### 1. Blocos de Código e Condicionais (`if`, `elif`, `else`)
+## 1. Blocos de Código e Condicionais (`if`, `elif`, `else`)
 
 Em Python, os **blocos de código** são definidos pela **indentação** (espaços ou tabulação no início da linha). Eles são usados para agrupar instruções que devem ser executadas juntas, como em estruturas condicionais.
 
 As estruturas condicionais permitem que o programa tome decisões com base em condições específicas. Em Python, usamos as palavras-chave `if`, `elif` e `else` para criar essas condições.
 
-#### 1.1. Estrutura Básica
+### 1.1. Estrutura Básica
 
 - **`if`**: Executa um bloco de código se a condição for verdadeira.
 - **`elif`**: (abreviação de "else if") Verifica outra condição se a anterior for falsa.
@@ -65,7 +65,7 @@ print('FORA DOS BLOCOS')
 4. Caso contrário, o bloco do `else` será executado.
 5. O código fora dos blocos será executado independentemente das condições.
 
-#### 1.2. Múltiplas Condições com `if`, `elif` e `else`
+### 1.2. Múltiplas Condições com `if`, `elif` e `else`
 
 Você pode usar várias condições para controlar o fluxo do programa.
 
@@ -95,13 +95,13 @@ else:
 
 *Observações:*
 
-- **Indentação**: A indentação é obrigatória em Python para definir blocos de código. Certifique-se de usar a mesma quantidade de espaços em um bloco.
-- **Fluxo do Interpretador**: O interpretador avalia as condições na ordem em que aparecem. Assim que uma condição for verdadeira, ele executa o bloco correspondente e ignora os demais.
-- **Condições Independentes**: Você pode usar múltiplos `if` independentes, mas isso significa que todas as condições serão avaliadas, mesmo que uma delas já tenha sido verdadeira.
+- **Indentação:** A indentação é obrigatória em Python para definir blocos de código. Certifique-se de usar a mesma quantidade de espaços em um bloco.
+- **Fluxo do Interpretador:** O interpretador avalia as condições na ordem em que aparecem. Assim que uma condição for verdadeira, ele executa o bloco correspondente e ignora os demais.
+- **Condições Independentes:** Você pode usar múltiplos `if` independentes, mas isso significa que todas as condições serão avaliadas, mesmo que uma delas já tenha sido verdadeira.
 
 ---
 
-### 2. Operadores de Comparação (Relacionais)
+## 2. Operadores de Comparação (Relacionais)
 
 Os **operadores de comparação** são usados para comparar dois valores. O resultado de uma comparação é sempre um valor booleano (`True` ou `False`).
 
@@ -133,7 +133,7 @@ print('Diferente:', diferente)  # True
 
 ---
 
-### 3. Operadores Lógicos
+## 3. Operadores Lógicos
 
 Os **operadores lógicos** são usados para combinar expressões condicionais e tomar decisões com base em múltiplas condições.
 
@@ -143,7 +143,7 @@ Os **operadores lógicos** são usados para combinar expressões condicionais e 
 | `or`     | Ou          | Pelo menos uma condição precisa ser verdadeira para o resultado ser `True`. |
 | `not`    | Não         | Inverte o valor lógico de uma expressão (`True` vira `False` e vice-versa). |
 
-#### 3.1. Operador `and` (E)
+### 3.1. Operador `and` (E)
 
 O operador `and` avalia como `True` apenas se **todas as condições** forem verdadeiras. Se qualquer valor for considerado falso, a expressão inteira será avaliada como `False`.
 
@@ -169,7 +169,7 @@ print(True and False and True)  # False
 print(True and 0 and True)      # 0 (0 é considerado "false")
 ```
 
-#### 3.2. Operador `or` (Ou)
+### 3.2. Operador `or` (Ou)
 
 O operador `or` avalia como `True` se **pelo menos uma condição** for verdadeira. Se todas as condições forem falsas, o resultado será `False`.
 
@@ -193,7 +193,7 @@ senha = input('Senha: ') or 'Sem senha'
 print(senha)  # Se o usuário não digitar nada, será exibido "Sem senha".
 ```
 
-#### 3.3. Operador `not` (Não)
+### 3.3. Operador `not` (Não)
 
 O operador `not` é usado para inverter o valor lógico de uma expressão. Se a expressão for `True`, o resultado será `False`, e vice-versa.
 
@@ -206,7 +206,7 @@ if not ativo:
 
 ---
 
-### 4. Operadores de Associação (`in` e `not in`)
+## 4. Operadores de Associação (`in` e `not in`)
 
 Os operadores `in` e `not in` verificam se um valor está (ou não está) presente em uma sequência, como strings, listas ou tuplas.
 
@@ -233,7 +233,7 @@ print('P' in nome)       # True
 print('z' not in nome)   # True
 ```
 
-#### 4.1. Valores "False" em Python
+### 4.1. Valores "False" em Python
 
 Os seguintes valores são considerados **falsos** em Python:
 - `0`
@@ -250,11 +250,11 @@ if not 0:
 
 ---
 
-### 5. Interpolação de Strings com `%`
+## 5. Interpolação de Strings com `%`
 
 A interpolação de strings com `%` é uma forma antiga, mas ainda funcional, de formatar strings em Python. Ela utiliza especificadores de formato para inserir valores em uma string.
 
-**Especificadores de Formato**
+**Especificadores de Formato:**
 
 | Especificador | Descrição                          | Exemplo (`%`)       |
 |---------------|------------------------------------|---------------------|
@@ -262,8 +262,6 @@ A interpolação de strings com `%` é uma forma antiga, mas ainda funcional, de
 | `%d` ou `%i`  | Inteiro (decimal)                 | `'Número: %d' % 10` |
 | `%f`          | Float (número decimal)            | `'Preço: %.2f' % 10.5` |
 | `%x` ou `%X`  | Hexadecimal (minúsculo/maiúsculo) | `'%x' % 255` ou `'%X' % 255` |
-
-**Exemplos**
 
 **Interpolação Básica:**
 ```py
@@ -281,7 +279,7 @@ print('O hexadecimal de %d é %08X' % (numero, numero))
 # Saída: O hexadecimal de 1500 é 000005DC
 ```
 
-**Detalhes Importantes**
+**Detalhes Importantes:**
 
 1. **Especificadores de Precisão:**
    - Para números decimais (`%f`), você pode controlar o número de casas decimais usando `%.nf`, onde `n` é o número de casas desejadas.
@@ -327,11 +325,11 @@ print(f'{nome}, o preço é R${preco:.2f}')  # Luiz, o preço é R$1000.95
 
 ---
 
-### 6. Fatiamento de Strings
+## 6. Fatiamento de Strings
 
 O **fatiamento de strings** permite acessar partes específicas de uma string, utilizando a notação `[início:fim:passo]`. Essa técnica é muito útil para manipular textos em Python.
 
-#### 6.1. Índices em Strings
+### 6.1. Índices em Strings
 
 Cada caractere de uma string possui um índice, que pode ser positivo (da esquerda para a direita) ou negativo (da direita para a esquerda).
 
@@ -342,7 +340,7 @@ print(variavel[0])  # P
 print(variavel[-1]) # n
 ```
 
-#### 6.2. Sintaxe do Fatiamento
+### 6.2. Sintaxe do Fatiamento
 
 A notação para fatiamento é `[início:fim:passo]`:
 - **`início`**: Índice onde o fatiamento começa (inclusivo).
@@ -382,7 +380,7 @@ print(variavel[::-1])    # Saída: odnum álO (string invertida)
 
 ---
 
-### 7. Função `len`
+## 7. Função `len`
 
 A função **`len`** retorna a quantidade de caracteres de uma string (incluindo espaços).
 
@@ -394,16 +392,16 @@ print(len(variavel))  # Saída: 9 (conta todos os caracteres, incluindo o espaç
 
 ---
 
-### 8. Bloco `try` e `except`
+## 8. Bloco `try` e `except`
 
 O bloco `try` e `except` é usado em Python para capturar e tratar **erros (exceptions)** que podem ocorrer durante a execução do código. Ele permite que o programa continue rodando mesmo que um erro seja encontrado.
 
-#### 8.1. Estrutura Básica
+### 8.1. Estrutura Básica
 
 - **`try`**: Tenta executar o código dentro do bloco.
 - **`except`**: Captura e trata o erro caso ele ocorra.
 
-**Exemplo**
+**Exemplo:**
 
 ```py
 numero_str = input('Vou dobrar o número que você digitar: ')
@@ -420,11 +418,11 @@ except:
 2. Se a conversão falhar (por exemplo, se o usuário digitar letras), o bloco `except` será executado.
 3. Caso contrário, o programa calcula e exibe o dobro do número.
 
-#### 8.2. Comparação com `isdigit()`
+### 8.2. Comparação com `isdigit()`
 
 Outra forma de verificar se a entrada é um número é usando o método `.isdigit()`. No entanto, ele só funciona para números inteiros e não considera números com ponto decimal ou negativos.
 
-**Exemplo com `isdigit()`**
+**Exemplo com `isdigit()`:**
 
 ```py
 numero_str = input('Vou dobrar o número que você digitar: ')
@@ -440,7 +438,7 @@ else:
 - Não aceita números com ponto decimal (`3.14`) ou negativos (`-5`).
 - Para esses casos, o uso de `try` e `except` é mais robusto.
 
-#### 8.3. Boas Práticas com `try` e `except`
+### 8.3. Boas Práticas com `try` e `except`
 
 1. **Especifique o tipo de erro no `except`:**
    - É uma boa prática capturar apenas os erros esperados, como `ValueError` para conversões inválidas.
@@ -463,9 +461,9 @@ else:
 
 ---
 
-### 9. Variáveis, Constantes e Complexidade de Código
+## 9. Variáveis, Constantes e Complexidade de Código
 
-#### 9.1. Constantes
+### 9.1. Constantes
 
 Em Python, **constantes** são valores que não devem ser alterados durante a execução do programa. Embora Python não tenha suporte nativo para constantes, por convenção, utilizamos **nomes em letras maiúsculas** para indicar que uma variável deve ser tratada como constante.
 
@@ -474,7 +472,7 @@ Em Python, **constantes** são valores que não devem ser alterados durante a ex
 CONSTANTE = "Este valor não deve mudar"
 ```
 
-#### 9.2. Complexidade de Código
+### 9.2. Complexidade de Código
 
 Evitar **muitas condições no mesmo `if`** é uma boa prática, pois isso pode tornar o código difícil de entender e manter. Um código com muitas condições em um único bloco é considerado de **alta complexidade**.
 
@@ -530,9 +528,9 @@ if carro_multado_radar_1:
 
 ---
 
-### 10. Flag, `is`, `is not` e `None`
+## 10. Flag, `is`, `is not` e `None`
 
-#### 10.1. Flag (Bandeira)
+### 10.1. Flag (Bandeira)
 
 Uma **flag** é uma variável usada para marcar ou indicar um estado ou condição no programa. Geralmente, é usada para controlar o fluxo do código ou sinalizar se algo aconteceu.
 
@@ -553,7 +551,7 @@ else:
     print('Passou no if')
 ```
 
-#### 10.2. `None`
+### 10.2. `None`
 
 O valor **`None`** em Python representa a ausência de valor ou um valor nulo. Ele é frequentemente usado para inicializar variáveis que ainda não possuem um valor definido.
 
@@ -568,7 +566,7 @@ if variavel is None:
 - `None` é um objeto especial em Python e não é equivalente a `False`, `0` ou uma string vazia (`''`).
 - Ele é frequentemente usado como valor padrão em funções ou para sinalizar que algo ainda não foi definido.
 
-#### 10.3. `is` e `is not`
+### 10.3. `is` e `is not`
 
 Os operadores **`is`** e **`is not`** são usados para comparar **identidade de objetos** (se dois objetos são exatamente o mesmo na memória).
 
@@ -589,7 +587,7 @@ print(a is c)  # True (a e c são o mesmo objeto na memória)
 
 ---
 
-### 11. `id` (Identidade do Objeto)
+## 11. `id` (Identidade do Objeto)
 
 A função **`id`** retorna o identificador único de um objeto na memória. Esse identificador é usado internamente pelo Python para distinguir objetos.
 
@@ -604,5 +602,3 @@ print(id(b))  # Exibe o mesmo ID, pois a e b são o mesmo objeto
 
 **Observação:**
 - Se dois objetos têm o mesmo `id`, eles são o mesmo objeto na memória.
-
----
