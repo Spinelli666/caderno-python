@@ -4,13 +4,13 @@
 
 ---
 
-# Estruturas de Repetição: `while` e `break`
+### Estruturas de Repetição: `while` e `break`
 
-## Repetições com `while`
+#### Repetições com `while`
 
 O comando **`while`** é usado para executar um bloco de código repetidamente enquanto uma condição for verdadeira. Ele é útil para criar **laços de repetição** quando não sabemos previamente o número exato de iterações.
 
-### Estrutura Básica
+##### Estrutura Básica
 
 ```py
 while condição:
@@ -20,9 +20,7 @@ while condição:
 - **`while`**: Significa "enquanto". O bloco será executado enquanto a condição for avaliada como `True`.
 - **Loop infinito**: Ocorre quando a condição nunca se torna `False`, fazendo o código rodar indefinidamente.
 
----
-
-## Exemplo 1: Loop Simples com `while`
+**Exemplo 1: Loop Simples com `while`**
 
 ```py
 condicao = True
@@ -41,9 +39,7 @@ print('Acabou')
 1. O loop continua pedindo o nome do usuário enquanto a condição for `True`.
 2. Se o usuário digitar `"sair"`, o comando `break` interrompe o loop.
 
----
-
-## Exemplo 2: Contador Simples
+**Exemplo 2: Contador Simples**
 
 ```py
 contador = 0
@@ -60,9 +56,7 @@ print('Acabou')
 2. A cada iteração, o valor de `contador` é incrementado em `1`.
 3. O loop termina quando `contador` ultrapassa `10`.
 
----
-
-## Exemplo 3: Usando `continue` e `break`
+**Exemplo 3: Usando `continue` e `break`**
 
 ```py
 contador = 0
@@ -93,9 +87,7 @@ print('Acabou')
    - Não exibe os números entre `10` e `27`.
 3. O comando `break` interrompe o loop quando `contador` atinge `40`.
 
----
-
-## Exemplo 4: Laços Aninhados com `while`
+**Exemplo 4: Laços Aninhados com `while`**
 
 ```py
 qtd_linhas = 5
@@ -117,9 +109,7 @@ print('Acabou')
 2. O loop interno controla as colunas (`coluna`).
 3. Para cada linha, o loop interno percorre todas as colunas.
 
----
-
-## Boas Práticas com `while`
+#### Boas Práticas com `while`
 
 1. **Evite loops infinitos desnecessários**:
    - Certifique-se de que a condição do `while` eventualmente se tornará `False`.
@@ -141,13 +131,11 @@ print('Acabou')
 ---
 
 
-# Operadores de Atribuição com Operadores Aritméticos
+### Operadores de Atribuição com Operadores Aritméticos
 
 Os **operadores de atribuição** são usados para atribuir valores a variáveis. Em Python, podemos combinar operadores aritméticos com o operador de atribuição (`=`) para simplificar operações matemáticas.
 
----
-
-## Operadores de Atribuição
+#### Operadores de Atribuição
 
 | Operador | Descrição                          | Exemplo                  | Equivalente a         |
 |----------|------------------------------------|--------------------------|-----------------------|
@@ -162,9 +150,9 @@ Os **operadores de atribuição** são usados para atribuir valores a variáveis
 
 ---
 
-## Exemplos Práticos
+**Exemplos Práticos**
 
-### Exemplo 1: Operadores de Atribuição Básicos
+**Exemplo 1: Operadores de Atribuição Básicos**
 
 ```py
 contador = 10
@@ -186,9 +174,7 @@ contador /= 4  # Equivalente a contador = contador / 4
 print(contador)  # Saída: 6.0
 ```
 
----
-
-### Exemplo 2: Operadores de Atribuição Avançados
+**Exemplo 2: Operadores de Atribuição Avançados**
 
 ```py
 contador = 10
@@ -208,13 +194,13 @@ print(contador)  # Saída: 1
 
 ---
 
-# Estruturas de Repetição: `for` e `range`
+### Estruturas de Repetição: `for` e `range`
 
-## Introdução ao `for` e Iteração em Python
+#### Introdução ao `for` e Iteração em Python
 
 O comando **`for`** é usado para iterar sobre elementos de um **iterável** (como strings, listas, tuplas, dicionários, ou objetos do tipo `range`). Ele é ideal para situações em que sabemos previamente o número de iterações ou queremos percorrer elementos de uma sequência finita.
 
-### Estrutura Básica do `for`
+##### Estrutura Básica do `for`
 
 ```py
 for elemento in iterável:
@@ -224,9 +210,7 @@ for elemento in iterável:
 - **`elemento`**: Representa o item atual da sequência que está sendo iterado.
 - **`iterável`**: É o objeto que contém os elementos a serem percorridos (como uma string, lista, ou `range`).
 
----
-
-## Exemplo 1: Iteração Simples com Strings
+**Exemplo 1: Iteração Simples com Strings**
 
 ```py
 texto = 'Python'
@@ -245,13 +229,11 @@ print(novo_texto + '*')
 3. O código dentro do `for` é executado para cada caractere.
 4. O resultado final é uma string com cada letra precedida por `*`.
 
----
-
-## `for` com `range`
+#### `for` com `range`
 
 A função **`range`** é usada para gerar uma sequência de números. Ela é frequentemente combinada com o `for` para criar laços de repetição baseados em intervalos numéricos.
 
-### Estrutura do `range`
+##### Estrutura do `range`
 
 ```py
 range(start, stop, step)
@@ -261,7 +243,7 @@ range(start, stop, step)
 - **`stop`**: O número final da sequência (não incluído).
 - **`step`**: (Opcional) O intervalo entre os números (padrão é `1`).
 
-### Exemplo 2: Iteração com `range`
+**Exemplo 2: Iteração com `range`**
 
 ```py
 numeros = range(0, 100, 8)
@@ -274,13 +256,11 @@ for numero in numeros:
 1. O `range(0, 100, 8)` gera números de `0` a `99`, com um passo de `8`.
 2. O `for` percorre cada número gerado pelo `range` e executa o código dentro do bloco.
 
----
-
-## Como o `for` Funciona por Baixo dos Panos?
+#### Como o `for` Funciona por Baixo dos Panos?
 
 Em Python, o `for` funciona com base no conceito de **iteráveis** e **iteradores**.
 
-### Conceitos Importantes
+#### Conceitos Importantes
 
 1. **Iterável**:
    - Um objeto que pode ser percorrido (como strings, listas, tuplas, dicionários, ou `range`).
@@ -297,9 +277,7 @@ Em Python, o `for` funciona com base no conceito de **iteráveis** e **iteradore
 4. **Função `next`**:
    - Retorna o próximo elemento do iterador.
 
----
-
-### Exemplo 3: Iteração Manual com `iter` e `next`
+**Exemplo 3: Iteração Manual com `iter` e `next`**
 
 ```py
 texto = 'Python'  # Iterável
@@ -319,9 +297,7 @@ while True:
 2. A função `next(iterador)` retorna o próximo caractere da string.
 3. Quando todos os caracteres são consumidos, a exceção `StopIteration` é levantada, e o loop é interrompido.
 
----
-
-### Exemplo 4: Comparação entre `for` e Iteração Manual
+**Exemplo 4: Comparação entre `for` e Iteração Manual**
 
 O código abaixo demonstra como o `for` é equivalente a usar `iter` e `next` manualmente:
 
@@ -340,9 +316,7 @@ while True:
         break
 ```
 
----
-
-## Boas Práticas com `for`
+#### Boas Práticas com `for`
 
 1. **Use `for` para Iterações Finitas**:
    - O `for` é ideal para percorrer sequências finitas, como listas, strings ou intervalos gerados por `range`.
@@ -354,9 +328,7 @@ while True:
    - Use `enumerate` para obter o índice e o valor de cada elemento.
    - Use `zip` para iterar sobre múltiplas sequências simultaneamente.
 
----
-
-## Exemplo 5: Uso de `enumerate`
+**Exemplo 5: Uso de `enumerate`**
 
 ```py
 frutas = ['maçã', 'banana', 'cereja']
@@ -372,9 +344,7 @@ for indice, fruta in enumerate(frutas):
 2: cereja
 ```
 
----
-
-## Exemplo 6: Uso de `zip`
+**Exemplo 6: Uso de `zip`**
 
 ```py
 nomes = ['Ana', 'João', 'Maria']
