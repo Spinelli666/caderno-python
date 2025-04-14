@@ -12,6 +12,14 @@
     - 3.1. [Introdução ao `for` e Iteração em Python](#31-introdução-ao-for-e-iteração-em-python)
     - 3.2. [Como o `for` Funciona por Baixo dos Panos](#32-como-o-for-funciona-por-baixo-dos-panos)
     - 3.3. [Boas Práticas com `for`](#33-boas-práticas-com-for)
+4. [Introdução às Listas Mutáveis](#4-introdução-às-listas-mutáveis)
+    - 4.1. [O Tipo `list`](#41-o-tipo-list)
+    - 4.2. [Alterando Listas com Índices, `del`, `append` e `pop`](#42-alterando-listas-com-índices-del-append-e-pop)
+    - 4.3. [Inserindo Itens em Qualquer Índice com `insert`](#43-inserindo-itens-em-qualquer-índice-com-insert)
+    - 4.4. [Concatenando e Estendendo Listas](#44-concatenando-e-estendendo-listas)
+    - 4.5. [Cuidados com Tipos de Dados Mutáveis](#45-cuidados-com-tipos-de-dados-mutáveis)
+    - 4.6. [Iterando com `for in` em Listas](#46-iterando-com-for-in-em-listas)
+    - 4.7. [Exercício: Exiba os Índices da Lista](#47-exercício-exiba-os-índices-da-lista)
 
 ---
 
@@ -372,6 +380,159 @@ for nome, idade in zip(nomes, idades):
 Ana tem 25 anos.
 João tem 30 anos.
 Maria tem 22 anos.
+```
+
+---
+
+## 4. Introdução às Listas Mutáveis
+
+### 4.1. O Tipo `list`
+
+As listas em Python são um tipo de dado **mutável**, o que significa que seus valores podem ser alterados após a criação. Elas suportam múltiplos valores de qualquer tipo e permitem o uso de **índices** e **fatiamento** para acessar ou modificar seus elementos.
+
+**Características:**
+- Tipo: `list`
+- Mutável
+- Suporta vários valores de qualquer tipo
+- Métodos úteis: `append`, `insert`, `pop`, `del`, `clear`, `extend`, `+`
+
+**Exemplo:**
+```py
+#        +01234
+#        -54321
+string = 'ABCDE'  # 5 caracteres (len)
+
+# Lista com diferentes tipos de dados
+#        0    1      2              3    4
+#       -5   -4     -3             -2   -1
+lista = [123, True, 'Luiz Otávio', 1.2, []]
+lista[-3] = 'Maria'
+print(lista)
+print(lista[2], type(lista[2]))
+```
+
+### 4.2. Alterando Listas com Índices, `del`, `append` e `pop`
+
+As listas permitem criar, ler, alterar e apagar elementos (CRUD) utilizando índices e métodos específicos.
+
+**Métodos úteis:**
+- `append`: Adiciona um item ao final da lista.
+- `pop`: Remove e retorna o último item ou o item no índice especificado.
+- `del`: Apaga um item no índice especificado.
+- `clear`: Limpa todos os itens da lista.
+
+**Exemplo:**
+```py
+#        0   1   2   3   4   5
+lista = [10, 20, 30, 40]
+lista.append(50)  # Adiciona 50 ao final
+lista.pop()       # Remove o último item
+lista.append(60)
+lista.append(70)
+ultimo_valor = lista.pop(3)  # Remove o item no índice 3
+print(lista, 'Removido,', ultimo_valor)
+```
+
+### 4.3. Inserindo Itens em Qualquer Índice com `insert`
+
+O método `insert` permite adicionar um item em qualquer índice da lista.
+
+**Sintaxe:**
+```py
+lista.insert(indice, valor)
+```
+
+**Exemplo:**
+```py
+#        0   1   2   3
+lista = [10, 20, 30, 40]
+lista.append('Luiz')  # Adiciona 'Luiz' ao final
+nome = lista.pop()    # Remove o último item
+lista.append(1233)    # Adiciona 1233 ao final
+del lista[-1]         # Remove o último item
+lista.insert(100, 5)  # Insere 5 no índice 100 (adicionado ao final)
+print(lista[4])
+```
+
+### 4.4. Concatenando e Estendendo Listas
+
+Você pode combinar listas utilizando o operador `+` (concatenação) ou o método `extend` (extensão).
+
+**Diferença:**
+- `+`: Cria uma nova lista combinando as listas originais.
+- `extend`: Modifica a lista original adicionando os elementos da outra lista.
+
+**Exemplo:**
+```py
+lista_a = [1, 2, 3]
+lista_b = [4, 5, 6]
+
+# Concatenação
+lista_c = lista_a + lista_b
+print(lista_c)  # [1, 2, 3, 4, 5, 6]
+
+# Extensão
+lista_a.extend(lista_b)
+print(lista_a)  # [1, 2, 3, 4, 5, 6]
+```
+
+### 4.5. Cuidados com Tipos de Dados Mutáveis
+
+Em Python, ao trabalhar com tipos mutáveis como listas, é importante entender como a atribuição funciona:
+- **Imutáveis**: Atribuir uma variável a outra copia o valor.
+- **Mutáveis**: Atribuir uma variável a outra faz com que ambas apontem para o mesmo objeto na memória.
+
+**Exemplo:**
+```py
+lista_a = ['Luiz', 'Maria', 1, True, 1.2]
+lista_b = lista_a.copy()  # Cria uma cópia independente
+
+lista_a[0] = 'Qualquer coisa'
+print(lista_a)  # ['Qualquer coisa', 'Maria', 1, True, 1.2]
+print(lista_b)  # ['Luiz', 'Maria', 1, True, 1.2]
+```
+
+### 4.6. Iterando com `for in` em Listas
+
+O laço `for in` é uma maneira simples e eficiente de iterar sobre os elementos de uma lista.
+
+**Exemplo:**
+```py
+lista = ['Maria', 'Helena', 'Luiz']
+
+for nome in lista:
+    print(nome, type(nome))
+```
+
+**Saída:**
+```
+Maria <class 'str'>
+Helena <class 'str'>
+Luiz <class 'str'>
+```
+
+### 4.7. Exercício: Exiba os Índices da Lista
+
+**Descrição:**
+Exiba os índices e os valores de uma lista utilizando o laço `for`.
+
+**Exemplo:**
+```py
+lista = ['Maria', 'Helena', 'Luiz']
+lista.append('João')
+
+indices = range(len(lista))
+
+for indice in indices:
+    print(indice, lista[indice], type(lista[indice]))
+```
+
+**Saída:**
+```
+0 Maria <class 'str'>
+1 Helena <class 'str'>
+2 Luiz <class 'str'>
+3 João <class 'str'>
 ```
 
 ---
