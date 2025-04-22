@@ -15,6 +15,7 @@ A introdução aborda a história e as principais características da linguagem 
   - Versatilidade para diversas áreas, como desenvolvimento web, ciência de dados e inteligência artificial.
   - Linguagem interpretada, orientada a objetos e multiplataforma.
   - Grande comunidade e ecossistema rico de bibliotecas e frameworks.
+- **Zen of Python.**
 
 [Clique aqui para acessar o conteúdo completo.](./doc/introducao.md)
 
@@ -65,6 +66,33 @@ O arquivo **Fundamentos 2** aprofunda os conceitos da linguagem Python, abordand
 <details>
 <summary>4. <a href="./doc/fundamentos3.md">Fundamentos 3</a></summary>
 
+### Resumo:
+O arquivo **Fundamentos 3** explora conceitos intermediários e avançados da linguagem Python, incluindo:
+1. **Estruturas de Repetição:**
+   - Uso do `while` e `break` para criar laços de repetição.
+   - Boas práticas com `while`.
+2. **Operadores de Atribuição com Operadores Aritméticos:**
+   - Operadores como `+=`, `-=`, `*=`, etc.
+   - Exemplos práticos de uso.
+3. **Estruturas de Repetição com `for` e `range`:**
+   - Iteração com `for` e como ele funciona internamente.
+   - Uso de `enumerate` e `zip` para iterar sobre iteráveis.
+4. **Introdução às Listas Mutáveis:**
+   - Métodos úteis como `append`, `insert`, `pop`, `del`, `clear`, `extend`, e concatenação.
+   - Cuidados com tipos mutáveis.
+   - Iteração com `for in` em listas.
+5. **Imprecisão de Números de Ponto Flutuante:**
+   - Problemas de precisão com ponto flutuante.
+   - Uso de `round` e `decimal.Decimal` para maior precisão.
+6. **Métodos Úteis de Strings:**
+   - Métodos como `split`, `join` e `strip`.
+   - Exemplos práticos de manipulação de strings.
+7. **Listas Dentro de Listas (Iteráveis Dentro de Iteráveis):**
+   - Acessando elementos em listas aninhadas.
+   - Iteração sobre listas de listas.
+8. **Detalhes sobre o Interpretador do Python:**
+   - Comandos úteis como `python mod.py`, `python -m`, `python -c`, etc.
 
+[Clique aqui para acessar o conteúdo completo.](./doc/fundamentos3.md)
 
 </details>
