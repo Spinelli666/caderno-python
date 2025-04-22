@@ -61,3 +61,10 @@ O arquivo **Fundamentos 2** aprofunda os conceitos da linguagem Python, abordand
 [Clique aqui para acessar o conteúdo completo.](./doc/fundamentos2.md)
 
 </details>
+
+<details>
+<summary>4. <a href="./doc/fundamentos3.md">Fundamentos 3</a></summary>
+
+
+
+</details>
