@@ -26,6 +26,14 @@
     - 6.1. [O Que é `*args`](#61-o-que-é-args)
     - 6.2. [Empacotamento com `*args`](#62-empacotamento-com-args)
     - 6.3. [Desempacotamento com `*args`](#63-desempacotamento-com-args)
+7. [Higher Order Functions e First-Class Functions](#7-higher-order-functions-e-first-class-functions)
+    - 7.1. [O Que São Higher Order Functions?](#71-o-que-são-higher-order-functions)
+    - 7.2. [O Que São First-Class Functions?](72-o-que-são-first-class-functions)
+    - 7.3. [Exemplo Prático](#73-exemplo-prático)
+8. [Closure e Funções que Retornam Outras Funções](#8-closure-e-funções-que-retornam-outras-funções)
+    - 8.1. [O Que é uma Closure?](#81-o-que-é-uma-closure)
+    - 8.2. [Funções que Retornam Outras Funções](#82-funções-que-retornam-outras-funções)
+    - 8.3. [Exemplo Prático de Closure](#83-exemplo-prático-de-closure)
 
 ---
 
@@ -484,5 +492,149 @@ print(sum(numeros))  # Saída: 15
 - Use `*args` quando não souber quantos argumentos serão passados para a função.
 - Combine `*args` com desempacotamento para maior flexibilidade.
 - Lembre-se de que `args` é apenas uma convenção; você pode usar qualquer nome, mas `args` é amplamente adotado.
+
+---
+
+## 7. Higher Order Functions e First-Class Functions
+
+Em Python, as funções são tratadas como **cidadãs de primeira classe** (First-Class Citizens), o que significa que podem ser manipuladas como qualquer outro tipo de dado, como strings ou números. Isso permite a criação de **Higher Order Functions**, que são funções que recebem ou retornam outras funções.
+
+### 7.1. O Que São Higher Order Functions?
+
+**Higher Order Functions** são funções que:
+- Podem receber outras funções como argumentos.
+- Podem retornar outras funções como resultado.
+
+**Referência:** [Higher Order Functions - Wikipedia](https://en.wikipedia.org/wiki/Higher-order_function)
+
+**Exemplo:**
+```py
+def saudacao(msg, nome):
+    return f'{msg}, {nome}!'
+
+def executa(funcao, *args):
+    return funcao(*args)
+
+print(executa(saudacao, 'Bom dia', 'Luiz'))  # Saída: Bom dia, Luiz!
+print(executa(saudacao, 'Boa noite', 'Maria'))  # Saída: Boa noite, Maria!
+```
+
+**Explicação:**
+- A função `executa` recebe outra função (`funcao`) como argumento e a executa com os argumentos fornecidos (`*args`).
+- Isso faz de `executa` uma Higher Order Function.
+
+### 7.2. O Que São First-Class Functions?
+
+**First-Class Functions** são funções que:
+- Podem ser atribuídas a variáveis.
+- Podem ser passadas como argumentos para outras funções.
+- Podem ser retornadas por outras funções.
+
+**Referência:** [First-Class Functions - MDN](https://developer.mozilla.org/en-US/docs/Glossary/First-class_Function)
+
+**Exemplo:**
+```py
+def saudacao(msg, nome):
+    return f'{msg}, {nome}!'
+
+# Atribuindo uma função a uma variável
+minha_funcao = saudacao
+print(minha_funcao('Olá', 'João'))  # Saída: Olá, João!
+```
+
+**Explicação:**
+- A função `saudacao` é atribuída à variável `minha_funcao`, que pode ser usada como qualquer outro dado.
+
+### 7.3. Exemplo Prático
+
+**Combinação de Higher Order Functions e First-Class Functions:**
+```py
+def saudacao(msg, nome):
+    return f'{msg}, {nome}!'
+
+def executa(funcao, *args):
+    return funcao(*args)
+
+# Usando uma função como argumento
+print(executa(saudacao, 'Bom dia', 'Luiz'))  # Saída: Bom dia, Luiz!
+print(executa(saudacao, 'Boa noite', 'Maria'))  # Saída: Boa noite, Maria!
+```
+
+**Explicação:**
+- `executa` é uma Higher Order Function porque recebe outra função como argumento.
+- `saudacao` é uma First-Class Function porque é tratada como um dado comum, podendo ser passada como argumento.
+
+**Observação:**
+- Embora os termos **Higher Order Functions** e **First-Class Functions** tenham significados técnicos diferentes, eles frequentemente se sobrepõem no uso prático.
+- Em Python, o suporte a funções de primeira classe é o que torna possível a criação de funções de ordem superior.
+
+---
+
+## 8. Closure e Funções que Retornam Outras Funções
+
+Em Python, funções podem ser definidas dentro de outras funções e podem retornar outras funções. Quando uma função interna "lembra" o estado do escopo onde foi criada, mesmo após o escopo externo ter sido finalizado, temos uma **closure**.
+
+### 8.1. O Que é uma Closure?
+
+Uma **closure** ocorre quando:
+- Uma função interna é retornada por uma função externa.
+- A função interna "lembra" o estado das variáveis do escopo onde foi criada, mesmo após o término da execução da função externa.
+
+**Características:**
+- Permite encapsular dados e lógica.
+- Cria funções personalizadas com base em parâmetros fornecidos.
+
+### 8.2. Funções que Retornam Outras Funções
+
+Uma função pode retornar outra função, permitindo a criação de comportamentos dinâmicos e reutilizáveis.
+
+**Exemplo:**
+```py
+def criar_saudacao(saudacao):
+    def saudar(nome):
+        return f'{saudacao}, {nome}!'
+    return saudar
+```
+
+**Explicação:**
+- A função `criar_saudacao` retorna a função `saudar`.
+- A função `saudar` "lembra" o valor de `saudacao` do escopo onde foi criada.
+
+### 8.3. Exemplo Prático de Closure
+
+**Exemplo Completo:**
+```py
+def criar_saudacao(saudacao):
+    def saudar(nome):
+        return f'{saudacao}, {nome}!'
+    return saudar
+
+falar_bom_dia = criar_saudacao('Bom dia')
+falar_boa_noite = criar_saudacao('Boa noite')
+
+for nome in ['Maria', 'Joana', 'Luiz']:
+    print(falar_bom_dia(nome))
+    print(falar_boa_noite(nome))
+```
+
+**Saída:**
+```
+Bom dia, Maria!
+Boa noite, Maria!
+Bom dia, Joana!
+Boa noite, Joana!
+Bom dia, Luiz!
+Boa noite, Luiz!
+```
+
+**Explicação:**
+1. `criar_saudacao('Bom dia')` retorna a função `saudar` com o valor de `saudacao` fixado como `'Bom dia'`.
+2. `falar_bom_dia` e `falar_boa_noite` são funções personalizadas criadas a partir de `criar_saudacao`.
+3. A função `saudar` "lembra" o valor de `saudacao` mesmo após a execução de `criar_saudacao`.
+
+**Dicas:**
+- Use closures para criar funções personalizadas e reutilizáveis.
+- Elas são úteis para encapsular lógica e dados, especialmente em programação funcional.
+- Lembre-se de que closures podem aumentar a complexidade do código, então use-as com moderação.
 
 ---
