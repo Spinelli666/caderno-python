@@ -96,3 +96,39 @@ O arquivo **Fundamentos 3** explora conceitos intermediários e avançados da li
 [Clique aqui para acessar o conteúdo completo.](./doc/fundamentos3.md)
 
 </details>
+
+<details>
+<summary>5. <a href="./doc/intermediario1.md">Intermediário 1</a></summary>
+
+### Resumo:
+O arquivo **Intermediário 1** aprofunda os conceitos de funções em Python, abordando:
+1. **Introdução às Funções (`def`) em Python:**
+   - Definição de funções.
+   - Parâmetros e argumentos.
+   - Valores padrão para parâmetros.
+2. **Argumentos Nomeados e Posicionais:**
+   - Diferença entre argumentos posicionais e nomeados.
+   - Mistura de argumentos posicionais e nomeados.
+3. **Valores Padrão para Parâmetros:**
+   - Uso de valores padrão e `None` como valor padrão.
+   - Refatoração de código com valores padrão.
+4. **Escopo de Funções e Módulos:**
+   - Diferença entre escopo global e local.
+   - Uso da palavra-chave `global`.
+5. **Retorno de Valores das Funções (`return`):**
+   - Uso do `return` para retornar valores.
+   - Retorno de múltiplos valores.
+6. **Argumentos Não Nomeados com `*args`:**
+   - Empacotamento e desempacotamento de argumentos.
+   - Comparação com a função `sum`.
+7. **Higher Order Functions e First-Class Functions:**
+   - Diferença entre Higher Order Functions e First-Class Functions.
+   - Exemplos práticos.
+8. **Closure e Funções que Retornam Outras Funções:**
+   - O que é uma closure.
+   - Funções que retornam outras funções.
+   - Exemplos práticos de closures.
+
+[Clique aqui para acessar o conteúdo completo.](./doc/intermediario1.md)
+
+</details>
