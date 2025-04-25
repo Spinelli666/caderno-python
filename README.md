@@ -132,3 +132,37 @@ O arquivo **Intermediário 1** aprofunda os conceitos de funções em Python, ab
 [Clique aqui para acessar o conteúdo completo.](./doc/intermediario1.md)
 
 </details>
+
+<details>
+<summary>6. <a href="./doc/intermediario2.md">Intermediário 2</a></summary>
+
+### Resumo:
+O arquivo **Intermediário 2** explora conceitos avançados de dicionários e conjuntos em Python, incluindo:
+1. **Introdução ao Tipo de Dados `dict` - Dicionários em Python:**
+   - O que são dicionários.
+   - Criando e acessando valores em dicionários.
+   - Iterando sobre dicionários.
+2. **Manipulando Chaves e Valores em Dicionários:**
+   - Adicionando, atualizando e removendo valores.
+   - Verificando a existência de chaves.
+3. **Métodos Úteis nos Dicionários Python (`dict`):**
+   - Métodos como `setdefault`, `pop`, `popitem`, `update`, entre outros.
+4. **Shallow Copy vs Deep Copy em Dados Mutáveis:**
+   - Diferença entre cópia rasa e cópia profunda.
+   - Exemplos práticos com `copy()` e `copy.deepcopy()`.
+5. **Introdução ao Tipo `set` em Python (Conjuntos):**
+   - O que são sets.
+   - Criando e manipulando sets.
+6. **Peculiaridades do Tipo Mutável `set`:**
+   - Características como valores únicos e ausência de índices.
+7. **Métodos Úteis do Tipo `set`:**
+   - Métodos como `add`, `update`, `discard`, entre outros.
+8. **Operadores Importantes para o Tipo `set`:**
+   - Operadores como união (`|`), interseção (`&`), diferença (`-`), e diferença simétrica (`^`).
+9. **Exemplos de Uso do Tipo `set`:**
+   - Remoção de duplicados.
+   - Aplicações práticas como jogos e validações.
+
+[Clique aqui para acessar o conteúdo completo.](./doc/intermediario2.md)
+
+</details>
