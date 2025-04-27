@@ -166,3 +166,69 @@ O arquivo **Intermediário 2** explora conceitos avançados de dicionários e co
 [Clique aqui para acessar o conteúdo completo.](./doc/intermediario2.md)
 
 </details>
+
+<details>
+<summary>7. <a href="./doc/intermediario3.md">Intermediário 3</a></summary>
+
+### Resumo:
+O arquivo **Intermediário 3** explora conceitos avançados de funções, comprehensions e manipulação de dados em Python, incluindo:
+1. **Introdução à Função `lambda` (Função Anônima de Uma Linha):**
+   - O que é uma função `lambda`.
+   - Criando funções `lambda`.
+   - Exemplos práticos com `lambda`.
+2. **Funções Lambda Complexas:**
+   - Funções `lambda` com retorno de outra função.
+   - Funções `lambda` com múltiplos argumentos.
+   - Funções `lambda` com `*args`.
+3. **Empacotamento e Desempacotamento de Dicionários:**
+   - Troca de valores com empacotamento.
+   - Desempacotamento de dicionários.
+4. **Uso de `*args` e `**kwargs`:**
+   - O que são `*args` e `**kwargs`.
+   - Exemplos práticos com `*args` e `**kwargs`.
+5. **Introdução à List Comprehension:**
+   - O que é List Comprehension.
+   - Criando listas com List Comprehension.
+   - Exemplos práticos.
+6. **Mapeamento de Dados em List Comprehension:**
+   - O que é mapeamento de dados.
+   - Mapeamento com List Comprehension.
+   - Exemplos práticos com condições.
+7. **Filtro de Dados em List Comprehension (`filter`):**
+   - O que é filtro de dados.
+   - Filtrando dados com List Comprehension.
+   - Exemplos práticos com condições.
+8. **List Comprehension com Mais de Um `for`:**
+   - O que é List Comprehension com múltiplos `for`.
+   - Criando listas com múltiplos `for`.
+   - Exemplos práticos com múltiplos `for`.
+9. **Dictionary Comprehension e Set Comprehension:**
+   - O que é Dictionary Comprehension.
+   - O que é Set Comprehension.
+   - Exemplos práticos.
+10. **Função `isinstance()` - Para Saber se um Objeto é de Determinado Tipo:**
+    - O que é a função `isinstance()`.
+    - Usando `isinstance()` com tipos simples.
+    - Usando `isinstance()` com múltiplos tipos.
+    - Exemplos práticos.
+11. **Valores Truthy e Falsy:**
+    - O que são valores Truthy e Falsy.
+    - Exemplos de valores Truthy e Falsy.
+12. **Tipos Mutáveis e Imutáveis:**
+    - O que são tipos mutáveis e imutáveis.
+    - Exemplos de tipos mutáveis e imutáveis.
+13. **Funções `dir`, `hasattr` e `getattr`:**
+    - O que é a função `dir`.
+    - O que é a função `hasattr`.
+    - O que é a função `getattr`.
+    - Exemplos práticos.
+14. **Generator Expression, Iterables e Iterators:**
+    - O que são iterables.
+    - O que são iterators.
+    - O que são generator expressions.
+    - Diferença entre List Comprehension e Generator Expression.
+    - Exemplos práticos.
+
+[Clique aqui para acessar o conteúdo completo.](./doc/intermediario3.md)
+
+</details>
