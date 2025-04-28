@@ -232,3 +232,40 @@ O arquivo **Intermediário 3** explora conceitos avançados de funções, compre
 [Clique aqui para acessar o conteúdo completo.](./doc/intermediario3.md)
 
 </details>
+
+<details>
+<summary>8. <a href="./doc/intermediario4.md">Intermediário 4</a></summary>
+
+### Resumo:
+O arquivo **Intermediário 4** aprofunda conceitos sobre generators, tratamento de exceções e lançamento de erros em Python, incluindo:
+1. **Introdução às Generator Functions em Python:**
+   - O que são Generator Functions.
+   - Como criar uma Generator Function.
+   - Diferença entre Generator Functions e Generator Expressions.
+   - Exemplos práticos.
+2. **Yield from em Generator Functions:**
+   - O que é `yield from`.
+   - Como usar `yield from`.
+   - Vantagens do `yield from`.
+   - Exemplos práticos.
+3. **Try e Except para Tratar Exceções:**
+   - O que é o bloco `try` e `except`.
+   - Tratando exceções específicas.
+   - Capturando detalhes da exceção.
+   - Exemplos práticos.
+4. **Try, Except, Else e Finally:**
+   - O que é o bloco `try`, `except`, `else` e `finally`.
+   - Como usar `else` e `finally`.
+   - Exemplos práticos.
+5. **Built-in Exceptions:**
+   - O que são Built-in Exceptions.
+   - Exemplos de Built-in Exceptions.
+6. **Raise - Lançando Exceções (Erros):**
+   - O que é o `raise`.
+   - Como usar o `raise`.
+   - Tratando exceções lançadas com `raise`.
+   - Exemplos práticos.
+
+[Clique aqui para acessar o conteúdo completo.](./doc/intermediario4.md)
+
+</details>
