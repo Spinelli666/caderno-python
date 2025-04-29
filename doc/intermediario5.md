@@ -7,6 +7,12 @@
     - 1.2. [Formas de Importar Módulos](#12-formas-de-importar-módulos)
     - 1.3. [Exemplo Prático](#13-exemplo-prático)
     - 1.4. [Boas Práticas ao Importar Módulos](#14-boas-práticas-ao-importar-módulos)
+2. [Modularização - Entendendo os Seus Próprios Módulos e `sys.path` no Python](#2-modularização---entendendo-os-seus-próprios-módulos-e-syspath-no-python)
+    - 2.1. [O Que é Modularização?](#21-o-que-é-modularização)
+    - 2.2. [Como o Python Encontra Módulos?](#22-como-o-python-encontra-módulos)
+    - 2.3. [O Papel do `__main__`](#23-o-papel-do-__main__)
+    - 2.4. [Usando `sys.path`](#24-usando-syspath)
+    - 2.5. [Exemplo Prático](#25-exemplo-prático)
 
 ---
 
@@ -154,5 +160,109 @@ print(platform)
 - Consulte a [documentação oficial](https://docs.python.org/3/py-modindex.html) para explorar os módulos padrão do Python.
 - Use aliases para evitar conflitos de nomes e melhorar a legibilidade.
 - Prefira importar apenas o necessário para manter o código limpo e eficiente.
+
+---
+
+## 2. Modularização - Entendendo os Seus Próprios Módulos e `sys.path` no Python
+
+A **modularização** em Python permite dividir o código em partes menores e reutilizáveis chamadas **módulos**. Isso facilita a organização, manutenção e reutilização do código.
+
+### 2.1. O Que é Modularização?
+
+- Modularização é o processo de dividir um programa em partes menores (módulos).
+- Um **módulo** é um arquivo Python (`.py`) que pode conter funções, classes e variáveis.
+- Você pode importar módulos para usar o código definido neles.
+
+**Exemplo:**
+```py
+# Arquivo: meu_modulo.py
+def saudacao(nome):
+    return f'Olá, {nome}!'
+```
+
+```py
+# Arquivo principal
+import meu_modulo
+
+print(meu_modulo.saudacao('Python'))  # Saída: Olá, Python!
+```
+
+### 2.2. Como o Python Encontra Módulos?
+
+- O Python conhece a pasta onde o arquivo principal (`__main__`) está localizado.
+- Ele também conhece as pastas abaixo da pasta do `__main__`.
+- Por padrão, o Python **não reconhece pastas acima do `__main__`**.
+- O Python usa o **`sys.path`** para determinar onde procurar módulos e pacotes.
+
+### 2.3. O Papel do `__main__`
+
+- O primeiro módulo executado em um programa Python é chamado de **`__main__`**.
+- O valor da variável especial `__name__` será `"__main__"` no módulo principal.
+- Em outros módulos importados, o valor de `__name__` será o nome do módulo.
+
+**Exemplo:**
+```py
+# Arquivo: meu_modulo.py
+print('Este módulo se chama', __name__)
+
+# Arquivo principal
+import meu_modulo
+print('Este módulo se chama', __name__)
+```
+
+**Saída:**
+```
+Este módulo se chama meu_modulo
+Este módulo se chama __main__
+```
+
+### 2.4. Usando `sys.path`
+
+- O **`sys.path`** é uma lista de caminhos onde o Python procura por módulos e pacotes.
+- Você pode adicionar caminhos personalizados ao `sys.path` para importar módulos de outras pastas.
+
+**Exemplo:**
+```py
+import sys
+
+print(sys.path)  # Mostra os caminhos conhecidos pelo Python
+```
+
+**Adicionando um Caminho Personalizado:**
+```py
+import sys
+
+sys.path.append('/caminho/para/meus/modulos')
+import meu_modulo_personalizado
+```
+
+### 2.5. Exemplo Prático
+
+**Código Completo:**
+```py
+# Arquivo: exemplo_m.py
+def saudacao(nome):
+    return f'Olá, {nome}!'
+```
+
+```py
+# Arquivo principal
+import exemplo_m
+
+print('Este módulo se chama', __name__)
+print(exemplo_m.saudacao('Python'))
+```
+
+**Saída:**
+```
+Este módulo se chama __main__
+Olá, Python!
+```
+
+**Dicas:**
+- Use a modularização para organizar seu código em partes reutilizáveis.
+- Consulte o `sys.path` para entender onde o Python está procurando módulos.
+- Evite modificar o `sys.path` diretamente, a menos que seja necessário.
+- Use a variável `__name__` para diferenciar o código que deve ser executado apenas no módulo principal.
 
 ---
