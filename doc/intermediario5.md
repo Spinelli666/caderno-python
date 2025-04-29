@@ -13,6 +13,11 @@
     - 2.3. [O Papel do `__main__`](#23-o-papel-do-__main__)
     - 2.4. [Usando `sys.path`](#24-usando-syspath)
     - 2.5. [Exemplo Prático](#25-exemplo-prático)
+3. [Como Importar Coisas do Seu Próprio Módulo (Ponto de Vista do `__main__`)](#3-como-importar-coisas-do-seu-próprio-módulo-ponto-de-vista-do-__main__)
+    - 3.1. [O Que é o `__main__`?](#31-o-que-é-o-__main__)
+    - 3.2. [Importando de Módulos Próprios](#32-importando-de-módulos-próprios)
+    - 3.3. [Exemplo Prático](#33-exemplo-prático)
+    - 3.4. [Boas Práticas ao Importar de Módulos Próprios](#34-boas-práticas-ao-importar-de-módulos-próprios)
 
 ---
 
@@ -264,5 +269,124 @@ Olá, Python!
 - Consulte o `sys.path` para entender onde o Python está procurando módulos.
 - Evite modificar o `sys.path` diretamente, a menos que seja necessário.
 - Use a variável `__name__` para diferenciar o código que deve ser executado apenas no módulo principal.
+
+---
+
+## 3. Como Importar Coisas do Seu Próprio Módulo (Ponto de Vista do `__main__`)
+
+Quando você cria seus próprios módulos em Python, pode importar funções, variáveis e classes entre arquivos para reutilizar o código. O comportamento do módulo principal (`__main__`) é importante para entender como essas importações funcionam.
+
+### 3.1. O Que é o `__main__`?
+
+- O **`__main__`** é o módulo principal que está sendo executado diretamente.
+- Quando você executa um arquivo Python, ele é tratado como o módulo `__main__`.
+- Outros módulos importados terão o valor de `__name__` igual ao nome do arquivo (sem a extensão `.py`).
+
+**Exemplo:**
+```py
+# Arquivo exemplo2_m.py
+variavel_modulo = 'Luiz'
+
+def soma(x, y):
+    return x + y
+```
+
+```py
+# Arquivo exemplo2.py
+import exemplo2_m
+
+print('Este módulo se chama', __name__)  # Saída: __main__
+print('Módulo importado se chama', exemplo2_m.__name__)  # Saída: exemplo2_m
+```
+
+### 3.2. Importando de Módulos Próprios
+
+Você pode importar de seus próprios módulos usando as mesmas técnicas de importação de módulos padrão.
+
+#### 1. Importação Completa
+```py
+import exemplo2_m
+
+print(exemplo2_m.variavel_modulo)  # Acessa a variável do módulo
+print(exemplo2_m.soma(2, 3))  # Chama a função do módulo
+```
+
+#### 2. Importação Parcial
+```py
+from exemplo2_m import soma, variavel_modulo
+
+print(variavel_modulo)  # Acessa diretamente a variável
+print(soma(2, 3))  # Chama diretamente a função
+```
+
+### 3.3. Exemplo Prático
+
+**Código Completo:**
+
+**Arquivo `exemplo2_m.py`:**
+```py
+variavel_modulo = 'Luiz'
+
+def soma(x, y):
+    return x + y
+```
+
+**Arquivo `exemplo2.py`:**
+```py
+# Como importar coisas do seu próprio módulo (ponto de vista do __main__)
+
+import exemplo2_m
+from exemplo2_m import soma, variavel_modulo
+
+print('Este módulo se chama', __name__)  # Saída: __main__
+print('Módulo importado se chama', exemplo2_m.__name__)  # Saída: exemplo2_m
+
+print(exemplo2_m.variavel_modulo)  # Saída: Luiz
+print(variavel_modulo)  # Saída: Luiz
+print(soma(2, 3))  # Saída: 5
+```
+
+**Saída:**
+```
+Este módulo se chama __main__
+Módulo importado se chama exemplo2_m
+Luiz
+Luiz
+5
+```
+
+### 3.4. Boas Práticas ao Importar de Módulos Próprios
+
+1. **Organize seus módulos:**
+   - Coloque seus módulos na mesma pasta ou em subpastas do arquivo principal.
+   - Use nomes descritivos para seus módulos.
+
+2. **Evite conflitos de nomes:**
+   - Use `import nome_modulo` para evitar conflitos entre nomes de variáveis ou funções.
+
+3. **Use aliases quando necessário:**
+   - Para módulos com nomes longos, use `import nome_modulo as apelido`.
+
+4. **Teste o módulo principal:**
+   - Use a verificação `if __name__ == "__main__":` para executar código apenas no módulo principal.
+
+**Exemplo:**
+```py
+# Arquivo exemplo2_m.py
+variavel_modulo = 'Luiz'
+
+def soma(x, y):
+    return x + y
+
+if __name__ == "__main__":
+    print('Este módulo está sendo executado diretamente.')
+```
+
+---
+
+**Dicas:**
+- Use `from nome_modulo import objeto` para importar apenas o necessário.
+- Sempre teste seus módulos individualmente antes de integrá-los ao projeto principal.
+- Consulte o valor de `__name__` para entender o contexto de execução do módulo.
 
 ---
