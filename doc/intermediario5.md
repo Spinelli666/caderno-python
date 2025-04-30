@@ -18,6 +18,25 @@
     - 3.2. [Importando de Módulos Próprios](#32-importando-de-módulos-próprios)
     - 3.3. [Exemplo Prático](#33-exemplo-prático)
     - 3.4. [Boas Práticas ao Importar de Módulos Próprios](#34-boas-práticas-ao-importar-de-módulos-próprios)
+4. [Recarregando Módulos, `importlib` e Singleton](#4-recarregando-módulos-importlib-e-singleton)
+    - 4.1. [O Que é Recarregar Módulos?](#41-o-que-é-recarregar-módulos)
+    - 4.2. [Usando `importlib.reload`](#42-usando-importlibreload)
+    - 4.3. [O Que é Singleton?](#43-o-que-é-singleton)
+    - 4.4. [Exemplo Prático](#44-exemplo-prático)
+    - 4.5. [Boas Práticas ao Recarregar Módulos](#45-boas-práticas-ao-recarregar-módulos)
+5. [Introdução aos Packages (Pacotes) em Python](#1-introdução-aos-packages-pacotes-em-python)
+    - 5.1. [O Que São Packages?](#51-o-que-são-packages)
+    - 5.2. [Estrutura de um Package](#52-estrutura-de-um-package)
+    - 5.3. [Importando de Packages](#53-importando-de-packages)
+    - 5.4. [Exemplo Prático](#54-exemplo-prático)
+6. [O Ponto de Vista do `__main__` em Módulos e Pacotes](#6-o-ponto-de-vista-do-__main__-em-módulos-e-pacotes)
+    - 6.1. [O Que é o `__main__`?](#61-o-que-é-o-__main__)
+    - 6.2. [Como o `__main__` Pode Confundir?](#62-como-o-__main__-pode-confundir)
+    - 6.3. [Exemplo Prático](#63-exemplo-prático)
+7. [O Arquivo `__init__.py` nos Packages](#7-o-arquivo-__init__py-nos-packages)
+    - 7.1. [O Que é o `__init__.py`?](#71-o-que-é-o-__init__py)
+    - 7.2. [Usando o `__init__.py` para Inicializar Packages](#72-usando-o-__init__py-para-inicializar-packages)
+    - 7.3. [Exemplo Prático](#73-exemplo-prático)
 
 ---
 
@@ -382,11 +401,294 @@ if __name__ == "__main__":
     print('Este módulo está sendo executado diretamente.')
 ```
 
----
-
 **Dicas:**
 - Use `from nome_modulo import objeto` para importar apenas o necessário.
 - Sempre teste seus módulos individualmente antes de integrá-los ao projeto principal.
 - Consulte o valor de `__name__` para entender o contexto de execução do módulo.
+
+---
+
+## 4. Recarregando Módulos, `importlib` e Singleton
+
+Em Python, os módulos são carregados na memória apenas uma vez por padrão. No entanto, em alguns casos, pode ser necessário recarregar um módulo para refletir alterações feitas durante a execução do programa. O módulo **`importlib`** fornece ferramentas para recarregar módulos.
+
+### 4.1. O Que é Recarregar Módulos?
+
+- Quando um módulo é importado, ele é carregado na memória e não é recarregado automaticamente, mesmo que o código do módulo seja alterado.
+- Recarregar um módulo força o Python a executar novamente o código do módulo, refletindo quaisquer alterações feitas.
+
+### 4.2. Usando `importlib.reload`
+
+- O **`importlib.reload`** é usado para recarregar um módulo já importado.
+- Ele força o Python a executar novamente o código do módulo.
+
+**Sintaxe:**
+```py
+import importlib
+
+importlib.reload(nome_modulo)
+```
+
+**Exemplo:**
+```py
+# Arquivo aula98_m.py
+print(123)
+
+variavel = 'Luiz'
+```
+
+```py
+# Arquivo aula98.py
+import importlib
+import aula98_m
+
+print(aula98_m.variavel)
+
+for i in range(3):
+    importlib.reload(aula98_m)
+    print(i)
+
+print('Fim')
+```
+
+**Saída:**
+```
+123
+Luiz
+123
+0
+123
+1
+123
+2
+Fim
+```
+
+**Explicação:**
+1. O módulo `aula98_m` é importado e executado pela primeira vez.
+2. O loop recarrega o módulo `aula98_m` usando `importlib.reload`, executando novamente o código do módulo.
+3. A variável `variavel` mantém seu valor original, pois não foi alterada no código.
+
+### 4.3. O Que é Singleton?
+
+- O **Singleton** é um padrão de design que garante que uma classe tenha apenas uma instância durante a execução do programa.
+- Em Python, os módulos já seguem o padrão Singleton, pois são carregados na memória apenas uma vez.
+
+**Exemplo de Singleton com Módulos:**
+```py
+# Arquivo singleton.py
+variavel = 'Valor único'
+
+# Arquivo principal
+import singleton
+
+print(singleton.variavel)  # Saída: Valor único
+singleton.variavel = 'Novo valor'
+print(singleton.variavel)  # Saída: Novo valor
+```
+
+**Explicação:**
+- O módulo `singleton` é carregado apenas uma vez.
+- Alterações feitas na variável `variavel` são refletidas em todas as partes do programa que importam o módulo.
+
+### 4.4. Exemplo Prático
+
+**Código Completo:**
+
+**Arquivo `aula98_m.py`:**
+```py
+print(123)
+
+variavel = 'Luiz'
+```
+
+**Arquivo `aula98.py`:**
+```py
+import importlib
+import aula98_m
+
+print(aula98_m.variavel)
+
+for i in range(3):
+    importlib.reload(aula98_m)
+    print(i)
+
+print('Fim')
+```
+
+**Saída:**
+```
+123
+Luiz
+123
+0
+123
+1
+123
+2
+Fim
+```
+
+### 4.5. Boas Práticas ao Recarregar Módulos
+
+1. **Evite Recarregar Frequentemente:**
+   - Recarregar módulos pode ser custoso em termos de desempenho.
+   - Use apenas quando necessário, como durante o desenvolvimento ou depuração.
+
+2. **Use `importlib.reload` com Cuidado:**
+   - Certifique-se de que o módulo não dependa de estados externos que possam ser perdidos ao recarregar.
+
+3. **Evite Alterar o Comportamento Singleton dos Módulos:**
+   - Alterar o comportamento padrão dos módulos pode causar inconsistências no programa.
+
+**Dicas:**
+- Use `importlib.reload` para testar alterações em módulos durante o desenvolvimento.
+- Lembre-se de que os módulos seguem o padrão Singleton, sendo carregados apenas uma vez por padrão.
+- Consulte a [documentação oficial do `importlib`](https://docs.python.org/3/library/importlib.html) para mais detalhes.
+
+---
+
+## 5. Introdução aos Packages (Pacotes) em Python
+
+### 5.1. O Que São Packages?
+
+- Um **package** é um diretório que contém um arquivo especial chamado `__init__.py`.
+- Ele permite organizar módulos relacionados em uma estrutura hierárquica.
+
+### 5.2. Estrutura de um Package
+
+**Exemplo de Estrutura:**
+```
+aula99_package/
+    __init__.py
+    modulo.py
+    modulo_b.py
+```
+
+### 5.3. Importando de Packages
+
+Você pode importar módulos ou objetos de packages de várias formas:
+
+**Exemplo:**
+```py
+from aula99_package.modulo import soma_do_modulo
+from aula99_package.modulo_b import fala_oi
+
+print(soma_do_modulo(1, 2))  # Saída: 3
+fala_oi()  # Saída: Oi
+```
+
+### 5.4. Exemplo Prático
+
+**Arquivo `modulo.py`:**
+```py
+variavel = 'Alguma coisa'
+
+def soma_do_modulo(a, b):
+    return a + b
+
+nova_variavel = 'Outra coisa'
+```
+
+**Arquivo `modulo_b.py`:**
+```py
+def fala_oi():
+    print('Oi')
+```
+
+**Arquivo `aula99.py`:**
+```py
+from aula99_package.modulo import soma_do_modulo
+from aula99_package.modulo_b import fala_oi
+
+print(soma_do_modulo(1, 2))  # Saída: 3
+fala_oi()  # Saída: Oi
+```
+
+---
+
+## 6. O Ponto de Vista do `__main__` em Módulos e Pacotes
+
+### 6.1. O Que é o `__main__`?
+
+- O módulo principal que está sendo executado diretamente é chamado de **`__main__`**.
+- Outros módulos importados terão o valor de `__name__` igual ao nome do módulo.
+
+### 6.2. Como o `__main__` Pode Confundir?
+
+- Quando um módulo importa outro, o código no módulo importado é executado.
+- Isso pode levar a comportamentos inesperados se o módulo importado executar código diretamente.
+
+### 6.3. Exemplo Prático
+
+**Arquivo `modulo.py`:**
+```py
+from aula99_package.modulo_b import fala_oi
+
+# fala_oi()  # Executa ao importar
+```
+
+**Arquivo `modulo_b.py`:**
+```py
+def fala_oi():
+    print('Oi')
+```
+
+**Arquivo `aula99.py`:**
+```py
+from aula99_package.modulo import fala_oi
+
+print(__name__)  # Saída: __main__
+# fala_oi()  # Chama a função explicitamente
+```
+
+---
+
+## 7. O Arquivo `__init__.py` nos Packages
+
+### 7.1. O Que é o `__init__.py`?
+
+- O **`__init__.py`** é um arquivo especial que inicializa um package.
+- Ele pode conter código para configurar o package ou expor objetos específicos.
+
+### 7.2. Usando o `__init__.py` para Inicializar Packages
+
+- Você pode importar módulos ou objetos diretamente no `__init__.py` para facilitar o uso do package.
+
+**Exemplo:**
+```py
+# Arquivo __init__.py
+from aula99_package.modulo import *
+from aula99_package.modulo_b import *
+```
+
+### 7.3. Exemplo Prático
+
+**Estrutura do Package:**
+```
+aula99_package/
+    __init__.py
+    modulo.py
+    modulo_b.py
+```
+
+**Arquivo `__init__.py`:**
+```py
+from aula99_package.modulo import soma_do_modulo
+from aula99_package.modulo_b import fala_oi
+```
+
+**Arquivo `aula99.py`:**
+```py
+from aula99_package import soma_do_modulo, fala_oi
+
+print(soma_do_modulo(1, 2))  # Saída: 3
+fala_oi()  # Saída: Oi
+```
+
+**Dicas:**
+- Use o `__init__.py` para organizar e inicializar seu package.
+- Evite executar código diretamente em módulos importados.
+- Sempre teste suas importações para garantir que o comportamento seja o esperado.
 
 ---
