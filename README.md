@@ -269,3 +269,48 @@ O arquivo **Intermediário 4** aprofunda conceitos sobre generators, tratamento 
 [Clique aqui para acessar o conteúdo completo.](./doc/intermediario4.md)
 
 </details>
+
+<details>
+<summary>9. <a href="./doc/intermediario5.md">Intermediário 5</a></summary>
+
+### Resumo:
+O arquivo **Intermediário 5** explora conceitos avançados relacionados a módulos, pacotes e variáveis em Python, incluindo:
+1. **Módulos - Import, From, As e *:**
+   - O que são módulos.
+   - Formas de importar módulos (completo, parcial, com alias e `*`).
+   - Boas práticas ao importar módulos.
+2. **Modularização - Entendendo os Seus Próprios Módulos e `sys.path`:**
+   - O que é modularização.
+   - Como o Python encontra módulos.
+   - O papel do `__main__`.
+   - Usando `sys.path` para personalizar caminhos.
+3. **Como Importar Coisas do Seu Próprio Módulo (Ponto de Vista do `__main__`):**
+   - Diferença entre o módulo principal e módulos importados.
+   - Importação de módulos próprios.
+   - Boas práticas ao importar de módulos próprios.
+4. **Recarregando Módulos, `importlib` e Singleton:**
+   - O que é recarregar módulos.
+   - Usando `importlib.reload`.
+   - O conceito de Singleton em módulos.
+   - Boas práticas ao recarregar módulos.
+5. **Introdução aos Packages (Pacotes) em Python:**
+   - O que são packages.
+   - Estrutura de um package.
+   - Importando de packages.
+   - O papel do arquivo `__init__.py`.
+6. **O Ponto de Vista do `__main__` em Módulos e Pacotes:**
+   - Como o `__main__` pode confundir.
+   - Exemplos práticos para entender o comportamento do `__main__`.
+7. **O Arquivo `__init__.py` nos Packages:**
+   - O que é o `__init__.py`.
+   - Usando o `__init__.py` para inicializar packages.
+   - Exemplos práticos.
+8. **Variáveis Livres e `nonlocal` (locals, globals):**
+   - O que são variáveis livres.
+   - O uso da palavra-chave `nonlocal`.
+   - Funções `globals()` e `locals()`.
+   - Exemplos práticos com variáveis livres e `nonlocal`.
+
+[Clique aqui para acessar o conteúdo completo.](./doc/intermediario5.md)
+
+</details>
