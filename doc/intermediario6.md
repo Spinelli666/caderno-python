@@ -24,6 +24,16 @@
     - 4.2. [Como Funciona a Ordem de Aplicação?](#42-como-funciona-a-ordem-de-aplicação)
     - 4.3. [Exemplo Prático](#43-exemplo-prático)
     - 4.4. [Dicas para Trabalhar com Decoradores Empilhados](#44-dicas-para-trabalhar-com-decoradores-empilhados)
+5. [Count é um Iterador Sem Fim (itertools)](#5-count-é-um-iterador-sem-fim-itertools)
+    - 5.1. [O Que é `itertools.count`?](#51-o-que-é-itertoolscount)
+    - 5.2. [Diferença entre `count` e `range`](#52-diferença-entre-count-e-range)
+    - 5.3. [Exemplo Prático](#53-exemplo-prático)
+    - 5.4. [Vantagens de Usar `itertools.count`](#54-vantagens-de-usar-itertoolscount)
+6. [Combinations, Permutations e Product - Itertools](#6-combinations-permutations-e-product---itertools)
+    - 6.1. [O Que São Combinations, Permutations e Product?](#61-o-que-são-combinations-permutations-e-product)
+    - 6.2. [Diferenças Entre Combinations, Permutations e Product](#62-diferenças-entre-combinations-permutations-e-product)
+    - 6.3. [Exemplo Prático](#63-exemplo-prático)
+    - 6.4. [Vantagens de Usar Itertools](#64-vantagens-de-usar-itertools)
 
 ---
 
@@ -476,5 +486,246 @@ Decorador: 5
 **Dicas:**
 - Use decoradores empilhados para combinar funcionalidades, como validações, logs e autenticação.
 - Sempre teste o comportamento final da função decorada para garantir que os decoradores estão funcionando como esperado.
+
+---
+
+## 5. Count é um Iterador Sem Fim (itertools)
+
+O **`itertools.count`** é uma ferramenta poderosa da biblioteca padrão do Python que cria um iterador infinito. Ele é útil para gerar sequências numéricas sem precisar definir um limite.
+
+### 5.1. O Que é `itertools.count`?
+
+- O **`itertools.count`** é um iterador infinito que gera números em uma sequência aritmética.
+- Ele aceita dois argumentos:
+  - **`start`**: O valor inicial da sequência (padrão é `0`).
+  - **`step`**: O incremento entre os valores consecutivos (padrão é `1`).
+
+**Exemplo:**
+```py
+from itertools import count
+
+c = count(start=0, step=2)
+print(next(c))  # Saída: 0
+print(next(c))  # Saída: 2
+print(next(c))  # Saída: 4
+```
+
+### 5.2. Diferença entre `count` e `range`
+
+| **Aspecto**         | **`itertools.count`**                | **`range`**                     |
+|----------------------|--------------------------------------|----------------------------------|
+| **Iterador Infinito**| Sim                                 | Não                             |
+| **Argumentos**       | `start`, `step`                     | `start`, `stop`, `step`         |
+| **Parada**           | Não para automaticamente            | Para no valor definido por `stop` |
+| **Iterador ou Iterable** | Iterador (`__iter__` e `__next__`) | Iterable (`__iter__`)           |
+
+**Exemplo Comparativo:**
+```py
+from itertools import count
+
+c1 = count(step=8, start=8)
+r1 = range(8, 100, 8)
+
+print('c1', hasattr(c1, '__iter__'))  # Saída: True
+print('c1', hasattr(c1, '__next__'))  # Saída: True
+print('r1', hasattr(r1, '__iter__'))  # Saída: True
+print('r1', hasattr(r1, '__next__'))  # Saída: False
+```
+
+### 5.3. Exemplo Prático
+
+**Código Completo:**
+```py
+from itertools import count
+
+c1 = count(step=8, start=8)
+r1 = range(8, 100, 8)
+
+print('c1', hasattr(c1, '__iter__'))  # Verifica se é iterável
+print('c1', hasattr(c1, '__next__'))  # Verifica se é um iterador
+print('r1', hasattr(r1, '__iter__'))  # Verifica se é iterável
+print('r1', hasattr(r1, '__next__'))  # Verifica se é um iterador
+
+print('count')
+for i in c1:
+    if i >= 100:  # Interrompe manualmente
+        break
+    print(i)
+
+print()
+print('range')
+for i in r1:
+    print(i)
+```
+
+**Saída:**
+```
+c1 True
+c1 True
+r1 True
+r1 False
+count
+8
+16
+24
+32
+40
+48
+56
+64
+72
+80
+88
+96
+
+range
+8
+16
+24
+32
+40
+48
+56
+64
+72
+80
+88
+96
+```
+
+**Explicação:**
+1. **`count`**:
+   - É um iterador infinito, então precisa de uma condição para interromper o loop (`if i >= 100: break`).
+2. **`range`**:
+   - É um iterable com um limite definido (`stop=100`), então o loop para automaticamente.
+
+### 5.4. Vantagens de Usar `itertools.count`
+
+1. **Iterador Infinito:**
+   - Ideal para gerar sequências sem precisar definir um limite.
+
+2. **Flexibilidade:**
+   - Permite definir o valor inicial (`start`) e o incremento (`step`).
+
+3. **Eficiência:**
+   - Não armazena todos os valores na memória, gerando-os sob demanda.
+
+**Dicas:**
+- Use `itertools.count` quando precisar de um iterador infinito ou de uma sequência sem limite pré-definido.
+- Sempre inclua uma condição de parada ao usar `count` para evitar loops infinitos.
+- Combine `count` com outras ferramentas do módulo `itertools` para criar pipelines de processamento eficientes.
+
+---
+
+## 6. Combinations, Permutations e Product - Itertools
+
+O módulo **`itertools`** fornece ferramentas poderosas para trabalhar com combinações, permutações e produtos cartesianos de iteráveis. Essas ferramentas são úteis para resolver problemas de análise combinatória e geração de combinações.
+
+### 6.1. O Que São Combinations, Permutations e Product?
+
+- **Combinations:** Gera combinações de elementos de um iterável, onde a ordem **não importa**.
+- **Permutations:** Gera permutações de elementos de um iterável, onde a ordem **importa**.
+- **Product:** Gera o produto cartesiano de iteráveis, permitindo repetição de valores.
+
+### 6.2. Diferenças Entre Combinations, Permutations e Product
+
+| **Ferramenta**   | **Ordem Importa?** | **Repetição de Valores?** | **Descrição**                                   |
+|-------------------|--------------------|---------------------------|------------------------------------------------|
+| `combinations`    | Não                | Não                       | Gera combinações únicas de tamanho fixo.       |
+| `permutations`    | Sim                | Não                       | Gera todas as permutações possíveis.           |
+| `product`         | Sim                | Sim                       | Gera o produto cartesiano de iteráveis.        |
+
+### 6.3. Exemplo Prático
+
+**Código Completo:**
+```py
+from itertools import combinations, permutations, product
+
+def print_iter(iterator):
+    print(*list(iterator), sep='\n')
+    print()
+
+pessoas = [
+    'João', 'Joana', 'Luiz', 'Letícia',
+]
+
+camisetas = [
+    ['preta', 'branca'],
+    ['p', 'm', 'g'],
+    ['masculino', 'feminino', 'unisex'],
+    ['algodão', 'poliéster']
+]
+
+# Combinações - Ordem não importa
+print("Combinations:")
+print_iter(combinations(pessoas, 2))
+
+# Permutações - Ordem importa
+print("Permutations:")
+print_iter(permutations(pessoas, 2))
+
+# Produto cartesiano - Ordem importa e repete valores únicos
+print("Product:")
+print_iter(product(*camisetas))
+```
+
+**Saída (parcial):**
+```
+Combinations:
+('João', 'Joana')
+('João', 'Luiz')
+('João', 'Letícia')
+('Joana', 'Luiz')
+('Joana', 'Letícia')
+('Luiz', 'Letícia')
+
+Permutations:
+('João', 'Joana')
+('João', 'Luiz')
+('João', 'Letícia')
+('Joana', 'João')
+('Joana', 'Luiz')
+('Joana', 'Letícia')
+...
+
+Product:
+('preta', 'p', 'masculino', 'algodão')
+('preta', 'p', 'masculino', 'poliéster')
+('preta', 'p', 'feminino', 'algodão')
+('preta', 'p', 'feminino', 'poliéster')
+('preta', 'p', 'unisex', 'algodão')
+('preta', 'p', 'unisex', 'poliéster')
+...
+```
+
+**Explicação:**
+1. **Combinations:**
+   - Gera todas as combinações possíveis de 2 pessoas, sem considerar a ordem.
+   - Exemplo: `('João', 'Joana')` é igual a `('Joana', 'João')`.
+
+2. **Permutations:**
+   - Gera todas as permutações possíveis de 2 pessoas, considerando a ordem.
+   - Exemplo: `('João', 'Joana')` é diferente de `('Joana', 'João')`.
+
+3. **Product:**
+   - Gera o produto cartesiano de todas as listas em `camisetas`.
+   - Cada combinação inclui uma opção de cada lista.
+
+### 6.4. Vantagens de Usar Itertools
+
+1. **Eficiência:**
+   - As funções do módulo `itertools` geram os valores sob demanda (lazy evaluation), economizando memória.
+
+2. **Flexibilidade:**
+   - Permite trabalhar com iteráveis de qualquer tamanho e tipo.
+
+3. **Facilidade:**
+   - Simplifica a implementação de problemas combinatórios complexos.
+
+**Dicas:**
+- Use `combinations` quando a ordem dos elementos não for importante.
+- Use `permutations` quando a ordem dos elementos for importante.
+- Use `product` para gerar combinações completas de múltiplos iteráveis.
+- Combine essas ferramentas com outras funções do módulo `itertools` para resolver problemas mais complexos.
 
 ---
