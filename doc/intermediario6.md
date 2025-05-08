@@ -34,6 +34,11 @@
     - 6.2. [Diferenças Entre Combinations, Permutations e Product](#62-diferenças-entre-combinations-permutations-e-product)
     - 6.3. [Exemplo Prático](#63-exemplo-prático)
     - 6.4. [Vantagens de Usar Itertools](#64-vantagens-de-usar-itertools)
+7. [Groupby - Agrupando Valores (itertools)](#7-groupby---agrupando-valores-itertools)
+    - 7.1. [O Que é `groupby`?](#71-o-que-é-groupby)
+    - 7.2. [Como Funciona o `groupby`](#72-como-funciona-o-groupby)
+    - 7.3. [Exemplo Prático](#73-exemplo-prático)
+    - 7.4. [Vantagens de Usar `groupby`](#74-vantagens-de-usar-groupby)
 
 ---
 
@@ -727,5 +732,248 @@ Product:
 - Use `permutations` quando a ordem dos elementos for importante.
 - Use `product` para gerar combinações completas de múltiplos iteráveis.
 - Combine essas ferramentas com outras funções do módulo `itertools` para resolver problemas mais complexos.
+
+## 7. Groupby - Agrupando Valores (itertools)
+
+O **`itertools.groupby`** é uma ferramenta poderosa para agrupar valores em um iterável com base em uma chave ou critério. Ele é útil para organizar dados em grupos relacionados.
+
+### 7.1. O Que é `groupby`?
+
+- O **`groupby`** é uma função do módulo `itertools` que agrupa elementos consecutivos de um iterável com base em uma chave.
+- Ele retorna um iterador que produz pares `(chave, grupo)`, onde:
+  - **`chave`**: O valor da chave usada para agrupar.
+  - **`grupo`**: Um iterador contendo os elementos do grupo.
+
+### 7.2. Como Funciona o `groupby`
+
+1. O iterável deve estar **ordenado** com base na chave de agrupamento.
+2. O `groupby` agrupa apenas elementos consecutivos com a mesma chave.
+3. Se o iterável não estiver ordenado, os grupos podem não ser formados corretamente.
+
+### 7.3. Exemplo Prático
+
+**Código Completo:**
+```py
+from itertools import groupby
+
+alunos = [
+    {'nome': 'Luiz', 'nota': 'A'},
+    {'nome': 'Letícia', 'nota': 'B'},
+    {'nome': 'Fabrício', 'nota': 'A'},
+    {'nome': 'Rosemary', 'nota': 'C'},
+    {'nome': 'Joana', 'nota': 'D'},
+    {'nome': 'João', 'nota': 'A'},
+    {'nome': 'Eduardo', 'nota': 'B'},
+    {'nome': 'André', 'nota': 'A'},
+    {'nome': 'Anderson', 'nota': 'C'},
+]
+
+def ordena(aluno):
+    return aluno['nota']
+
+# Ordena os alunos pela nota
+alunos_agrupados = sorted(alunos, key=ordena)
+
+# Agrupa os alunos pela nota
+grupos = groupby(alunos_agrupados, key=ordena)
+
+# Itera sobre os grupos
+for chave, grupo in grupos:
+    print(f'Nota: {chave}')
+    for aluno in grupo:
+        print(f"  {aluno}")
+```
+
+**Saída:**
+```
+Nota: A
+  {'nome': 'Luiz', 'nota': 'A'}
+  {'nome': 'Fabrício', 'nota': 'A'}
+  {'nome': 'João', 'nota': 'A'}
+  {'nome': 'André', 'nota': 'A'}
+Nota: B
+  {'nome': 'Letícia', 'nota': 'B'}
+  {'nome': 'Eduardo', 'nota': 'B'}
+Nota: C
+  {'nome': 'Rosemary', 'nota': 'C'}
+  {'nome': 'Anderson', 'nota': 'C'}
+Nota: D
+  {'nome': 'Joana', 'nota': 'D'}
+```
+
+**Explicação:**
+1. A função `ordena` retorna a nota de cada aluno.
+2. A lista `alunos` é ordenada com base na nota usando `sorted`.
+3. O `groupby` agrupa os alunos consecutivos com a mesma nota.
+4. O loop imprime a nota (chave) e os alunos (grupo) associados.
+
+### 7.4. Vantagens de Usar `groupby`
+
+1. **Eficiência:**
+   - O `groupby` processa os dados de forma iterativa, economizando memória.
+
+2. **Flexibilidade:**
+   - Permite agrupar dados com base em qualquer critério definido por uma função.
+
+3. **Facilidade:**
+   - Simplifica a lógica de agrupamento em comparação com abordagens manuais.
+
+**Dicas:**
+- Sempre ordene o iterável antes de usar `groupby` para garantir que os grupos sejam formados corretamente.
+- Combine `groupby` com outras ferramentas do módulo `itertools` para criar pipelines de processamento eficientes.
+- Use funções lambda ou funções nomeadas para definir a chave de agrupamento.
+
+---
+
+## 8. Map, Partial, GeneratorType e Esgotamento de Iterators
+
+Essas ferramentas são fundamentais para manipular dados, criar funções parciais e trabalhar com iteradores em Python.
+
+### 8.1. O Que é `map`?
+
+- A função **`map`** aplica uma função a cada item de um iterável (como listas ou tuplas) e retorna um iterador.
+- É útil para transformar dados de forma eficiente.
+
+**Sintaxe:**
+```py
+map(funcao, iteravel)
+```
+
+**Exemplo:**
+```py
+numeros = [1, 2, 3, 4]
+triplicados = map(lambda x: x * 3, numeros)
+print(list(triplicados))  # Saída: [3, 6, 9, 12]
+```
+
+### 8.2. O Que é `partial`?
+
+- A função **`functools.partial`** permite criar uma nova função com argumentos pré-definidos.
+- É útil para criar funções especializadas a partir de funções genéricas.
+
+**Sintaxe:**
+```py
+from functools import partial
+
+nova_funcao = partial(funcao_original, argumento_fixo=valor)
+```
+
+**Exemplo:**
+```py
+from functools import partial
+
+def aumentar_porcentagem(valor, porcentagem):
+    return round(valor * porcentagem, 2)
+
+aumentar_dez_porcento = partial(aumentar_porcentagem, porcentagem=1.1)
+print(aumentar_dez_porcento(100))  # Saída: 110.0
+```
+
+### 8.3. O Que é `GeneratorType`?
+
+- O **`types.GeneratorType`** é usado para verificar se um objeto é um generator.
+- Generators são iteradores que geram valores sob demanda.
+
+**Exemplo:**
+```py
+from types import GeneratorType
+
+def meu_generator():
+    yield 1
+    yield 2
+
+gen = meu_generator()
+print(isinstance(gen, GeneratorType))  # Saída: True
+```
+
+### 8.4. Esgotamento de Iterators
+
+- Iteradores, como os retornados por `map` ou generators, podem ser **esgotados**.
+- Uma vez que todos os valores de um iterador foram consumidos, ele não pode ser reutilizado.
+
+**Exemplo:**
+```py
+numeros = [1, 2, 3, 4]
+triplicados = map(lambda x: x * 3, numeros)
+
+print(list(triplicados))  # Saída: [3, 6, 9, 12]
+print(list(triplicados))  # Saída: [] (iterador esgotado)
+```
+
+### 8.5. Exemplo Prático
+
+**Código Completo:**
+```py
+from functools import partial
+from types import GeneratorType
+
+# Função para imprimir iteradores
+def print_iter(iterator):
+    print(*list(iterator), sep='\n')
+    print()
+
+# Lista de produtos
+produtos = [
+    {'nome': 'Produto 5', 'preco': 10.00},
+    {'nome': 'Produto 1', 'preco': 22.32},
+    {'nome': 'Produto 3', 'preco': 10.11},
+    {'nome': 'Produto 2', 'preco': 105.87},
+    {'nome': 'Produto 4', 'preco': 69.90},
+]
+
+# Função para aumentar o preço
+def aumentar_porcentagem(valor, porcentagem):
+    return round(valor * porcentagem, 2)
+
+# Criando uma função parcial
+aumentar_dez_porcento = partial(aumentar_porcentagem, porcentagem=1.1)
+
+# Função para modificar o preço dos produtos
+def muda_preco_de_produtos(produto):
+    return {
+        **produto,
+        'preco': aumentar_dez_porcento(produto['preco'])
+    }
+
+# Usando map para aplicar a modificação
+novos_produtos = list(map(muda_preco_de_produtos, produtos))
+
+# Imprimindo os produtos originais e os novos
+print("Produtos Originais:")
+print_iter(produtos)
+
+print("Produtos com Preço Modificado:")
+print_iter(novos_produtos)
+
+# Usando map com uma lista simples
+print("Triplicando Números:")
+print(list(map(lambda x: x * 3, [1, 2, 3, 4])))
+```
+
+**Saída:**
+```
+Produtos Originais:
+{'nome': 'Produto 5', 'preco': 10.0}
+{'nome': 'Produto 1', 'preco': 22.32}
+{'nome': 'Produto 3', 'preco': 10.11}
+{'nome': 'Produto 2', 'preco': 105.87}
+{'nome': 'Produto 4', 'preco': 69.9}
+
+Produtos com Preço Modificado:
+{'nome': 'Produto 5', 'preco': 11.0}
+{'nome': 'Produto 1', 'preco': 24.55}
+{'nome': 'Produto 3', 'preco': 11.12}
+{'nome': 'Produto 2', 'preco': 116.46}
+{'nome': 'Produto 4', 'preco': 76.89}
+
+Triplicando Números:
+[3, 6, 9, 12]
+```
+
+**Dicas:**
+- Use `map` para transformar iteráveis de forma eficiente.
+- Use `partial` para criar funções especializadas com argumentos fixos.
+- Sempre consuma iteradores antes de reutilizá-los, pois eles podem ser esgotados.
+- Combine `GeneratorType` com `isinstance` para verificar se um objeto é um generator.
 
 ---
