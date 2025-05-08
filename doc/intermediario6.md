@@ -39,6 +39,28 @@
     - 7.2. [Como Funciona o `groupby`](#72-como-funciona-o-groupby)
     - 7.3. [Exemplo Prático](#73-exemplo-prático)
     - 7.4. [Vantagens de Usar `groupby`](#74-vantagens-de-usar-groupby)
+8. [Map, Partial, GeneratorType e Esgotamento de Iterators](#8-map-partial-generatortype-e-esgotamento-de-iterators)
+    - 8.1. [O Que é `map`?](#81-o-que-é-map)
+    - 8.2. [O Que é `partial`?](#82-o-que-é-partial)
+    - 8.3. [O Que é `GeneratorType`?](#83-o-que-é-generatortype)
+    - 8.4. [Esgotamento de Iterators](#84-esgotamento-de-iterators)
+    - 8.5. [Exemplo Prático](#85-exemplo-prático)
+9. [Filter é um Filtro Funcional](#9-filter-é-um-filtro-funcional)
+    - 1.1. [O Que é `filter`?](#91-o-que-é-filter)
+    - 1.2. [Como Funciona o `filter`](#92-como-funciona-o-filter)
+    - 1.3. [Exemplo Prático](#93-exemplo-prático)
+    - 1.4. [Vantagens de Usar `filter`](#94-vantagens-de-usar-filter)
+10. [Reduce - Faz a Redução de um Iterável em um Valor](#10-reduce---faz-a-redução-de-um-iterável-em-um-valor)
+    - 10.1. [O Que é `reduce`?](#101-o-que-é-reduce)
+    - 10.2. [Como Funciona o `reduce`](#102-como-funciona-o-reduce)
+    - 10.3. [Exemplo Prático](#103-exemplo-prático)
+    - 10.4. [Vantagens e Alternativas ao `reduce`](#104-vantagens-e-alternativas-ao-reduce)
+11. [Funções Recursivas e Recursividade](#11-funções-recursivas-e-recursividade)
+    - 11.1. [O Que São Funções Recursivas?](#111-o-que-são-funções-recursivas)
+    - 11.2. [Elementos de uma Função Recursiva](#112-elementos-de-uma-função-recursiva)
+    - 11.3. [Cuidados com Funções Recursivas](#113-cuidados-com-funções-recursivas)
+    - 11.4. [Exemplo Prático: Fatorial](#114-exemplo-prático-fatorial)
+    - 11.5. [Stack Overflow e Limite de Recursão](#115-stack-overflow-e-limite-de-recursão)
 
 ---
 
@@ -975,5 +997,345 @@ Triplicando Números:
 - Use `partial` para criar funções especializadas com argumentos fixos.
 - Sempre consuma iteradores antes de reutilizá-los, pois eles podem ser esgotados.
 - Combine `GeneratorType` com `isinstance` para verificar se um objeto é um generator.
+
+---
+
+## 9. Filter é um Filtro Funcional
+
+O **`filter`** é uma função embutida em Python que permite filtrar elementos de um iterável com base em uma condição. Ele retorna apenas os elementos que atendem à condição especificada.
+
+### 9.1. O Que é `filter`?
+
+- O **`filter`** aplica uma função a cada elemento de um iterável e retorna apenas os elementos para os quais a função retorna `True`.
+- Ele retorna um iterador, que pode ser convertido em uma lista, tupla ou outro tipo de coleção.
+
+**Sintaxe:**
+```py
+filter(funcao, iteravel)
+```
+
+- **`funcao`**: Uma função que retorna `True` ou `False` para cada elemento.
+- **`iteravel`**: O iterável a ser filtrado.
+
+### 9.2. Como Funciona o `filter`
+
+1. A função fornecida é aplicada a cada elemento do iterável.
+2. Apenas os elementos para os quais a função retorna `True` são incluídos no resultado.
+3. O resultado é um iterador, que pode ser consumido ou convertido em outro tipo de coleção.
+
+### 9.3. Exemplo Prático
+
+**Código Completo:**
+```py
+def print_iter(iterator):
+    print(*list(iterator), sep='\n')
+    print()
+
+produtos = [
+    {'nome': 'Produto 5', 'preco': 10.00},
+    {'nome': 'Produto 1', 'preco': 22.32},
+    {'nome': 'Produto 3', 'preco': 10.11},
+    {'nome': 'Produto 2', 'preco': 105.87},
+    {'nome': 'Produto 4', 'preco': 69.90},
+]
+
+# Função para filtrar produtos com preço maior que 100
+def filtrar_preco(produto):
+    return produto['preco'] > 100
+
+# Usando filter para aplicar o filtro
+novos_produtos = filter(
+    filtrar_preco,  # Função de filtro
+    produtos         # Iterável
+)
+
+# Imprimindo os produtos originais
+print("Produtos Originais:")
+print_iter(produtos)
+
+# Imprimindo os produtos filtrados
+print("Produtos Filtrados:")
+print_iter(novos_produtos)
+```
+
+**Saída:**
+```
+Produtos Originais:
+{'nome': 'Produto 5', 'preco': 10.0}
+{'nome': 'Produto 1', 'preco': 22.32}
+{'nome': 'Produto 3', 'preco': 10.11}
+{'nome': 'Produto 2', 'preco': 105.87}
+{'nome': 'Produto 4', 'preco': 69.9}
+
+Produtos Filtrados:
+{'nome': 'Produto 2', 'preco': 105.87}
+```
+
+**Explicação:**
+1. A função `filtrar_preco` verifica se o preço do produto é maior que 100.
+2. O `filter` aplica essa função a cada produto na lista `produtos`.
+3. Apenas os produtos que atendem à condição (`preco > 100`) são incluídos no iterador `novos_produtos`.
+
+### 9.4. Vantagens de Usar `filter`
+
+1. **Eficiência:**
+   - O `filter` retorna um iterador, o que significa que os elementos são processados sob demanda (lazy evaluation).
+
+2. **Legibilidade:**
+   - Simplifica o código ao evitar loops explícitos para filtrar elementos.
+
+3. **Flexibilidade:**
+   - Pode ser combinado com funções nomeadas ou lambdas para criar filtros personalizados.
+
+**Dicas:**
+- Use `filter` quando precisar filtrar elementos de um iterável com base em uma condição.
+- Combine `filter` com funções lambda para criar filtros rápidos e concisos.
+- Lembre-se de que o resultado do `filter` é um iterador, então ele deve ser consumido ou convertido para outro tipo de coleção, como uma lista.
+
+---
+
+## 10. Reduce - Faz a Redução de um Iterável em um Valor
+
+O **`reduce`** é uma função da biblioteca `functools` que reduz um iterável a um único valor, aplicando uma função cumulativa.
+
+### 10.1. O Que é `reduce`?
+
+- O **`reduce`** aplica uma função a dois elementos do iterável (um acumulador e o próximo elemento) e continua acumulando o resultado até que todos os elementos sejam processados.
+- Ele é útil para operações como somar, multiplicar ou combinar elementos de um iterável.
+
+**Sintaxe:**
+```py
+from functools import reduce
+
+reduce(funcao, iteravel, valor_inicial)
+```
+
+- **`funcao`**: Uma função que recebe dois argumentos (acumulador e elemento atual).
+- **`iteravel`**: O iterável a ser reduzido.
+- **`valor_inicial`**: O valor inicial do acumulador (opcional).
+
+### 10.2. Como Funciona o `reduce`
+
+1. O `reduce` começa com o valor inicial do acumulador (ou o primeiro elemento do iterável, se nenhum valor inicial for fornecido).
+2. Aplica a função ao acumulador e ao próximo elemento do iterável.
+3. Atualiza o acumulador com o resultado.
+4. Repete o processo até que todos os elementos sejam processados.
+
+### 10.3. Exemplo Prático
+
+**Código Completo:**
+```py
+from functools import reduce
+
+produtos = [
+    {'nome': 'Produto 5', 'preco': 10},
+    {'nome': 'Produto 1', 'preco': 22},
+    {'nome': 'Produto 3', 'preco': 2},
+    {'nome': 'Produto 2', 'preco': 6},
+    {'nome': 'Produto 4', 'preco': 4},
+]
+
+# Usando reduce para calcular o total dos preços
+total = reduce(
+    lambda ac, p: ac + p['preco'],  # Função cumulativa
+    produtos,                       # Iterável
+    0                               # Valor inicial
+)
+
+print('Total é', total)  # Saída: Total é 44
+```
+
+**Explicação:**
+1. A função lambda recebe dois argumentos:
+   - **`ac`**: O acumulador.
+   - **`p`**: O elemento atual do iterável.
+2. A função soma o preço do produto ao acumulador.
+3. O `reduce` percorre todos os produtos e acumula o total dos preços.
+
+**Saída Detalhada (com função nomeada):**
+```py
+def funcao_do_reduce(acumulador, produto):
+    print('acumulador', acumulador)
+    print('produto', produto)
+    print()
+    return acumulador + produto['preco']
+
+total = reduce(funcao_do_reduce, produtos, 0)
+print('Total é', total)
+```
+
+**Saída:**
+```
+acumulador 0
+produto {'nome': 'Produto 5', 'preco': 10}
+
+acumulador 10
+produto {'nome': 'Produto 1', 'preco': 22}
+
+acumulador 32
+produto {'nome': 'Produto 3', 'preco': 2}
+
+acumulador 34
+produto {'nome': 'Produto 2', 'preco': 6}
+
+acumulador 40
+produto {'nome': 'Produto 4', 'preco': 4}
+
+Total é 44
+```
+
+### 10.4. Vantagens e Alternativas ao `reduce`
+
+#### **Vantagens:**
+1. **Flexibilidade:**
+   - Pode ser usado para qualquer operação cumulativa, como soma, multiplicação ou concatenação.
+2. **Eficiência:**
+   - Processa os elementos de forma iterativa, economizando memória.
+
+#### **Alternativas:**
+1. **`sum`:**
+   - Para somar valores, o `sum` é mais simples e legível.
+   ```py
+   total = sum([p['preco'] for p in produtos])
+   print(total)  # Saída: 44
+   ```
+
+2. **Loops:**
+   - Um loop `for` pode ser usado para acumular valores.
+   ```py
+   total = 0
+   for p in produtos:
+       total += p['preco']
+   print(total)  # Saída: 44
+   ``` 
+
+**Dicas:**
+- Use `reduce` para operações cumulativas complexas que não podem ser resolvidas com funções como `sum` ou `max`.
+- Prefira alternativas mais legíveis, como `sum` ou loops, para operações simples.
+- Combine `reduce` com funções nomeadas para melhorar a legibilidade do código.
+
+---
+
+## 11. Funções Recursivas e Recursividade
+
+As **funções recursivas** são funções que podem se chamar de volta. Elas são úteis para resolver problemas que podem ser divididos em partes menores, como cálculos matemáticos, algoritmos de busca e problemas de estrutura de dados.
+
+### 11.1. O Que São Funções Recursivas?
+
+- São funções que chamam a si mesmas durante sua execução.
+- A recursividade é uma técnica poderosa para resolver problemas complexos de forma simples e elegante.
+
+**Exemplo Simples:**
+```py
+def recursiva(inicio=0, fim=4):
+    print(inicio, fim)
+    if inicio >= fim:  # Caso base
+        return fim
+    return recursiva(inicio + 1, fim)  # Caso recursivo
+
+print(recursiva(0, 4))
+```
+
+### 11.2. Elementos de uma Função Recursiva
+
+1. **Problema Divisível:**
+   - O problema deve ser dividido em partes menores.
+
+2. **Caso Recursivo:**
+   - A função deve chamar a si mesma para resolver o problema menor.
+
+3. **Caso Base:**
+   - Deve haver uma condição que interrompa a recursão.
+
+**Exemplo:**
+```py
+def factorial(n):
+    if n <= 1:  # Caso base
+        return 1
+    return n * factorial(n - 1)  # Caso recursivo
+```
+
+### 11.3. Cuidados com Funções Recursivas
+
+1. **Caso Base:**
+   - Sempre defina um caso base para evitar loops infinitos.
+
+2. **Limite de Recursão:**
+   - O Python possui um limite de recursão padrão (geralmente 1000 chamadas).
+   - Você pode ajustar o limite com `sys.setrecursionlimit`, mas use com cuidado.
+
+3. **Stack Overflow:**
+   - Funções recursivas consomem memória na pilha de chamadas. Um número excessivo de chamadas pode causar um erro de **Stack Overflow**.
+
+**Exemplo de Ajuste do Limite:**
+```py
+import sys
+sys.setrecursionlimit(2000)
+
+def recursiva(inicio=0, fim=1500):
+    if inicio >= fim:
+        return fim
+    return recursiva(inicio + 1, fim)
+
+print(recursiva())
+```
+
+### 11.4. Exemplo Prático: Fatorial
+
+**Código Completo:**
+```py
+def factorial(n):
+    if n <= 1:  # Caso base
+        return 1
+    return n * factorial(n - 1)  # Caso recursivo
+
+print(factorial(5))   # Saída: 120
+print(factorial(10))  # Saída: 3628800
+```
+
+**Explicação:**
+1. O caso base é `n <= 1`, onde a função retorna `1`.
+2. O caso recursivo é `n * factorial(n - 1)`, que multiplica `n` pelo fatorial do número anterior.
+
+**Cálculo do Fatorial de 5:**
+```
+factorial(5) = 5 * factorial(4)
+factorial(4) = 4 * factorial(3)
+factorial(3) = 3 * factorial(2)
+factorial(2) = 2 * factorial(1)
+factorial(1) = 1
+Resultado: 5 * 4 * 3 * 2 * 1 = 120
+```
+
+### 11.5. Stack Overflow e Limite de Recursão
+
+- **Stack Overflow:** Ocorre quando a pilha de chamadas é excedida devido a muitas chamadas recursivas.
+- **Limite de Recursão:** O Python define um limite padrão para evitar Stack Overflow.
+
+**Exemplo de Stack Overflow:**
+```py
+def recursiva_infinita():
+    return recursiva_infinita()
+
+# recursiva_infinita()  # Causa Stack Overflow
+```
+
+**Ajustando o Limite de Recursão:**
+```py
+import sys
+sys.setrecursionlimit(1500)
+
+def recursiva(inicio=0, fim=1400):
+    if inicio >= fim:
+        return fim
+    return recursiva(inicio + 1, fim)
+
+print(recursiva())
+```
+
+**Dicas:**
+- Use recursão apenas quando o problema puder ser dividido em partes menores.
+- Sempre defina um caso base para evitar loops infinitos.
+- Para problemas que exigem muitas chamadas recursivas, considere usar loops ou algoritmos iterativos para evitar Stack Overflow.
 
 ---

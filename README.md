@@ -314,3 +314,60 @@ O arquivo **Intermediário 5** explora conceitos avançados relacionados a módu
 [Clique aqui para acessar o conteúdo completo.](./doc/intermediario5.md)
 
 </details>
+
+<details>
+<summary>10. <a href="./doc/intermediario6.md">Intermediário 6</a></summary>
+
+### Resumo:
+O arquivo **Intermediário 6** explora conceitos avançados de Python, incluindo decoradores, iteradores e funções recursivas, abordando:
+1. **Variáveis Livres e `nonlocal` (locals, globals):**
+   - O que são variáveis livres.
+   - O que é a palavra-chave `nonlocal`.
+   - Uso das funções `globals()` e `locals()`.
+   - Exemplos práticos com variáveis livres e `nonlocal`.
+2. **Funções Decoradoras e Decoradores:**
+   - O que são funções decoradoras.
+   - O que são decoradores e como usá-los com `@` (syntax sugar).
+   - Exemplos práticos de criação e uso de decoradores.
+3. **Decoradores com Parâmetros:**
+   - O que são decoradores com parâmetros.
+   - Como criar decoradores com parâmetros.
+   - Vantagens dos decoradores com parâmetros.
+4. **Ordem de Aplicação dos Decoradores:**
+   - O que são decoradores empilhados.
+   - Como funciona a ordem de aplicação.
+   - Dicas para trabalhar com decoradores empilhados.
+5. **Count é um Iterador Sem Fim (itertools):**
+   - O que é `itertools.count`.
+   - Diferença entre `count` e `range`.
+   - Vantagens de usar `itertools.count`.
+6. **Combinations, Permutations e Product - Itertools:**
+   - O que são combinações, permutações e produto cartesiano.
+   - Diferenças entre combinações, permutações e produto.
+   - Exemplos práticos e vantagens de usar itertools.
+7. **Groupby - Agrupando Valores (itertools):**
+   - O que é `groupby`.
+   - Como funciona o agrupamento com `groupby`.
+   - Exemplos práticos e vantagens de usar `groupby`.
+8. **Map, Partial, GeneratorType e Esgotamento de Iterators:**
+   - O que é `map` e como usá-lo.
+   - O que é `partial` e como criar funções parciais.
+   - O que é `GeneratorType` e como verificar se um objeto é um generator.
+   - Esgotamento de iteradores e como lidar com isso.
+9. **Filter é um Filtro Funcional:**
+   - O que é `filter` e como funciona.
+   - Exemplos práticos de uso do `filter`.
+   - Vantagens de usar `filter`.
+10. **Reduce - Faz a Redução de um Iterável em um Valor:**
+    - O que é `reduce` e como funciona.
+    - Exemplos práticos de uso do `reduce`.
+    - Vantagens e alternativas ao `reduce`.
+11. **Funções Recursivas e Recursividade:**
+    - O que são funções recursivas.
+    - Elementos de uma função recursiva (caso base e caso recursivo).
+    - Cuidados com funções recursivas (Stack Overflow e limite de recursão).
+    - Exemplos práticos, como o cálculo de fatorial.
+
+[Clique aqui para acessar o conteúdo completo.](./doc/intermediario6.md)
+
+</details>
