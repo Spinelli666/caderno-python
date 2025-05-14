@@ -30,6 +30,18 @@
     - 4.5. [Exemplo Prático](#45-exemplo-prático)
     - 4.6. [Operações com o Módulo `os`](#46-operações-com-o-módulo-os)
     - 4.7. [Operações com o Módulo `json`](#47-operações-com-o-módulo-json)
+5. [Problema dos Parâmetros Mutáveis em Funções Python](#5-problema-dos-parâmetros-mutáveis-em-funções-python)
+    - 5.1. [O Que São Parâmetros Mutáveis?](#51-o-que-são-parâmetros-mutáveis)
+    - 5.2. [O Problema com Parâmetros Mutáveis](#52-o-problema-com-parâmetros-mutáveis)
+    - 5.3. [Como Evitar o Problema](#53-como-evitar-o-problema)
+    - 5.4. [Exemplo Prático](#54-exemplo-prático)
+    - 5.5. [Dicas para Trabalhar com Parâmetros Mutáveis](#55-dicas-para-trabalhar-com-parâmetros-mutáveis)
+6. [Positional-Only Parameters (/) e Keyword-Only Arguments (*)](#6-positional-only-parameters--e-keyword-only-arguments-)
+    - 6.1. [O Que São Positional-Only Parameters (`/`)?](#61-o-que-são-positional-only-parameters-)
+    - 6.2. [O Que São Keyword-Only Arguments (`*`)?](#62-o-que-são-keyword-only-arguments-)
+    - 6.3. [Exemplo Prático](#63-exemplo-prático)
+    - 6.4. [Vantagens de Usar `/` e `*`](#64-vantagens-de-usar--e-)
+    - 6.5. [Referências às PEPs](#65-referências-às-peps)
 
 ---
 
@@ -457,5 +469,189 @@ with open('dados.json', 'r') as arquivo:
 - Combine o módulo `os` com `open` para manipular arquivos de forma eficiente.
 - Use o módulo `json` para trabalhar com dados estruturados em formato JSON.
 - Leia mais sobre normalização Unicode em Python: [Normalização Unicode](https://www.otaviomiranda.com.br/2020/normalizacao-unicode-em-python/).
+
+---
+
+## 5. Problema dos Parâmetros Mutáveis em Funções Python
+
+Em Python, os parâmetros mutáveis (como listas e dicionários) podem causar comportamentos inesperados quando usados como valores padrão em funções.
+
+### 5.1. O Que São Parâmetros Mutáveis?
+
+- Parâmetros mutáveis são objetos que podem ser alterados após sua criação, como listas, dicionários e conjuntos.
+- Quando usados como valores padrão em funções, eles podem reter alterações feitas em chamadas anteriores.
+
+### 5.2. O Problema com Parâmetros Mutáveis
+
+Quando um objeto mutável é usado como valor padrão, ele é compartilhado entre todas as chamadas da função. Isso pode levar a resultados inesperados.
+
+**Exemplo do Problema:**
+```py
+def adiciona_clientes(nome, lista=[]):
+    lista.append(nome)
+    return lista
+
+cliente1 = adiciona_clientes('Luiz')
+adiciona_clientes('Joana', cliente1)
+adiciona_clientes('Fernando', cliente1)
+
+cliente2 = adiciona_clientes('Helena')
+adiciona_clientes('Maria', cliente2)
+
+print(cliente1)  # Saída: ['Luiz', 'Joana', 'Fernando', 'Helena', 'Maria']
+print(cliente2)  # Saída: ['Luiz', 'Joana', 'Fernando', 'Helena', 'Maria']
+```
+
+**Problema:**
+- A lista padrão é compartilhada entre todas as chamadas da função.
+- Alterações feitas em uma chamada afetam as outras.
+
+### 5.3. Como Evitar o Problema
+
+Para evitar esse problema, use `None` como valor padrão e inicialize o objeto mutável dentro da função.
+
+**Solução:**
+```py
+def adiciona_clientes(nome, lista=None):
+    if lista is None:
+        lista = []
+    lista.append(nome)
+    return lista
+```
+
+### 5.4. Exemplo Prático
+
+**Código Completo:**
+```py
+def adiciona_clientes(nome, lista=None):
+    if lista is None:
+        lista = []
+    lista.append(nome)
+    return lista
+
+cliente1 = adiciona_clientes('Luiz')
+adiciona_clientes('Joana', cliente1)
+adiciona_clientes('Fernando', cliente1)
+cliente1.append('Edu')
+
+cliente2 = adiciona_clientes('Helena')
+adiciona_clientes('Maria', cliente2)
+
+cliente3 = adiciona_clientes('Moreira')
+adiciona_clientes('Vivi', cliente3)
+
+print(cliente1)  # Saída: ['Luiz', 'Joana', 'Fernando', 'Edu']
+print(cliente2)  # Saída: ['Helena', 'Maria']
+print(cliente3)  # Saída: ['Moreira', 'Vivi']
+```
+
+**Explicação:**
+1. O valor padrão `None` é usado para evitar o compartilhamento de objetos entre chamadas.
+2. Uma nova lista é criada dentro da função sempre que `lista` é `None`.
+
+### 5.5. Dicas para Trabalhar com Parâmetros Mutáveis
+
+1. **Evite Usar Objetos Mutáveis como Valores Padrão:**
+   - Use `None` como valor padrão e inicialize o objeto dentro da função.
+
+2. **Documente o Comportamento da Função:**
+   - Explique como os parâmetros são tratados para evitar confusões.
+
+3. **Teste Funções com Parâmetros Mutáveis:**
+   - Verifique se o comportamento é o esperado em diferentes cenários.
+
+4. **Considere Usar Objetos Imutáveis:**
+   - Sempre que possível, prefira objetos imutáveis (como tuplas) para evitar efeitos colaterais.
+
+**Dicas:**
+- Esteja atento ao comportamento de objetos mutáveis em Python.
+- Use boas práticas para evitar bugs difíceis de identificar.
+- Consulte a [documentação oficial do Python](https://docs.python.org/3/reference/datamodel.html#objects-values-and-types) para mais detalhes sobre objetos mutáveis e imutáveis.
+
+---
+
+## 6. Positional-Only Parameters (/) e Keyword-Only Arguments (*)
+
+Os **Positional-Only Parameters** (`/`) e os **Keyword-Only Arguments** (`*`) são recursos avançados de Python que permitem maior controle sobre como os argumentos são passados para funções.
+
+### 6.1. O Que São Positional-Only Parameters (`/`)?
+
+- **Positional-Only Parameters** são parâmetros que só podem ser passados como argumentos posicionais.
+- Eles são definidos antes do símbolo `/` na assinatura da função.
+- Introduzidos na **PEP 570**.
+
+**Exemplo:**
+```py
+def funcao(a, b, /):
+    print(a, b)
+
+funcao(1, 2)  # Válido
+funcao(a=1, b=2)  # Erro: argumentos devem ser posicionais
+```
+
+### 6.2. O Que São Keyword-Only Arguments (`*`)?
+
+- **Keyword-Only Arguments** são parâmetros que só podem ser passados como argumentos nomeados.
+- Eles são definidos após o símbolo `*` na assinatura da função.
+- Introduzidos na **PEP 3102**.
+
+**Exemplo:**
+```py
+def funcao(*, a, b):
+    print(a, b)
+
+funcao(a=1, b=2)  # Válido
+funcao(1, 2)  # Erro: argumentos devem ser nomeados
+```
+
+### 6.3. Exemplo Prático
+
+**Código Completo:**
+```py
+def soma(a, b, /, *, c, **kwargs):
+    print("kwargs:", kwargs)  # Exibe argumentos nomeados adicionais
+    print("Resultado:", a + b + c)
+
+# Chamadas válidas
+soma(1, 2, c=3, nome='teste')  # Saída: kwargs: {'nome': 'teste'}, Resultado: 6
+
+# Chamadas inválidas
+# soma(a=1, b=2, c=3)  # Erro: a e b devem ser posicionais
+# soma(1, 2, 3)        # Erro: c deve ser nomeado
+```
+
+**Explicação:**
+1. **`a` e `b`**:
+   - São **Positional-Only Parameters** (antes do `/`).
+   - Devem ser passados como argumentos posicionais.
+2. **`c`**:
+   - É um **Keyword-Only Argument** (após o `*`).
+   - Deve ser passado como argumento nomeado.
+3. **`**kwargs`**:
+   - Captura argumentos nomeados adicionais.
+
+### 6.4. Vantagens de Usar `/` e `*`
+
+1. **Clareza:**
+   - Define explicitamente como os argumentos devem ser passados (posicionais ou nomeados).
+
+2. **Evita Conflitos:**
+   - Reduz ambiguidades em funções com muitos parâmetros.
+
+3. **Flexibilidade:**
+   - Permite combinar argumentos posicionais, nomeados e ilimitados (`*args`, `**kwargs`).
+
+### 6.5. Referências às PEPs
+
+- **PEP 570 – Python Positional-Only Parameters:**
+  - [Leia mais aqui](https://peps.python.org/pep-0570/)
+
+- **PEP 3102 – Keyword-Only Arguments:**
+  - [Leia mais aqui](https://peps.python.org/pep-3102/)
+
+**Dicas:**
+- Use `/` para parâmetros que devem ser obrigatoriamente posicionais.
+- Use `*` para parâmetros que devem ser obrigatoriamente nomeados.
+- Combine `/` e `*` para criar funções mais claras e robustas.
 
 ---

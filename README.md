@@ -371,3 +371,42 @@ O arquivo **Intermediário 6** explora conceitos avançados de Python, incluindo
 [Clique aqui para acessar o conteúdo completo.](./doc/intermediario6.md)
 
 </details>
+
+<details>
+<summary>11. <a href="./doc/intermediario7.md">Intermediário 7</a></summary>
+
+### Resumo:
+O arquivo **Intermediário 7** aborda conceitos avançados de manipulação de arquivos, ambientes virtuais e boas práticas em Python, incluindo:
+1. **O Que São Ambientes Virtuais em Python:**
+   - O que é um ambiente virtual.
+   - Por que usar ambientes virtuais.
+   - Criando, ativando e desativando ambientes virtuais com `venv`.
+   - Boas práticas ao usar ambientes virtuais.
+2. **Pip - Instalando Pacotes e Bibliotecas:**
+   - O que é o `pip`.
+   - Comandos básicos para instalar, atualizar e desinstalar pacotes.
+   - Congelando dependências com `pip freeze`.
+   - Boas práticas ao usar o `pip`.
+3. **Criando e Usando um `requirements.txt`:**
+   - O que é o `requirements.txt`.
+   - Criando e instalando dependências a partir do arquivo.
+   - Boas práticas com o `requirements.txt`.
+4. **Criando Arquivos com Python + Context Manager `with`:**
+   - O que é a função `open` e modos de abertura de arquivos.
+   - Usando o Context Manager `with` para manipular arquivos.
+   - Métodos úteis do `TextIOWrapper` (`write`, `read`, `writelines`, etc.).
+   - Operações com os módulos `os` e `json` para manipulação de arquivos e dados estruturados.
+5. **Problema dos Parâmetros Mutáveis em Funções Python:**
+   - O que são parâmetros mutáveis.
+   - Problemas ao usar objetos mutáveis como valores padrão.
+   - Como evitar o problema com `None`.
+   - Exemplos práticos e boas práticas.
+6. **Positional-Only Parameters (/) e Keyword-Only Arguments (*):**
+   - O que são Positional-Only Parameters (`/`).
+   - O que são Keyword-Only Arguments (`*`).
+   - Exemplos práticos de uso.
+   - Vantagens de usar `/` e `*` para maior clareza e controle.
+
+[Clique aqui para acessar o conteúdo completo.](./doc/intermediario7.md)
+
+</details>
