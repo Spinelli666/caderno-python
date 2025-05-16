@@ -410,3 +410,39 @@ O arquivo **Intermediário 7** aborda conceitos avançados de manipulação de a
 [Clique aqui para acessar o conteúdo completo.](./doc/intermediario7.md)
 
 </details>
+
+<details>
+<summary>12. <a href="./doc/poo1.md">POO 1</a></summary>
+
+### Resumo:
+O arquivo **POO 1** introduz os principais conceitos de Programação Orientada a Objetos (POO) em Python, incluindo:
+1. **Classes como Moldes para Objetos:**
+   - O que são classes e instâncias.
+   - Como criar objetos a partir de classes.
+   - Convenção de nomes (PascalCase para classes).
+2. **Método `__init__` (Inicializador de Atributos):**
+   - Como inicializar atributos de instância.
+   - Diferença entre atributos de instância e de classe.
+3. **Métodos em Instâncias de Classes:**
+   - Definição e uso de métodos.
+   - O papel do `self`.
+4. **Entendendo `self` em Classes Python:**
+   - Como o `self` referencia a própria instância.
+   - Diferença entre chamada por instância e por classe.
+5. **Escopo da Classe e de Métodos:**
+   - Diferença entre atributos de classe, de instância e variáveis locais.
+6. **Mantendo Estados Dentro da Classe:**
+   - Como usar atributos para manter o estado do objeto.
+   - Exemplo prático com métodos que alteram o estado.
+7. **Atributos de Classe:**
+   - O que são e como são compartilhados entre instâncias.
+   - Diferença entre atributos de classe e de instância.
+8. **`__dict__` e `vars` para Atributos de Instância:**
+   - Como inspecionar e manipular atributos dinamicamente.
+9. **Curiosidades sobre Convenções de Nomes:**
+   - Diferença entre PascalCase, camelCase e snake_case.
+   - Convenções recomendadas para Python.
+
+[Clique aqui para acessar o conteúdo completo.](./doc/poo1.md)
+
+</details>
