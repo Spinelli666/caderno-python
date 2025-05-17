@@ -446,3 +446,45 @@ O arquivo **POO 1** introduz os principais conceitos de Programação Orientada 
 [Clique aqui para acessar o conteúdo completo.](./doc/poo1.md)
 
 </details>
+
+<details>
+<summary>13. <a href="./doc/poo2.md">POO 2</a></summary>
+
+### Resumo:
+O arquivo **POO 2** aprofunda os conceitos de Programação Orientada a Objetos em Python, incluindo:
+1. **Métodos de Classe (@classmethod) e Factory Methods:**
+   - O que são métodos de classe.
+   - Como definir e usar métodos de classe.
+   - Factory methods para criar instâncias de formas alternativas.
+2. **@staticmethod (Métodos Estáticos):**
+   - O que são métodos estáticos.
+   - Diferença entre métodos estáticos e funções comuns.
+   - Quando usar métodos estáticos.
+3. **method vs @classmethod vs @staticmethod:**
+   - Diferença entre métodos de instância, de classe e estáticos.
+   - Exemplos práticos e dicas de uso.
+4. **@property - Um Getter no Modo Pythônico:**
+   - Como criar getters usando o decorador @property.
+   - Vantagens do uso pythônico.
+   - Comparação com getters tradicionais.
+5. **@property + @setter - Getter e Setter no Modo Pythônico:**
+   - Como criar getters e setters elegantes e seguros.
+   - Boas práticas para encapsulamento.
+6. **Encapsulamento (public, _protected, __private):**
+   - Convenções de acesso em Python.
+   - Name mangling e exemplos práticos.
+7. **Relações entre Classes: Associação, Agregação e Composição:**
+   - O que são associação, agregação e composição.
+   - Exemplos práticos de cada relação.
+   - Diferenças e dicas de modelagem.
+8. **Agregação - Python Orientado a Objetos:**
+   - Relação de um para muitos com ciclo de vida independente.
+   - Exemplo prático de agregação.
+9. **Composição - Python Orientado a Objeto:**
+   - Relação forte de dependência entre objetos.
+   - Diferença entre agregação e composição.
+   - Exemplo prático de composição.
+
+[Clique aqui para acessar o conteúdo completo.](./doc/poo2.md)
+
+</details>
