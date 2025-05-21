@@ -488,3 +488,46 @@ O arquivo **POO 2** aprofunda os conceitos de Programação Orientada a Objetos 
 [Clique aqui para acessar o conteúdo completo.](./doc/poo2.md)
 
 </details>
+
+<details>
+<summary>14. <a href="./doc/poo3.md">POO 3</a></summary>
+
+### Resumo:
+O arquivo **POO 3** aprofunda ainda mais os conceitos de Programação Orientada a Objetos em Python, incluindo:
+1. **Herança Simples - Python Orientado a Objetos:**
+   - O que é herança.
+   - Diferença entre herança e composição.
+   - Termos importantes (superclasse, subclasse, etc.).
+   - Exemplo prático e dicas de uso.
+2. **super() e a Sobreposição de Membros:**
+   - O que é `super()` e como utilizá-lo.
+   - Sobreposição (override) de métodos e atributos.
+   - Ordem de Resolução de Métodos (MRO).
+   - Exemplo prático e boas práticas.
+3. **Herança Múltipla - Python Orientado a Objetos:**
+   - O que é herança múltipla.
+   - Diferença entre herança simples e múltipla.
+   - Ordem de Resolução de Métodos (MRO) em herança múltipla.
+   - Exemplo prático e dicas de uso.
+4. **Classes Abstratas - Abstract Base Class (abc):**
+   - O que são classes abstratas.
+   - Uso do decorador `@abstractmethod`.
+   - Regras e exemplos práticos.
+   - Dicas e boas práticas.
+5. **@abstractmethod para Qualquer Método Decorado (@property, setter, etc.):**
+   - Como usar `@abstractmethod` com `@property`, setters, classmethods e staticmethods.
+   - Exemplo prático e boas práticas.
+6. **Polimorfismo, Assinatura de Métodos e Liskov Substitution Principle:**
+   - O que é polimorfismo.
+   - Assinatura de métodos e sobreposição (override).
+   - Princípio da Substituição de Liskov (L do SOLID).
+   - Exemplo prático e dicas de uso.
+7. **Criando Exceptions em Python Orientado a Objetos:**
+   - O que são exceções e como criar exceções personalizadas.
+   - Levantando e relançando exceções.
+   - Adicionando notas em exceções (Python 3.11+).
+   - Exemplo prático e boas práticas.
+
+[Clique aqui para acessar o conteúdo completo.](./doc/poo3.md)
+
+</details>
