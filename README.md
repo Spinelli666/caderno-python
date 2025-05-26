@@ -531,3 +531,29 @@ O arquivo **POO 3** aprofunda ainda mais os conceitos de Programação Orientada
 [Clique aqui para acessar o conteúdo completo.](./doc/poo3.md)
 
 </details>
+
+<details>
+<summary>15. <a href="./doc/poo4.md">POO 4</a></summary>
+
+### Resumo:
+O arquivo **POO 4** explora conceitos avançados de Programação Orientada a Objetos em Python, incluindo:
+1. **Python Special Methods, Magic Methods ou Dunder Methods:**
+   - O que são Dunder Methods (ou Magic Methods).
+   - Principais Dunder Methods para representação, operadores matemáticos e comparação.
+   - Exemplos práticos de uso.
+2. **Python Dunder Methods `__repr__` e `__str__`:**
+   - Diferença entre `__repr__` e `__str__`.
+   - Como implementar e usar esses métodos.
+   - Exemplos práticos e boas práticas.
+3. **Dunder Methods para Operadores Matemáticos e Comparação:**
+   - Personalizando operadores como `+`, `-`, `>`, `<`, etc.
+   - Exemplos práticos de uso em classes personalizadas.
+   - Dicas para manter o comportamento intuitivo.
+4. **Métodos `__new__` e `__init__` em Classes Python:**
+   - O que são os métodos `__new__` e `__init__`.
+   - Diferença entre `__new__` (criação) e `__init__` (inicialização).
+   - Exemplos práticos e boas práticas para uso.
+
+[Clique aqui para acessar o conteúdo completo.](./doc/poo4.md)
+
+</details>
