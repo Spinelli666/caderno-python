@@ -24,6 +24,23 @@
     - 4.4. [Função Decoradora para Adicionar `__repr__`](#44-função-decoradora-para-adicionar-__repr__)
     - 4.5. [Mixin para Adicionar `__repr__`](#45-mixin-para-adicionar-__repr__)
     - 4.6. [Dicas e Boas Práticas](#46-dicas-e-boas-práticas)
+5. [Funções Decoradoras e Decoradores com Métodos](#5-funções-decoradoras-e-decoradores-com-métodos)
+    - 5.1. [O Que São Decoradores?](#51-o-que-são-decoradores)
+    - 5.2. [Decoradores para Métodos](#52-decoradores-para-métodos)
+    - 5.3. [Decorador para Adicionar `__repr__`](#53-decorador-para-adicionar-__repr__)
+    - 5.4. [Decorador para Métodos](#54-decorador-para-métodos)
+    - 5.5. [Dicas e Boas Práticas](#55-dicas-e-boas-práticas)
+6. [Método Especial `__call__`](#6-método-especial-__call__)
+    - 6.1. [O Que é o Método `__call__`?](#61-o-que-é-o-método-__call__)
+    - 6.2. [Como Funciona o `__call__`](#62-como-funciona-o-__call__)
+    - 6.3. [Exemplo Prático](#63-exemplo-prático)
+    - 6.4. [Dicas e Boas Práticas](#64-dicas-e-boas-práticas)
+7. [Classes Decoradoras (Decorator Classes)](#7-classes-decoradoras-decorator-classes)
+    - 7.1. [O Que São Classes Decoradoras?](#71-o-que-são-classes-decoradoras)
+    - 7.2. [Como Funcionam?](#72-como-funcionam)
+    - 7.3. [Exemplo Prático](#73-exemplo-prático)
+    - 7.4. [Dicas e Boas Práticas](#74-dicas-e-boas-práticas)
+
 
 ---
 
@@ -375,5 +392,210 @@ print(marte)     # Saída: Planeta({'nome': 'Marte'})
 
 **Resumo:**  
 Decoradores e mixins são ferramentas poderosas para adicionar ou modificar funcionalidades em classes. Decoradores permitem modificar classes de forma dinâmica, enquanto mixins oferecem uma abordagem baseada em herança para compartilhar funcionalidades.
+
+---
+
+## 5. Funções Decoradoras e Decoradores com Métodos
+
+### 5.1. O Que São Decoradores?
+
+- **Decoradores** são funções que modificam o comportamento de outras funções, métodos ou classes.
+- Eles são aplicados usando o símbolo `@` antes da definição de uma função, método ou classe.
+
+### 5.2. Decoradores para Métodos
+
+- Decoradores podem ser usados para modificar o comportamento de métodos em classes.
+- Eles permitem adicionar lógica antes ou depois da execução do método original.
+
+### 5.3. Decorador para Adicionar `__repr__`
+
+```py
+def meu_repr(self):
+    class_name = self.__class__.__name__
+    class_dict = self.__dict__
+    class_repr = f'{class_name}({class_dict})'
+    return class_repr
+
+def adiciona_repr(cls):
+    """
+    Decorador que adiciona um método __repr__ personalizado à classe.
+    """
+    cls.__repr__ = meu_repr
+    return cls
+
+@adiciona_repr
+class Time:
+    def __init__(self, nome):
+        self.nome = nome
+
+@adiciona_repr
+class Planeta:
+    def __init__(self, nome):
+        self.nome = nome
+```
+
+**Explicação:**
+- O decorador `adiciona_repr` adiciona dinamicamente o método `__repr__` às classes decoradas.
+- Isso permite que as classes tenham uma representação personalizada ao serem convertidas para string.
+
+### 5.4. Decorador para Métodos
+
+```py
+def meu_planeta(metodo):
+    """
+    Decorador que modifica o comportamento do método `falar_nome`.
+    """
+    def interno(self, *args, **kwargs):
+        resultado = metodo(self, *args, **kwargs)
+
+        if 'Terra' in resultado:
+            return 'Você está em casa'
+
+        return f'{resultado} - Método decorado'
+    return interno
+
+@adiciona_repr
+class Planeta:
+    def __init__(self, nome):
+        self.nome = nome
+
+    @meu_planeta
+    def falar_nome(self):
+        return f'O planeta é {self.nome}'
+
+# Criando instâncias
+terra = Planeta('Terra')
+marte = Planeta('Marte')
+
+# Testando o método decorado
+print(terra.falar_nome())  # Saída: Você está em casa
+print(marte.falar_nome())  # Saída: O planeta é Marte - Método decorado
+```
+
+**Explicação:**
+- O decorador `meu_planeta` modifica o comportamento do método `falar_nome`.
+- Se o método retornar "Terra", o decorador retorna "Você está em casa".
+- Caso contrário, ele adiciona " - Método decorado" ao resultado original.
+
+### 5.5. Dicas e Boas Práticas
+
+- **Reutilização:**
+  - Use decoradores para adicionar funcionalidades reutilizáveis a métodos ou classes.
+- **Documentação:**
+  - Sempre adicione docstrings aos decoradores para explicar o que eles fazem.
+- **Evite Complexidade:**
+  - Mantenha os decoradores simples e fáceis de entender.
+- **Teste o Comportamento:**
+  - Certifique-se de que o decorador não altera o comportamento esperado do método ou classe original.
+
+**Resumo:**  
+Decoradores são ferramentas poderosas para modificar o comportamento de métodos e classes em Python. Eles permitem adicionar funcionalidades de forma elegante e reutilizável, promovendo um design de código mais limpo e eficiente.
+
+---
+
+## 6. Método Especial `__call__`
+
+### 6.1. O Que é o Método `__call__`?
+
+- O método especial `__call__` permite que uma instância de classe seja chamada como se fosse uma função.
+- Quando você usa parênteses em uma instância de classe, o Python chama automaticamente o método `__call__` da classe.
+
+### 6.2. Como Funciona o `__call__`
+
+- O método `__call__` transforma a instância de uma classe em algo **callable** (executável com parênteses).
+- Ele pode receber argumentos como uma função normal.
+- O retorno do método `__call__` será o valor retornado pela chamada da instância.
+
+### 6.3. Exemplo Prático
+
+```py
+class CallMe:
+    def __init__(self, phone):
+        self.phone = phone
+
+    def __call__(self, nome):
+        print(nome, 'está chamando', self.phone)
+        return 2134
+
+# Criando uma instância
+call1 = CallMe('23945876545')
+
+# Chamando a instância como uma função
+retorno = call1('Luiz Otávio')  # Saída: Luiz Otávio está chamando 23945876545
+print(retorno)                  # Saída: 2134
+```
+
+**Explicação:**
+1. A classe `CallMe` define o método especial `__call__`.
+2. A instância `call1` é chamada como uma função (`call1('Luiz Otávio')`).
+3. O método `__call__` é executado, imprimindo uma mensagem e retornando um valor.
+
+### 6.4. Dicas e Boas Práticas
+
+- **Quando usar `__call__`:**
+  - Use o método `__call__` para criar objetos que precisam ser executados como funções.
+  - Exemplos: Funções de callback, wrappers ou objetos que encapsulam lógica de execução.
+- **Evite abusos:**
+  - Não use `__call__` para substituir funções normais sem necessidade.
+  - Mantenha o uso claro e intuitivo.
+- **Documente o comportamento:**
+  - Adicione docstrings ao método `__call__` para explicar o que ele faz e quais argumentos ele aceita.
+
+**Resumo:**  
+O método especial `__call__` transforma instâncias de classes em objetos "callables", permitindo que sejam chamadas como funções. Ele é útil para encapsular lógica de execução em objetos, promovendo flexibilidade e reutilização de código.
+
+---
+
+## 7. Classes Decoradoras (Decorator Classes)
+
+### 7.1. O Que São Classes Decoradoras?
+
+- **Classes decoradoras** são classes que implementam o método especial `__call__` para que possam ser usadas como decoradores.
+- Elas permitem encapsular lógica de decoração em uma classe, tornando o código mais organizado e reutilizável.
+
+### 7.2. Como Funcionam?
+
+- Quando uma classe decoradora é usada com `@`, ela recebe a função decorada como argumento no método `__call__`.
+- O método `__call__` pode modificar o comportamento da função decorada e retornar uma nova função.
+
+### 7.3. Exemplo Prático
+
+```py
+class Multiplicar:
+    def __init__(self, multiplicador):
+        self._multiplicador = multiplicador
+
+    def __call__(self, func):
+        def interna(*args, **kwargs):
+            resultado = func(*args, **kwargs)
+            return resultado * self._multiplicador
+        return interna
+
+@Multiplicar(2)
+def soma(x, y):
+    return x + y
+
+# Usando a função decorada
+dois = soma(2, 4)  # (2 + 4) * 2
+print(dois)        # Saída: 12
+```
+
+**Explicação:**
+1. A classe `Multiplicar` é inicializada com um valor (`multiplicador`).
+2. O método `__call__` recebe a função decorada (`soma`) e retorna uma nova função (`interna`).
+3. A função `interna` executa a função original (`soma`) e multiplica o resultado pelo valor do multiplicador.
+
+### 7.4. Dicas e Boas Práticas
+
+- **Quando usar classes decoradoras:**
+  - Use classes decoradoras quando precisar de decoradores com estado (como o multiplicador no exemplo).
+  - Elas são úteis para encapsular lógica complexa de decoração.
+- **Documente o comportamento:**
+  - Adicione docstrings à classe e ao método `__call__` para explicar o que o decorador faz.
+- **Evite complexidade desnecessária:**
+  - Use funções decoradoras simples quando não precisar de estado ou lógica complexa.
+
+**Resumo:**  
+Classes decoradoras são uma forma poderosa de criar decoradores em Python, especialmente quando é necessário manter estado ou encapsular lógica complexa. Elas utilizam o método especial `__call__` para modificar o comportamento de funções decoradas.
 
 ---

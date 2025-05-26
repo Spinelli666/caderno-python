@@ -557,3 +557,39 @@ O arquivo **POO 4** explora conceitos avançados de Programação Orientada a Ob
 [Clique aqui para acessar o conteúdo completo.](./doc/poo4.md)
 
 </details>
+
+<details>
+<summary>16. <a href="./doc/poo5.md">POO 5</a></summary>
+
+### Resumo:
+O arquivo **POO 5** explora conceitos avançados de Programação Orientada a Objetos em Python, incluindo:
+1. **Context Manager com Classes - Criando e Usando Gerenciadores de Contexto:**
+   - O que é um Context Manager.
+   - Implementação de `__enter__` e `__exit__`.
+   - Tratamento de exceções no método `__exit__`.
+   - Exemplo prático com classes personalizadas.
+2. **Context Manager com `contextlib.contextmanager`:**
+   - Uso do decorador `@contextmanager` para criar gerenciadores de contexto.
+   - Diferença entre Context Managers com classes e com funções.
+   - Tratamento de exceções e liberação de recursos.
+   - Exemplo prático com funções decoradas.
+3. **Funções Decoradoras e Decoradores com Classes:**
+   - O que são decoradores e como usá-los com classes.
+   - Adicionando métodos dinamicamente a classes com decoradores.
+   - Exemplo prático de decoradores para adicionar `__repr__`.
+4. **Funções Decoradoras e Decoradores com Métodos:**
+   - Modificando o comportamento de métodos com decoradores.
+   - Exemplo prático de decoradores para métodos específicos.
+   - Dicas para criar decoradores reutilizáveis.
+5. **Método Especial `__call__`:**
+   - O que é o método especial `__call__`.
+   - Transformando instâncias de classes em objetos "callables".
+   - Exemplo prático de uso do método `__call__`.
+6. **Classes Decoradoras (Decorator Classes):**
+   - O que são classes decoradoras.
+   - Como usar o método especial `__call__` para criar decoradores com estado.
+   - Exemplo prático de classes decoradoras para modificar funções.
+
+[Clique aqui para acessar o conteúdo completo.](./doc/poo5.md)
+
+</details>
