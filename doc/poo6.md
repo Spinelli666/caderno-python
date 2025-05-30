@@ -13,6 +13,13 @@
     - 2.2. [O Que São DocStrings?](#22-o-que-são-docstrings)
     - 2.3. [Exemplos Práticos](#23-exemplos-práticos)
     - 2.4. [Dicas e Boas Práticas](#24-dicas-e-boas-práticas)
+3. [Enumerações (`enum.Enum`)](#3-enumerações-enumenum)
+    - 3.1. [O Que São Enumerações?](#31-o-que-são-enumerações)
+    - 3.2. [Características das Enumerações em Python](#32-características-das-enumerações-em-python)
+    - 3.3. [Como Criar Enumerações](#33-como-criar-enumerações)
+    - 3.4. [Acessando Membros e Valores](#34-acessando-membros-e-valores)
+    - 3.5. [Exemplo Prático](#35-exemplo-prático)
+    - 3.6. [Dicas e Boas Práticas](#36-dicas-e-boas-práticas)
 
 ---
 
@@ -335,5 +342,100 @@ help(documentando_class.Foo)
 
 **Resumo:**  
 DocStrings são essenciais para documentar módulos, funções e classes em Python. Combinadas com `dir` e `help`, elas tornam o código mais legível e fácil de usar, promovendo boas práticas de desenvolvimento.
+
+---
+
+## 3. Enumerações (`enum.Enum`)
+
+### 3.1. O Que São Enumerações?
+
+- **Enumerações** são usadas para representar um conjunto fixo de valores simbólicos.
+- Elas são úteis em situações onde há um número limitado de opções ou estados possíveis.
+- Exemplos: Direções (`ESQUERDA`, `DIREITA`), dias da semana (`SEGUNDA`, `TERÇA`), etc.
+
+### 3.2. Características das Enumerações em Python
+
+- **Membros e valores constantes:**  
+  Os membros de uma enumeração são constantes e não podem ser alterados.
+- **Iteráveis:**  
+  Enumerações podem ser iteradas para retornar seus membros na ordem de definição.
+- **Tipo especial:**  
+  `enum.Enum` é a superclasse para criar enumerações, mas elas não são classes normais em Python.
+- **Compatibilidade com type annotations:**  
+  Enumerações podem ser usadas com `type annotations`, `isinstance` e outras verificações de tipo.
+
+### 3.3. Como Criar Enumerações
+
+- **Usando `enum.Enum`:**  
+  Crie uma classe que herda de `enum.Enum` e defina os membros como atributos.
+- **Usando `enum.auto`:**  
+  Gera automaticamente valores únicos para os membros da enumeração.
+- **Usando `enum.Enum` diretamente:**  
+  Enumerações podem ser criadas diretamente com `enum.Enum`.
+
+### 3.4. Acessando Membros e Valores
+
+- **Acessando membros:**  
+  - Pelo valor: `Classe(valor)`
+  - Pela chave: `Classe['chave']`
+- **Obtendo chave e valor:**  
+  - Chave: `Classe.chave.name`
+  - Valor: `Classe.chave.value`
+
+### 3.5. Exemplo Prático
+
+```py
+import enum
+
+class Direcoes(enum.Enum):
+    ESQUERDA = enum.auto()
+    DIREITA = enum.auto()
+    ACIMA = enum.auto()
+    ABAIXO = enum.auto()
+
+# Acessando membros e valores
+print(Direcoes(1))           # Saída: Direcoes.ESQUERDA
+print(Direcoes['DIREITA'])   # Saída: Direcoes.DIREITA
+print(Direcoes.ESQUERDA)     # Saída: Direcoes.ESQUERDA
+print(Direcoes.ESQUERDA.name)  # Saída: ESQUERDA
+print(Direcoes.ESQUERDA.value) # Saída: 1
+
+# Função que utiliza enumerações
+def mover(direcao: Direcoes):
+    if not isinstance(direcao, Direcoes):
+        raise ValueError('Direção inválida. Use uma direção válida.')
+
+    print(f'Movendo para {direcao.name} ({direcao.value})')
+
+# Testando a função
+mover(Direcoes.ESQUERDA)  # Saída: Movendo para ESQUERDA (1)
+mover(Direcoes.DIREITA)   # Saída: Movendo para DIREITA (2)
+mover(Direcoes.ACIMA)     # Saída: Movendo para ACIMA (3)
+mover(Direcoes.ABAIXO)    # Saída: Movendo para ABAIXO (4)
+```
+
+**Explicação:**
+1. **Definição da enumeração:**  
+   A classe `Direcoes` define quatro direções (`ESQUERDA`, `DIREITA`, `ACIMA`, `ABAIXO`) usando `enum.auto` para gerar valores únicos automaticamente.
+2. **Acessando membros:**  
+   Os membros podem ser acessados pelo valor (`Direcoes(1)`) ou pela chave (`Direcoes['DIREITA']`).
+3. **Função `mover`:**  
+   A função verifica se o argumento é uma instância de `Direcoes` e imprime a direção escolhida.
+
+### 3.6. Dicas e Boas Práticas
+
+- **Use `enum.auto` para valores automáticos:**  
+  Simplifica a definição de valores únicos para os membros.
+- **Valide entradas com `isinstance`:**  
+  Certifique-se de que os argumentos são membros da enumeração.
+- **Documente suas enumerações:**  
+  Explique o propósito de cada membro e como usá-los.
+- **Evite alterar membros:**  
+  Enumerações são constantes e não devem ser modificadas após a definição.
+- **Itere sobre enumerações:**  
+  Use `for` para iterar sobre os membros de uma enumeração, se necessário.
+
+**Resumo:**  
+Enumerações (`enum.Enum`) são úteis para representar conjuntos fixos de valores simbólicos em Python. Elas oferecem uma maneira clara e segura de trabalhar com opções limitadas, promovendo consistência e legibilidade no código.
 
 ---
