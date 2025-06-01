@@ -20,6 +20,28 @@
     - 3.4. [Acessando Membros e Valores](#34-acessando-membros-e-valores)
     - 3.5. [Exemplo Prático](#35-exemplo-prático)
     - 3.6. [Dicas e Boas Práticas](#36-dicas-e-boas-práticas)
+4. [Dataclasses - O Que São?](#4-dataclasses---o-que-são)
+    - 4.1. [O Que São Dataclasses?](#41-o-que-são-dataclasses)
+    - 4.2. [Por Que Usar Dataclasses?](#42-por-que-usar-dataclasses)
+    - 4.3. [Métodos Especiais: `__init__` e `__post_init__`](#43-métodos-especiais-init-e-post_init)
+    - 4.4. [Configurações do Decorador `@dataclass`](#44-configurações-do-decorador-dataclass)
+    - 4.5. [Funções Auxiliares: `asdict` e `astuple`](#45-funções-auxiliares-asdict-e-astuple)
+    - 4.6. [Valores Padrão, `field` e `fields`](#46-valores-padrão-field-e-fields)
+    - 4.7. [Exemplo Prático](#47-exemplo-prático)
+    - 4.8. [Dicas e Boas Práticas](#48-dicas-e-boas-práticas)
+5. [NamedTuple - Tuplas Imutáveis com Nomes para Valores](#5-namedtuple---tuplas-imutáveis-com-nomes-para-valores)
+    - 5.1. [O Que São NamedTuples?](#51-o-que-são-namedtuples)
+    - 5.2. [Por Que Usar NamedTuples?](#52-por-que-usar-namedtuples)
+    - 5.3. [Características das NamedTuples](#53-características-das-namedtuples)
+    - 5.4. [Exemplo Prático](#54-exemplo-prático)
+    - 5.5. [Dicas e Boas Práticas](#55-dicas-e-boas-práticas)
+6. [Criando Sua Própria Lista com Iterable, Iterator e Sequence](#6-criando-sua-própria-lista-com-iterable-iterator-e-sequence)
+    - 6.1. [O Que São Iterable, Iterator e Sequence?](#61-o-que-são-iterable-iterator-e-sequence)
+    - 6.2. [Por Que Implementar Protocolos?](#62-por-que-implementar-protocolos)
+    - 6.3. [Protocolo Sequence](#63-protocolo-sequence)
+    - 6.4. [Protocolo Iterator](#64-protocolo-iterator)
+    - 6.5. [Exemplo Prático](#65-exemplo-prático)
+    - 6.6. [Dicas e Boas Práticas](#66-dicas-e-boas-práticas)
 
 ---
 
@@ -437,5 +459,382 @@ mover(Direcoes.ABAIXO)    # Saída: Movendo para ABAIXO (4)
 
 **Resumo:**  
 Enumerações (`enum.Enum`) são úteis para representar conjuntos fixos de valores simbólicos em Python. Elas oferecem uma maneira clara e segura de trabalhar com opções limitadas, promovendo consistência e legibilidade no código.
+
+---
+
+## 4. Dataclasses - O Que São?
+
+### 4.1. O Que São Dataclasses?
+
+- **Dataclasses** são uma forma simplificada de criar classes em Python, com métodos como `__init__`, `__repr__`, `__eq__` e outros gerados automaticamente.
+- Elas foram introduzidas na **PEP 557** e adicionadas ao Python na versão **3.7**.
+- São úteis para classes que armazenam dados, eliminando a necessidade de escrever boilerplate code.
+
+**Documentação oficial:**  
+[https://docs.python.org/3/library/dataclasses.html](https://docs.python.org/3/library/dataclasses.html)
+
+### 4.2. Por Que Usar Dataclasses?
+
+- **Redução de código repetitivo:**  
+  Não é necessário escrever manualmente métodos como `__init__` ou `__repr__`.
+- **Facilidade de uso:**  
+  Permite definir valores padrão e usar funções auxiliares como `asdict` e `astuple`.
+- **Flexibilidade:**  
+  Suporta configurações avançadas com o uso de `field`.
+
+### 4.3. Métodos Especiais: `__init__` e `__post_init__`
+
+#### O Que é o Método `__init__`?
+
+- O método `__init__` é gerado automaticamente pelo decorador `@dataclass`.
+- Ele inicializa os atributos da classe com os valores fornecidos ou com os valores padrão.
+
+#### O Que é o Método `__post_init__`?
+
+- O método `__post_init__` é chamado automaticamente após o `__init__`.
+- É útil para realizar validações ou inicializações adicionais.
+
+**Exemplo:**
+```py
+@dataclass
+class Pessoa:
+    nome: str
+    sobrenome: str
+
+    def __post_init__(self):
+        self.nome_completo = f'{self.nome} {self.sobrenome}'
+```
+
+### 4.4. Configurações do Decorador `@dataclass`
+
+- **`repr=True`:**  
+  Gera automaticamente o método `__repr__`.
+- **`eq=True`:**  
+  Gera automaticamente o método `__eq__`.
+- **`order=True`:**  
+  Gera métodos de comparação (`<`, `<=`, `>`, `>=`).
+- **`frozen=True`:**  
+  Torna a classe imutável (os atributos não podem ser alterados após a criação).
+
+### 4.5. Funções Auxiliares: `asdict` e `astuple`
+
+- **`asdict`:**  
+  Converte a instância da dataclass em um dicionário.
+- **`astuple`:**  
+  Converte a instância da dataclass em uma tupla.
+
+**Exemplo:**
+```py
+from dataclasses import asdict, astuple
+
+@dataclass
+class Pessoa:
+    nome: str
+    sobrenome: str
+
+p = Pessoa('João', 'Silva')
+print(asdict(p))   # Saída: {'nome': 'João', 'sobrenome': 'Silva'}
+print(astuple(p))  # Saída: ('João', 'Silva')
+```
+
+### 4.6. Valores Padrão, `field` e `fields`
+
+- **Valores padrão:**  
+  Atributos podem ter valores padrão definidos diretamente ou usando `field`.
+- **`field`:**  
+  Permite configurações avançadas, como `default_factory` para criar valores padrão dinâmicos.
+- **`fields`:**  
+  Retorna informações sobre os campos da dataclass.
+
+**Exemplo:**
+```py
+from dataclasses import dataclass, field, fields
+
+@dataclass
+class Pessoa:
+    nome: str = 'MISSING'
+    sobrenome: str = 'Not sent'
+    idade: int = 100
+    enderecos: list[str] = field(default_factory=list)
+
+p = Pessoa()
+print(fields(p))  # Exibe informações sobre os campos da dataclass.
+```
+
+### 4.7. Exemplo Prático
+
+```py
+from dataclasses import dataclass, asdict, astuple, field, fields
+
+@dataclass(repr=True)
+class Pessoa:
+    nome: str = field(default='MISSING', repr=False)
+    sobrenome: str = 'Not sent'
+    idade: int = 100
+    enderecos: list[str] = field(default_factory=list)
+
+    def __post_init__(self):
+        self.nome_completo = f'{self.nome} {self.sobrenome}'
+
+if __name__ == '__main__':
+    p1 = Pessoa()
+    print(p1)  # Saída: Pessoa(sobrenome='Not sent', idade=100, enderecos=[])
+    print(asdict(p1))  # Converte para dicionário.
+    print(astuple(p1))  # Converte para tupla.
+```
+
+### 4.8. Dicas e Boas Práticas
+
+- **Use dataclasses para classes simples:**  
+  Elas são ideais para classes que armazenam dados e não possuem muita lógica.
+- **Evite usar dataclasses para lógica complexa:**  
+  Para classes com muitos métodos ou lógica, considere usar classes normais.
+- **Documente os atributos:**  
+  Use type annotations para melhorar a legibilidade e facilitar o uso.
+- **Aproveite `field`:**  
+  Use `field` para valores padrão dinâmicos ou para configurar atributos específicos.
+- **Teste com `asdict` e `astuple`:**  
+  Use essas funções para converter instâncias em formatos mais fáceis de manipular.
+
+**Resumo:**  
+Dataclasses são uma forma eficiente e simplificada de criar classes em Python. Elas eliminam a necessidade de escrever código repetitivo, oferecem suporte a configurações avançadas e são ideais para classes que armazenam dados.
+
+---
+
+## 5. NamedTuple - Tuplas Imutáveis com Nomes para Valores
+
+### 5.1. O Que São NamedTuples?
+
+- **NamedTuples** são uma forma de criar objetos semelhantes a tuplas, mas com nomes para os valores (atributos).
+- Elas são úteis para representar registros ou agrupamentos de atributos, como classes simples sem métodos.
+- NamedTuples são **imutáveis**, assim como tuplas normais.
+
+**Documentação oficial:**  
+- [collections.namedtuple](https://docs.python.org/3/library/collections.html#collections.namedtuple)  
+- [typing.NamedTuple](https://docs.python.org/3/library/typing.html#typing.NamedTuple)
+
+### 5.2. Por Que Usar NamedTuples?
+
+- **Clareza e legibilidade:**  
+  Os valores podem ser acessados por nome, tornando o código mais legível.
+- **Imutabilidade:**  
+  Garantem que os valores não sejam alterados após a criação.
+- **Compatibilidade com tuplas:**  
+  NamedTuples podem ser usadas como tuplas normais (indexação, iteração, etc.).
+- **Facilidade de uso:**  
+  São ideais para representar registros ou objetos simples.
+
+### 5.3. Características das NamedTuples
+
+- **Imutáveis:**  
+  Os valores não podem ser alterados após a criação.
+- **Acesso por nome ou índice:**  
+  Os valores podem ser acessados como atributos ou por indexação.
+- **Métodos úteis:**  
+  - `_fields`: Retorna os nomes dos campos.
+  - `_field_defaults`: Retorna os valores padrão dos campos.
+  - `_asdict()`: Converte a NamedTuple em um dicionário.
+- **Compatibilidade com tuplas:**  
+  Podem ser iteradas ou usadas como tuplas normais.
+
+### 5.4. Exemplo Prático
+
+#### Usando `typing.NamedTuple`
+
+```py
+from typing import NamedTuple
+
+class Carta(NamedTuple):
+    valor: str = 'VALOR'
+    naipe: str = 'NAIPE'
+
+# Criando uma instância
+as_espadas = Carta('A')
+
+# Acessando valores
+print(as_espadas.valor)  # Saída: A
+print(as_espadas.naipe)  # Saída: NAIPE
+
+# Convertendo para dicionário
+print(as_espadas._asdict())  # Saída: {'valor': 'A', 'naipe': 'NAIPE'}
+
+# Iterando sobre os valores
+for valor in as_espadas:
+    print(valor)  # Saída: A \n NAIPE
+
+# Obtendo informações sobre os campos
+print(as_espadas._fields)         # Saída: ('valor', 'naipe')
+print(as_espadas._field_defaults) # Saída: {'valor': 'VALOR', 'naipe': 'NAIPE'}
+```
+
+#### Usando `collections.namedtuple`
+
+```py
+from collections import namedtuple
+
+Carta = namedtuple(
+    'Carta', ['valor', 'naipe'],
+    defaults=['VALOR', 'NAIPE']
+)
+
+# Criando uma instância
+as_espadas = Carta('A')
+
+# Acessando valores
+print(as_espadas.valor)  # Saída: A
+print(as_espadas.naipe)  # Saída: NAIPE
+
+# Convertendo para dicionário
+print(as_espadas._asdict())  # Saída: {'valor': 'A', 'naipe': 'NAIPE'}
+
+# Iterando sobre os valores
+for valor in as_espadas:
+    print(valor)  # Saída: A \n NAIPE
+
+# Obtendo informações sobre os campos
+print(as_espadas._fields)         # Saída: ('valor', 'naipe')
+print(as_espadas._field_defaults) # Saída: {'valor': 'VALOR', 'naipe': 'NAIPE'}
+```
+
+### 5.5. Dicas e Boas Práticas
+
+- **Escolha entre `NamedTuple` e `namedtuple`:**
+  - Use `typing.NamedTuple` para aproveitar as vantagens de type annotations.
+  - Use `collections.namedtuple` para casos mais simples ou compatibilidade com versões antigas do Python.
+- **Documente os campos:**  
+  Explique o propósito de cada campo na NamedTuple.
+- **Evite lógica complexa:**  
+  NamedTuples são ideais para representar dados simples. Para lógica complexa, use classes normais.
+- **Use `_asdict()` para manipulação:**  
+  Converta NamedTuples em dicionários para facilitar a manipulação dos dados.
+- **Aproveite valores padrão:**  
+  Defina valores padrão para os campos, quando necessário.
+
+**Resumo:**  
+NamedTuples são uma forma eficiente e legível de representar registros ou agrupamentos de atributos em Python. Elas combinam a imutabilidade das tuplas com a clareza de acesso por nomes, tornando-as ideais para dados simples e estruturados.
+
+---
+
+## 6. Criando Sua Própria Lista com Iterable, Iterator e Sequence
+
+### 6.1. O Que São Iterable, Iterator e Sequence?
+
+- **Iterable:**  
+  Um objeto que pode ser iterado (ex.: listas, strings, dicionários). Deve implementar o método `__iter__`, que retorna um `Iterator`.
+- **Iterator:**  
+  Um objeto que sabe como iterar sobre os elementos de um `Iterable`. Deve implementar os métodos `__iter__` e `__next__`.
+- **Sequence:**  
+  Um tipo de `Iterable` que suporta acesso por índice (`__getitem__`) e tem um tamanho definido (`__len__`).
+
+**Documentação oficial:**  
+[https://docs.python.org/3/library/collections.abc.html](https://docs.python.org/3/library/collections.abc.html)
+
+### 6.2. Por Que Implementar Protocolos?
+
+- **Flexibilidade:**  
+  Permite criar estruturas de dados personalizadas que se comportam como listas, dicionários ou outros tipos.
+- **Compatibilidade:**  
+  Objetos que implementam esses protocolos podem ser usados com funções e estruturas padrão do Python (ex.: `for`, `len`, indexação).
+- **Reutilização:**  
+  Seguir os protocolos facilita a integração com bibliotecas e frameworks.
+
+### 6.3. Protocolo Sequence
+
+- **Métodos obrigatórios:**  
+  - `__getitem__(self, index)`: Retorna o item no índice especificado.
+  - `__len__(self)`: Retorna o número de itens na sequência.
+- **Métodos opcionais:**  
+  - `__setitem__(self, index, value)`: Define o valor no índice especificado.
+  - Outros métodos como `__contains__` podem ser implementados para funcionalidades adicionais.
+
+### 6.4. Protocolo Iterator
+
+- **Métodos obrigatórios:**  
+  - `__iter__(self)`: Retorna o próprio objeto (que é um `Iterator`).
+  - `__next__(self)`: Retorna o próximo item na sequência ou levanta `StopIteration` quando não há mais itens.
+
+### 6.5. Exemplo Prático
+
+```py
+from collections.abc import Iterable, Iterator, Sequence
+
+class MyList(Sequence):
+    def __init__(self):
+        self._data = {}
+        self._index = 0
+        self._next_index = 0
+
+    def append(self, *values):
+        for value in values:
+            self._data[self._index] = value
+            self._index += 1
+
+    def __len__(self) -> int:
+        return self._index
+    
+    def __getitem__(self, index):
+        return self._data[index]
+    
+    def __setitem__(self, index, value):
+        self._data[index] = value
+    
+    def __iter__(self):
+        return self
+    
+    def __next__(self):
+        if self._next_index >= self._index:
+            self._next_index = 0
+            raise StopIteration
+
+        value = self._data[self._next_index]
+        self._next_index += 1
+        return value
+
+if __name__ == '__main__':
+    lista = MyList()
+    lista.append('Maria', 'Helena')
+    lista[0] = 'João'
+    lista.append('Luiz')
+
+    # Iterando sobre os itens
+    for item in lista:
+        print(item)
+    print('---')
+
+    # Iterando novamente
+    for item in lista:
+        print(item)
+```
+
+**Explicação:**
+1. **Classe `MyList`:**
+   - Implementa o protocolo `Sequence`, permitindo acesso por índice e uso de `len`.
+   - Implementa o protocolo `Iterator`, permitindo iteração com `for`.
+2. **Método `append`:**
+   - Adiciona valores à lista personalizada.
+3. **Método `__getitem__`:**
+   - Permite acessar itens por índice (`lista[0]`).
+4. **Método `__setitem__`:**
+   - Permite modificar itens por índice (`lista[0] = 'João'`).
+5. **Método `__iter__`:**
+   - Retorna o próprio objeto como um `Iterator`.
+6. **Método `__next__`:**
+   - Retorna o próximo item na sequência ou levanta `StopIteration` quando não há mais itens.
+
+### 6.6. Dicas e Boas Práticas
+
+- **Implemente apenas o necessário:**  
+  Não é obrigatório implementar todos os métodos de um protocolo. Foque nos métodos que atendem às suas necessidades.
+- **Use `collections.abc`:**  
+  Herde de classes como `Sequence` ou `Iterable` para garantir que sua implementação siga os protocolos corretamente.
+- **Valide índices:**  
+  Certifique-se de que os índices usados em `__getitem__` e `__setitem__` sejam válidos.
+- **Levante `StopIteration` corretamente:**  
+  Sempre levante `StopIteration` no método `__next__` quando não houver mais itens.
+- **Teste sua implementação:**  
+  Certifique-se de que sua classe funciona com estruturas padrão do Python, como `for`, `len` e indexação.
+
+**Resumo:**  
+Implementar os protocolos `Iterable`, `Iterator` e `Sequence` permite criar estruturas de dados personalizadas que se comportam como listas ou outras coleções padrão do Python. Isso promove flexibilidade, compatibilidade e reutilização de código.
 
 ---
