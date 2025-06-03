@@ -593,3 +593,49 @@ O arquivo **POO 5** explora conceitos avançados de Programação Orientada a Ob
 [Clique aqui para acessar o conteúdo completo.](./doc/poo5.md)
 
 </details>
+
+<details>
+<summary>17. <a href="./doc/poo6.md">POO 6</a></summary>
+
+### Resumo:
+O arquivo **POO 6** explora conceitos avançados de Programação Orientada a Objetos em Python, incluindo:
+1. **Teoria: Metaclasses em Python:**
+   - O que são metaclasses.
+   - Como funcionam as metaclasses.
+   - Métodos importantes das metaclasses (`__new__` e `__call__`).
+   - Exemplo prático e explicação detalhada.
+   - Dicas e observações sobre o uso de metaclasses.
+2. **`dir` e `help` + DocStrings:**
+   - O que são `dir` e `help`.
+   - O que são DocStrings e como usá-las.
+   - Exemplos práticos de DocStrings em módulos, funções, classes e métodos.
+   - Dicas e boas práticas para escrever DocStrings claras e objetivas.
+3. **Enumerações (`enum.Enum`):**
+   - O que são enumerações.
+   - Características das enumerações em Python.
+   - Como criar enumerações com `enum.Enum` e `enum.auto`.
+   - Acessando membros e valores de enumerações.
+   - Exemplo prático e boas práticas.
+4. **Dataclasses - O Que São?:**
+   - O que são dataclasses e por que usá-las.
+   - Métodos especiais (`__init__` e `__post_init__`).
+   - Configurações do decorador `@dataclass`.
+   - Funções auxiliares (`asdict` e `astuple`).
+   - Valores padrão, `field` e `fields`.
+   - Exemplo prático e boas práticas.
+5. **NamedTuple - Tuplas Imutáveis com Nomes para Valores:**
+   - O que são NamedTuples.
+   - Por que usar NamedTuples.
+   - Características das NamedTuples.
+   - Exemplo prático com `typing.NamedTuple` e `collections.namedtuple`.
+   - Dicas e boas práticas.
+6. **Criando Sua Própria Lista com Iterable, Iterator e Sequence:**
+   - O que são Iterable, Iterator e Sequence.
+   - Por que implementar protocolos.
+   - Protocolo Sequence e Iterator.
+   - Exemplo prático de implementação de uma lista personalizada.
+   - Dicas e boas práticas para implementar protocolos.
+
+[Clique aqui para acessar o conteúdo completo.](./doc/poo6.md)
+
+</details>
