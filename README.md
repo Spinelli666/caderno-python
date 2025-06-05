@@ -639,3 +639,72 @@ O arquivo **POO 6** explora conceitos avançados de Programação Orientada a Ob
 [Clique aqui para acessar o conteúdo completo.](./doc/poo6.md)
 
 </details>
+
+<details>
+<summary>18. <a href="./doc/modulo1.md">Módulos Python 1</a></summary>
+
+### Resumo:
+O arquivo **Módulos Python** explora conceitos relacionados a manipulação de datas, horários e internacionalização, incluindo:
+1. **Criando Datas e Horas em Python com `datetime`:**
+   - O que é o módulo `datetime`.
+   - Criando datas e horas específicas.
+   - Trabalhando com Unix Timestamp.
+   - Trabalhando com Timezones usando `pytz`.
+   - Exemplo prático e boas práticas.
+2. **Calculando Datas com `datetime.timedelta` e `dateutil.relativedelta`:**
+   - Diferença entre `timedelta` (diferença fixa) e `relativedelta` (diferença relativa).
+   - Exemplos práticos de cálculos com datas.
+   - Dicas e boas práticas para cálculos precisos.
+3. **Formatando Datas do `datetime` com `strftime`:**
+   - O que é `strftime` e como usá-lo para formatar datas.
+   - Principais códigos de formatação.
+   - Exemplos práticos e boas práticas.
+4. **Usando `calendar` para Calendários e Datas:**
+   - O que é o módulo `calendar`.
+   - Funções úteis como `monthrange`, `weekday`, `monthcalendar`, entre outras.
+   - Exemplos práticos de criação e manipulação de calendários.
+   - Dicas e boas práticas.
+5. **Usando `locale` para Internacionalização (Tradução):**
+   - O que é o módulo `locale`.
+   - Configurando e obtendo informações sobre o locale do sistema.
+   - Exemplos práticos de internacionalização.
+   - Dicas e boas práticas para trabalhar com diferentes idiomas e regiões.
+
+[Clique aqui para acessar o conteúdo completo.](./doc/modulo1.md)
+
+</details>
+
+<details>
+<summary>19. <a href="./doc/modulo2.md">Módulos Python 2</a></summary>
+
+### Resumo:
+O arquivo **Módulos Python 2** explora conceitos relacionados à manipulação de arquivos, diretórios e caminhos em Python, incluindo:
+1. **O Módulo `os` para Interação com o Sistema:**
+   - O que é o módulo `os`.
+   - Principais funções para manipulação de arquivos e diretórios.
+   - Exemplos práticos e boas práticas.
+2. **O Módulo `os.path` para Trabalhar com Caminhos:**
+   - O que é o módulo `os.path`.
+   - Funções úteis para manipulação de caminhos de arquivos e diretórios.
+   - Exemplos práticos e dicas de uso.
+3. **Usando `os.listdir` para Navegar em Caminhos:**
+   - O que é `os.listdir`.
+   - Como listar o conteúdo de diretórios.
+   - Exemplos práticos e boas práticas.
+4. **Usando `os.walk` para Navegar em Caminhos de Forma Recursiva:**
+   - O que é `os.walk`.
+   - Estrutura gerada por `os.walk`.
+   - Exemplos práticos de navegação recursiva.
+   - Dicas e boas práticas.
+5. **Usando `os.path.getsize` e `os.stat` para Dados dos Arquivos (Tamanho em Bytes):**
+   - O que são `os.path.getsize` e `os.stat`.
+   - Função para formatar tamanhos de arquivos.
+   - Exemplos práticos e boas práticas.
+6. **Usando `os` + `shutil` para Manipular Arquivos e Pastas:**
+   - O que são os módulos `os` e `shutil`.
+   - Funções para copiar, mover, renomear e apagar arquivos e pastas.
+   - Exemplos práticos e boas práticas.
+
+[Clique aqui para acessar o conteúdo completo.](./doc/modulo2.md)
+
+</details>
