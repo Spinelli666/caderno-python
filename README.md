@@ -708,3 +708,42 @@ O arquivo **Módulos Python 2** explora conceitos relacionados à manipulação 
 [Clique aqui para acessar o conteúdo completo.](./doc/modulo2.md)
 
 </details>
+
+<details>
+<summary>20. <a href="./doc/modulo3.md">Módulos Python 3</a></summary>
+
+### Resumo:
+O arquivo **Módulos Python 3** explora conceitos relacionados ao uso de JSON e CSV em Python, incluindo:
+1. **O Que é JSON - JavaScript Object Notation:**
+   - O que é JSON e por que usá-lo.
+   - Tipos de dados suportados pelo JSON.
+   - Conversão de tipos entre Python e JSON.
+   - Exemplo de arquivo JSON.
+   - Dicas e boas práticas.
+2. **Usando `json.dumps` e `json.loads` com Strings + `typing.TypedDict`:**
+   - O que são `json.dumps` e `json.loads`.
+   - Serialização e desserialização de dados JSON.
+   - Uso de `TypedDict` para validação de dados JSON.
+   - Exemplo prático e boas práticas.
+3. **Usando `json.dump` e `json.load` com Arquivos:**
+   - O que são `json.dump` e `json.load`.
+   - Salvando e carregando dados JSON em arquivos.
+   - Exemplo prático e boas práticas.
+4. **CSV (Comma Separated Values - Valores Separados por Vírgulas):**
+   - O que é CSV e por que usá-lo.
+   - Estrutura de um arquivo CSV.
+   - Regras simples para trabalhar com CSV.
+   - Exemplo de arquivo CSV.
+   - Dicas e boas práticas.
+5. **Usando `csv.reader` e `csv.DictReader` para Ler Arquivos CSV:**
+   - Diferença entre `csv.reader` e `csv.DictReader`.
+   - Leitura de arquivos CSV como listas ou dicionários.
+   - Exemplo prático e boas práticas.
+6. **Usando `csv.writer` e `csv.DictWriter` para Escrever em Arquivos CSV:**
+   - Diferença entre `csv.writer` e `csv.DictWriter`.
+   - Escrita de arquivos CSV como listas ou dicionários.
+   - Exemplo prático e boas práticas.
+
+[Clique aqui para acessar o conteúdo completo.](./doc/modulo3.md)
+
+</details>
