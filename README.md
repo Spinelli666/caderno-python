@@ -747,3 +747,33 @@ O arquivo **Módulos Python 3** explora conceitos relacionados ao uso de JSON e 
 [Clique aqui para acessar o conteúdo completo.](./doc/modulo3.md)
 
 </details>
+
+<details>
+<summary>21. <a href="./doc/modulo4.md">Módulos Python 4</a></summary>
+
+### Resumo:
+O arquivo **Módulos Python 4** explora conceitos relacionados ao uso de bibliotecas para geração de números aleatórios, manipulação de variáveis de ambiente e templates em Python, incluindo:
+1. **Usando o Módulo `random` para Geradores de Números Pseudoaleatórios:**
+   - O que é o módulo `random`.
+   - Diferença entre números pseudoaleatórios e aleatórios.
+   - Principais funções do módulo `random` para geração de números e manipulação de iteráveis.
+   - Exemplos práticos e boas práticas.
+2. **Usando o Módulo `secrets` para Gerar Números Aleatórios Seguros:**
+   - O que é o módulo `secrets`.
+   - Diferença entre `random` e `secrets`.
+   - Funções seguras para geração de números aleatórios e tokens.
+   - Exemplos práticos e boas práticas.
+3. **Usando `string.Template` para Substituir Variáveis em Textos:**
+   - O que é `string.Template`.
+   - Métodos de substituição (`substitute` e `safe_substitute`).
+   - Personalização de delimitadores com subclasses.
+   - Exemplos práticos e boas práticas.
+4. **Variáveis de Ambiente com `os.getenv`, `os.environ` e `python-dotenv` (.env):**
+   - O que são variáveis de ambiente e por que usá-las.
+   - Métodos para trabalhar com variáveis de ambiente (`os.getenv`, `os.environ`).
+   - Uso do `python-dotenv` para gerenciar variáveis de ambiente com arquivos `.env`.
+   - Exemplos práticos e boas práticas.
+
+[Clique aqui para acessar o conteúdo completo.](./doc/modulo4.md)
+
+</details>
