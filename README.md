@@ -777,3 +777,35 @@ O arquivo **Módulos Python 4** explora conceitos relacionados ao uso de bibliot
 [Clique aqui para acessar o conteúdo completo.](./doc/modulo4.md)
 
 </details>
+
+<details>
+<summary>22. <a href="./doc/modulo5.md">Módulos Python 5</a></summary>
+
+### Resumo:
+O arquivo **Módulos Python 5** explora conceitos relacionados ao envio de e-mails, compactação de arquivos e manipulação de argumentos de linha de comando em Python, incluindo:
+1. **Enviando E-mails SMTP com Python:**
+   - O que é SMTP e por que usar Python para enviar e-mails.
+   - Bibliotecas utilizadas (`smtplib`, `email.mime`, `dotenv`, `os`).
+   - Exemplo prático de envio de e-mails com HTML e templates.
+   - Dicas e boas práticas para segurança e configuração.
+2. **ZIP - Compactando / Descompactando Arquivos com `zipfile.ZipFile`:**
+   - O que é o módulo `zipfile` e arquivos ZIP.
+   - Principais funções para compactar, ler e extrair arquivos ZIP.
+   - Exemplo prático de compactação e descompactação de arquivos.
+   - Dicas e boas práticas para manipulação de arquivos ZIP.
+3. **sys.argv - Executando arquivos com argumentos no sistema:**
+   - O que é `sys.argv` e sua estrutura.
+   - Por que usar `sys.argv` para automatização e flexibilidade.
+   - Exemplo prático de captura e tratamento de argumentos de linha de comando.
+   - Tratamento de erros e validação de argumentos.
+   - Dicas e boas práticas para scripts interativos.
+4. **argparse.ArgumentParser - Argumentos mais complexos:**
+   - O que é `argparse.ArgumentParser` e suas funcionalidades.
+   - Por que usar `argparse` para argumentos complexos.
+   - Exemplo prático com argumentos opcionais, obrigatórios e múltiplos valores.
+   - Tratamento de erros e validação de argumentos.
+   - Dicas e boas práticas para scripts robustos e configuráveis.
+
+[Clique aqui para acessar o conteúdo completo.](./doc/modulo5.md)
+
+</details>
