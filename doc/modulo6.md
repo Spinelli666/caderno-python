@@ -20,6 +20,15 @@
     - 3.3. [BeautifulSoup - Principais Métodos](#33-beautifulsoup---principais-métodos)
     - 3.4. [Exemplo Prático](#34-exemplo-prático)
     - 3.5. [Dicas e Boas Práticas](#35-dicas-e-boas-práticas)
+4. [Selenium - Automatizando Tarefas no Navegador](#4-selenium---automatizando-tarefas-no-navegador)
+    - 4.1. [O Que é o Selenium?](#41-o-que-é-o-selenium)
+    - 4.2. [Instalação e Configuração](#42-instalação-e-configuração)
+    - 4.3. [Localizadores (By) no Selenium](#43-localizadores-by-no-selenium)
+    - 4.4. [Métodos de Busca de Elementos](#44-métodos-de-busca-de-elementos)
+    - 4.5. [WebDriverWait e Expected Conditions](#45-webdriverwait-e-expected-conditions)
+    - 4.6. [Enviando Teclas com a Classe Keys](#46-enviando-teclas-com-a-classe-keys)
+    - 4.7. [Exemplo Prático Completo](#47-exemplo-prático-completo)
+    - 4.8. [Dicas e Boas Práticas](#48-dicas-e-boas-práticas)
 
 ---
 
@@ -248,8 +257,6 @@ A biblioteca `requests` é a ferramenta padrão para fazer requisições HTTP em
 **Documentação oficial:**  
 [https://www.crummy.com/software/BeautifulSoup/bs4/doc.ptbr/](https://www.crummy.com/software/BeautifulSoup/bs4/doc.ptbr/)
 
----
-
 ### 3.2. Instalação e Configuração
 
 - **Instalação:**  
@@ -263,8 +270,6 @@ A biblioteca `requests` é a ferramenta padrão para fazer requisições HTTP em
   from bs4 import BeautifulSoup
   import re  # Para expressões regulares
   ```
-
----
 
 ### 3.3. BeautifulSoup - Principais Métodos
 
@@ -284,8 +289,6 @@ A biblioteca `requests` é a ferramenta padrão para fazer requisições HTTP em
 | `html.parser`  | Parser HTML nativo do Python (recomendado para a maioria dos casos). |
 | `lxml`         | Parser mais rápido, requer instalação separada (`pip install lxml`). |
 | `xml`          | Parser para documentos XML.                                           |
-
----
 
 ### 3.4. Exemplo Prático
 
@@ -334,8 +337,6 @@ if headings is not None:
 
 4. **Extração de texto:**  
    Extrai e limpa o texto dos elementos encontrados, removendo espaços extras.
-
----
 
 ### 3.5. Dicas e Boas Práticas
 
@@ -389,6 +390,325 @@ if headings is not None:
 
 **Resumo:**  
 Web Scraping com Python usando `requests` e `BeautifulSoup` é uma técnica poderosa para extrair dados de páginas web. É importante seguir boas práticas éticas e técnicas para criar scrapers eficientes e responsáveis.
+
+---
+
+## 4. Selenium - Automatizando Tarefas no Navegador
+
+### 4.1. O Que é o Selenium?
+
+O **Selenium** é uma ferramenta de automação de navegador web que permite controlar um navegador programaticamente. É especialmente útil para:
+
+- Automatizar tarefas repetitivas em sites
+- Realizar testes de aplicações web
+- Fazer web scraping de sites com JavaScript
+- Preencher formulários automaticamente
+- Navegar por páginas que exigem interação
+
+### 4.2. Instalação e Configuração
+
+#### Instalação do Selenium
+
+```bash
+pip install selenium
+```
+
+#### Instalação do WebDriver
+
+| Navegador | WebDriver | Download |
+|-----------|-----------|----------|
+| Chrome | ChromeDriver | https://chromedriver.chromium.org/ |
+| Firefox | GeckoDriver | https://github.com/mozilla/geckodriver/releases |
+| Edge | EdgeDriver | https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/ |
+| Safari | SafariDriver | Já incluído no macOS |
+
+#### Configuração Básica
+
+```python
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+
+# Configurações opcionais do Chrome
+chrome_options = Options()
+chrome_options.add_argument("--headless")  # Executar sem interface gráfica
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-dev-shm-usage")
+
+# Inicializar o driver
+driver = webdriver.Chrome(options=chrome_options)
+
+# Exemplo básico
+driver.get("https://www.google.com")
+print(driver.title)
+driver.quit()
+```
+
+### 4.3. Localizadores (By) no Selenium
+
+O Selenium usa a classe `By` para localizar elementos na página:
+
+| Localizador | Método | Exemplo |
+|-------------|---------|---------|
+| `By.ID` | Por ID do elemento | `driver.find_element(By.ID, "username")` |
+| `By.NAME` | Por atributo name | `driver.find_element(By.NAME, "email")` |
+| `By.CLASS_NAME` | Por classe CSS | `driver.find_element(By.CLASS_NAME, "btn-primary")` |
+| `By.TAG_NAME` | Por tag HTML | `driver.find_element(By.TAG_NAME, "h1")` |
+| `By.CSS_SELECTOR` | Por seletor CSS | `driver.find_element(By.CSS_SELECTOR, ".class > p")` |
+| `By.XPATH` | Por XPath | `driver.find_element(By.XPATH, "//input[@type='password']")` |
+| `By.LINK_TEXT` | Por texto do link | `driver.find_element(By.LINK_TEXT, "Clique aqui")` |
+| `By.PARTIAL_LINK_TEXT` | Por texto parcial do link | `driver.find_element(By.PARTIAL_LINK_TEXT, "Clique")` |
+
+```python
+from selenium.webdriver.common.by import By
+
+# Exemplos de uso
+element = driver.find_element(By.ID, "meu-id")
+elements = driver.find_elements(By.CLASS_NAME, "minha-classe")
+```
+
+### 4.4. Métodos de Busca de Elementos
+
+| Método | Descrição | Retorno |
+|--------|-----------|---------|
+| `find_element()` | Encontra o primeiro elemento | WebElement |
+| `find_elements()` | Encontra todos os elementos | Lista de WebElements |
+
+#### Métodos de Interação com Elementos
+
+```python
+# Buscar elemento
+elemento = driver.find_element(By.ID, "campo-texto")
+
+# Interações básicas
+elemento.click()                    # Clicar
+elemento.send_keys("texto")         # Digitar texto
+elemento.clear()                    # Limpar campo
+elemento.submit()                   # Enviar formulário
+
+# Obter informações
+texto = elemento.text               # Texto do elemento
+atributo = elemento.get_attribute("href")  # Valor de atributo
+esta_visivel = elemento.is_displayed()     # Verificar se está visível
+esta_habilitado = elemento.is_enabled()    # Verificar se está habilitado
+```
+
+### 4.5. WebDriverWait e Expected Conditions
+
+Para aguardar elementos aparecerem na página:
+
+```python
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+# Configurar wait
+wait = WebDriverWait(driver, 10)  # Aguardar até 10 segundos
+
+# Aguardar elemento estar presente
+elemento = wait.until(EC.presence_of_element_located((By.ID, "meu-id")))
+
+# Aguardar elemento estar clicável
+elemento = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, "btn")))
+
+# Aguardar elemento estar visível
+elemento = wait.until(EC.visibility_of_element_located((By.XPATH, "//div[@class='content']")))
+```
+
+#### Expected Conditions Mais Usados
+
+| Condição | Descrição |
+|----------|-----------|
+| `presence_of_element_located` | Elemento presente no DOM |
+| `visibility_of_element_located` | Elemento visível na página |
+| `element_to_be_clickable` | Elemento clicável |
+| `text_to_be_present_in_element` | Texto específico presente no elemento |
+| `title_is` | Título da página igual ao especificado |
+
+### 4.6. Enviando Teclas com a Classe Keys
+
+```python
+from selenium.webdriver.common.keys import Keys
+
+# Teclas especiais
+elemento.send_keys(Keys.ENTER)      # Enter
+elemento.send_keys(Keys.TAB)        # Tab
+elemento.send_keys(Keys.ESCAPE)     # Escape
+elemento.send_keys(Keys.BACKSPACE)  # Backspace
+elemento.send_keys(Keys.DELETE)     # Delete
+
+# Combinações de teclas
+elemento.send_keys(Keys.CONTROL + "a")  # Ctrl + A
+elemento.send_keys(Keys.CONTROL + "c")  # Ctrl + C
+elemento.send_keys(Keys.CONTROL + "v")  # Ctrl + V
+
+# Teclas de navegação
+elemento.send_keys(Keys.ARROW_DOWN)
+elemento.send_keys(Keys.ARROW_UP)
+elemento.send_keys(Keys.PAGE_DOWN)
+elemento.send_keys(Keys.HOME)
+elemento.send_keys(Keys.END)
+```
+
+### 4.7. Exemplo Prático Completo
+
+```python
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
+import time
+
+def buscar_no_google(termo_busca):
+    """
+    Exemplo de automação: buscar um termo no Google
+    """
+    # Configurar opções do Chrome
+    options = Options()
+    options.add_argument("--headless")  # Executar sem interface gráfica
+    
+    # Inicializar driver
+    driver = webdriver.Chrome(options=options)
+    wait = WebDriverWait(driver, 10)
+    
+    try:
+        # Acessar Google
+        driver.get("https://www.google.com")
+        print(f"Título da página: {driver.title}")
+        
+        # Encontrar campo de busca
+        campo_busca = wait.until(
+            EC.presence_of_element_located((By.NAME, "q"))
+        )
+        
+        # Digite termo e pressione Enter
+        campo_busca.send_keys(termo_busca)
+        campo_busca.send_keys(Keys.RETURN)
+        
+        # Aguardar resultados carregarem
+        wait.until(
+            EC.presence_of_element_located((By.ID, "search"))
+        )
+        
+        # Coletar primeiros resultados
+        resultados = driver.find_elements(By.CSS_SELECTOR, "h3")
+        
+        print(f"\nPrimeiros 5 resultados para '{termo_busca}':")
+        for i, resultado in enumerate(resultados[:5], 1):
+            print(f"{i}. {resultado.text}")
+        
+        # Tirar screenshot
+        driver.save_screenshot("busca_google.png")
+        print(f"\nScreenshot salvo como 'busca_google.png'")
+        
+    except Exception as e:
+        print(f"Erro durante a execução: {e}")
+    
+    finally:
+        # Sempre fechar o driver
+        driver.quit()
+
+# Executar exemplo
+if __name__ == "__main__":
+    buscar_no_google("Python Selenium tutorial")
+```
+
+#### Exemplo de Preenchimento de Formulário
+
+```python
+def preencher_formulario():
+    driver = webdriver.Chrome()
+    wait = WebDriverWait(driver, 10)
+    
+    try:
+        # Acessar página com formulário
+        driver.get("https://exemplo.com/formulario")
+        
+        # Preencher campos
+        nome = wait.until(EC.presence_of_element_located((By.ID, "nome")))
+        nome.send_keys("João Silva")
+        
+        email = driver.find_element(By.ID, "email")
+        email.send_keys("joao@email.com")
+        
+        # Selecionar dropdown
+        from selenium.webdriver.support.ui import Select
+        dropdown = Select(driver.find_element(By.ID, "pais"))
+        dropdown.select_by_visible_text("Brasil")
+        
+        # Marcar checkbox
+        checkbox = driver.find_element(By.ID, "aceito-termos")
+        if not checkbox.is_selected():
+            checkbox.click()
+        
+        # Enviar formulário
+        botao_enviar = driver.find_element(By.CSS_SELECTOR, "button[type='submit']")
+        botao_enviar.click()
+        
+        # Aguardar confirmação
+        mensagem = wait.until(
+            EC.visibility_of_element_located((By.CLASS_NAME, "mensagem-sucesso"))
+        )
+        print(f"Formulário enviado: {mensagem.text}")
+        
+    finally:
+        driver.quit()
+```
+
+### 4.8. Dicas e Boas Práticas
+
+#### ✅ Boas Práticas
+
+1. **Sempre use WebDriverWait**: Evite `time.sleep()`, use esperações explícitas
+2. **Feche o driver**: Sempre use `driver.quit()` ou contexto `with`
+3. **Use headless quando possível**: Para scripts automatizados
+4. **Trate exceções**: Selenium pode gerar várias exceções
+5. **Prefira CSS Selectors**: Mais rápidos que XPath
+6. **Use localizadores únicos**: IDs são mais confiáveis que classes
+
+#### ⚠️ Cuidados
+
+- **Rate limiting**: Não faça muitas requisições muito rápido
+- **Robots.txt**: Respeite as regras do site
+- **Detecção de bots**: Alguns sites detectam automação
+- **Recursos**: Selenium consome mais recursos que requests
+- **Termos de uso**: Verifique se automação é permitida
+
+#### 🛠️ Debugging
+
+```python
+# Imprimir HTML da página
+print(driver.page_source)
+
+# Tirar screenshot para debug
+driver.save_screenshot("debug.png")
+
+# Aguardar input do usuário (para debug)
+input("Pressione Enter para continuar...")
+
+# Logs do navegador
+logs = driver.get_log('browser')
+for log in logs:
+    print(log)
+```
+
+#### 📋 Configurações Úteis
+
+```python
+# Configurações Chrome para produção
+chrome_options = Options()
+chrome_options.add_argument("--headless")              # Sem interface
+chrome_options.add_argument("--no-sandbox")            # Segurança
+chrome_options.add_argument("--disable-dev-shm-usage") # Memória
+chrome_options.add_argument("--disable-gpu")           # GPU
+chrome_options.add_argument("--window-size=1920,1080") # Tamanho janela
+chrome_options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36")
+
+# Desabilitar imagens (mais rápido)
+prefs = {"profile.managed_default_content_settings.images": 2}
+chrome_options.add_experimental_option("prefs", prefs)
+```
 
 ---
 
