@@ -814,33 +814,37 @@ O arquivo **Módulos Python 5** explora conceitos relacionados ao envio de e-mai
 <summary>23. <a href="./doc/modulo6.md">Módulos Python 6</a></summary>
 
 ### Resumo:
-O arquivo **Módulos Python 6** explora conceitos relacionados ao protocolo HTTP, requisições web, web scraping e automação de navegadores em Python, incluindo:
+O arquivo **Módulos Python 6** explora temas avançados de Python para web, automação, manipulação de dados e execução de comandos externos, incluindo:
 1. **Básico do Protocolo HTTP (HyperText Transfer Protocol):**
-   - O que é o protocolo HTTP e como funciona.
+   - O que é HTTP, funcionamento e principais conceitos.
    - Métodos HTTP (GET, POST, PUT, DELETE, etc.).
    - Códigos de status HTTP (2xx, 4xx, 5xx).
    - Dicas e boas práticas para trabalhar com HTTP.
 2. **Requests para Requisições HTTP com Python:**
-   - O que é a biblioteca `requests`.
-   - Instalação e configuração básica.
-   - Objeto Response e seus atributos principais.
+   - O que é a biblioteca `requests` e como instalar.
+   - Uso básico, objeto Response e principais métodos.
    - Exemplo prático de requisições HTTP.
    - Dicas e boas práticas para requisições seguras.
 3. **Web Scraping com Python usando requests e BeautifulSoup:**
-   - O que é Web Scraping e quando usar.
+   - O que é Web Scraping e quando utilizar.
    - Instalação e configuração do BeautifulSoup.
    - Principais métodos para parsing de HTML.
    - Exemplo prático de extração de dados de páginas web.
    - Dicas e boas práticas éticas para web scraping.
 4. **Selenium - Automatizando Tarefas no Navegador:**
-   - O que é o Selenium e suas aplicações.
-   - Instalação e configuração de WebDrivers.
-   - Localizadores (By) para encontrar elementos.
-   - Métodos de busca e interação com elementos.
-   - WebDriverWait e Expected Conditions para aguardar elementos.
-   - Enviando teclas com a classe Keys.
+   - O que é o Selenium e aplicações práticas.
+   - Instalação, configuração e uso de WebDrivers.
+   - Localizadores (By), métodos de busca e interação com elementos.
+   - WebDriverWait, Expected Conditions e uso de Keys.
    - Exemplos práticos de automação de navegador.
    - Dicas e boas práticas para automação web robusta.
+5. **Subprocess - Executando Programas e Comandos Externos:**
+   - O que é o módulo `subprocess` e quando usar.
+   - Principais argumentos do `subprocess.run()`.
+   - Diferença entre `shell=True` e lista de argumentos.
+   - Tratamento de codificação e multiplataforma.
+   - Exemplo prático de execução de comandos.
+   - Dicas de segurança, troubleshooting e boas práticas.
 
 [Clique aqui para acessar o conteúdo completo.](./doc/modulo6.md)
 
